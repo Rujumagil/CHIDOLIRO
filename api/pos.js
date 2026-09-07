@@ -43,7 +43,12 @@ module.exports = async function handler(req, res) {
     }
 
     const result = await callOrderApi(req, payload);
-    if (!result?.ok) return res.status(result?.error==='unauthorized'?401:400).json(result || {ok:false,error:'pos_failed'});
+    if (!result?.ok) {
+      if (result?.error === 'cash_shift_required') {
+        return res.status(400).json({ok:false,error:'Primero abre la caja en /caja.html antes de cerrar una cuenta.'});
+      }
+      return res.status(result?.error==='unauthorized'?401:400).json(result || {ok:false,error:'pos_failed'});
+    }
     return res.status(200).json(result);
   } catch (error) {
     console.error('[CHIDOLIRO API] pos proxy error', error.message || error);
