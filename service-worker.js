@@ -1,0 +1,4 @@
+const CACHE='chidoliro-app-v8-fotos';
+const ASSETS=['./','./index.html','./manifest.json','./assets/logo.png','./assets/icon-192.png','./assets/icon-512.png','./assets/hero.webp','./assets/molcajete.webp','./assets/torre.webp','./assets/citric.webp','./assets/carajillo.webp','./assets/pulpo.webp','./assets/aguachile.webp','./assets/dishwide.webp','./assets/gallery-01.webp','./assets/gallery-02.webp','./assets/gallery-03.webp','./assets/gallery-04.webp','./assets/gallery-05.webp','./assets/gallery-06.webp','./assets/gallery-07.webp','./assets/gallery-08.webp','./assets/reserve-photo.webp','./assets/location-photo.webp','./assets/promo-michelada.webp','./assets/promo-tacos.webp','./assets/promo-sunset.webp','./assets/promo-drink.webp'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
+self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))));
