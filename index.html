@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#082a31">
-<meta name="description" content="CHIDOLIRO Surf & Turf MX — Descubre mariscos, parrilla, bebidas, promociones y una vista que hace de cada visita una experiencia.">
+<meta name="description" content="CHIDOLIRO Surf & Turf MX — mariscos, bebidas, naturaleza y buenos momentos en Nuevo Urecho, Michoacán.">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="assets/icon-192.png">
 <title>CHIDOLIRO · Surf & Turf MX</title>
@@ -12,347 +12,53 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
-:root{
- --ocean:#082a31;--ocean2:#0d3a43;--teal:#137a7e;--aqua:#7bc9c4;
- --cream:#f6f0e7;--sand:#e9ddca;--amber:#f09a52;--gold:#d7b06f;
- --ink:#152728;--muted:#6c7977;--card:#fffaf3;--line:rgba(21,39,40,.11);
- --shadow:0 24px 70px rgba(5,27,31,.16);--shadow2:0 12px 34px rgba(5,27,31,.10);
- --max:1360px;
-}
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;font-family:"DM Sans",system-ui,sans-serif;background:#04171b;color:white;-webkit-font-smoothing:antialiased}
-body.no-scroll{overflow:hidden} a{color:inherit;text-decoration:none} button,input,select{font:inherit} button{cursor:pointer}
-.app{max-width:var(--max);margin:auto;background:var(--cream);color:var(--ink);min-height:100vh;overflow:hidden;position:relative}
-.topbar{position:fixed;z-index:200;top:12px;left:50%;transform:translateX(-50%);width:min(calc(100% - 24px),1120px);
- display:flex;align-items:center;justify-content:space-between;padding:9px 10px 9px 12px;border-radius:22px;
- background:rgba(7,38,43,.78);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.11);box-shadow:0 12px 40px rgba(0,0,0,.18)}
-.brand{display:flex;align-items:center;gap:10px;color:white} .brand img{width:47px;height:47px;object-fit:contain}
-.brand b{display:block;font-size:.84rem;letter-spacing:.12em} .brand small{display:block;color:var(--aqua);font-weight:800;font-size:.6rem;letter-spacing:.14em;margin-top:2px}
-.navlinks{display:flex;gap:20px;color:rgba(255,255,255,.78);font-size:.8rem;font-weight:700}
-.navlinks a:hover{color:white} .topactions{display:flex;gap:8px}
-.topactions button{border:0;border-radius:14px;min-height:40px;padding:0 13px;font-weight:800}
-.reserveTop{background:var(--amber);color:#24150b} .orderTop{background:white;color:var(--ocean)}
-.menuToggle{display:none;background:rgba(255,255,255,.08)!important;color:white;border:1px solid rgba(255,255,255,.12)!important}
-
-.hero{min-height:96svh;position:relative;display:flex;align-items:end;padding:120px 30px 34px;color:white;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('assets/hero.webp') center/cover no-repeat}
-.hero-bg:after{content:"";position:absolute;inset:0;background:
- linear-gradient(90deg,rgba(3,22,25,.91) 0%,rgba(3,22,25,.70) 44%,rgba(3,22,25,.22) 70%,rgba(3,22,25,.22) 100%),
- linear-gradient(0deg,rgba(3,22,25,.72) 0%,transparent 50%)}
-.heroContent{position:relative;z-index:2;max-width:720px;padding-bottom:26px}
-.kicker{font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--aqua)}
-.hero h1{font-family:"Fraunces",serif;font-size:clamp(3.4rem,7vw,7.5rem);line-height:.93;letter-spacing:-.045em;margin:14px 0 16px}
-.hero h1 span{color:#ffd8a5} .hero p{max-width:610px;font-size:1.05rem;line-height:1.7;color:rgba(255,255,255,.78)}
-.heroActions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.btn{border:0;min-height:50px;padding:0 18px;border-radius:16px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
-.btn:hover{transform:translateY(-2px)} .btnOrange{background:var(--amber);color:#25160b} .btnWhite{background:white;color:var(--ocean)}
-.btnGlass{color:white;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15)}
-.heroBadges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-.heroBadge{padding:9px 11px;border-radius:999px;background:rgba(5,34,38,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);font-size:.72rem;font-weight:700}
-
-.quickbar{position:sticky;top:83px;z-index:120;width:min(calc(100% - 24px),800px);margin:-19px auto 0;padding:8px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;
- border-radius:22px;background:rgba(250,246,239,.94);backdrop-filter:blur(18px);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.8)}
-.quickbar button{border:0;background:transparent;border-radius:15px;min-height:56px;font-size:.72rem;font-weight:800;color:var(--ink)}
-.quickbar button:hover{background:var(--ocean);color:white}
-
-.section{padding:78px 28px} .sectionWhite{background:var(--cream)} .sectionSand{background:var(--sand)} .sectionDark{background:var(--ocean);color:white}
-.head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:28px}
-.head h2{font-family:"Fraunces",serif;font-size:clamp(2.4rem,4.7vw,4.5rem);line-height:.98;letter-spacing:-.035em;margin:6px 0 0}
-.head p{max-width:500px;color:var(--muted);font-size:.9rem;line-height:1.65} .sectionDark .head p{color:rgba(255,255,255,.62)}
-
-.featureRail{display:flex;gap:14px;overflow:auto;scroll-snap-type:x mandatory;padding:3px 2px 14px;scrollbar-width:none}
-.featureRail::-webkit-scrollbar{display:none}
-.feature{min-width:min(82vw,360px);border-radius:25px;overflow:hidden;background:white;border:1px solid var(--line);box-shadow:var(--shadow2);scroll-snap-align:start;position:relative}
-.feature img{width:100%;height:330px;object-fit:cover} .featureOverlay{position:absolute;inset:auto 0 0;padding:60px 18px 17px;background:linear-gradient(transparent,rgba(4,26,29,.93));color:white}
-.featureTag{font-size:.65rem;text-transform:uppercase;letter-spacing:.14em;color:#ffd29b;font-weight:900} .feature h3{font-family:"Fraunces",serif;font-size:1.8rem;margin:6px 0 4px}
-.feature p{font-size:.76rem;color:rgba(255,255,255,.72);margin:0} .featurePrice{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-weight:800}
-.plus{width:38px;height:38px;border:0;border-radius:13px;background:var(--amber);color:#25160b;font-size:1.1rem}
-
-.experienceGrid{display:grid;grid-template-columns:1.12fr .88fr;gap:15px}
-.expCard{border-radius:28px;overflow:hidden;position:relative;min-height:480px;background:#0b343b;box-shadow:var(--shadow2)}
-.expCard img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0} .expCard:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,23,26,.86),transparent 54%)}
-.expText{position:absolute;z-index:2;left:20px;right:20px;bottom:18px;color:white} .expText h3{font-family:"Fraunces",serif;font-size:2rem;line-height:1;margin:0 0 6px}
-.expText p{font-size:.8rem;color:rgba(255,255,255,.70);max-width:480px}
-.expStack{display:grid;grid-template-rows:1fr 1fr;gap:15px} .expStack .expCard{min-height:232px}
-
-.reviewWrap{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}
-.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.review{background:#fffaf3;border:1px solid rgba(21,39,40,.09);border-radius:22px;padding:18px;box-shadow:var(--shadow2)}
-.stars{color:#f1a548;letter-spacing:.08em} .review h4{margin:12px 0 6px;font-size:.86rem} .review p{color:var(--muted);font-size:.78rem;line-height:1.55}
-.reviewNote{border-radius:28px;padding:24px;background:linear-gradient(145deg,var(--ocean2),#0d5258);color:white;display:flex;flex-direction:column;justify-content:end;box-shadow:var(--shadow2)}
-.reviewNote h3{font-family:"Fraunces",serif;font-size:2rem;margin:0 0 8px} .reviewNote p{color:rgba(255,255,255,.68);font-size:.8rem}
-
-.locationReserve{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.panel{background:#fffaf3;border:1px solid rgba(21,39,40,.09);border-radius:28px;padding:22px;box-shadow:var(--shadow2)}
-.panel h3{font-family:"Fraunces",serif;font-size:2rem;margin:0 0 8px} .panel p{color:var(--muted);font-size:.82rem;line-height:1.55}
-.mapCard{margin-top:16px;min-height:250px;border-radius:22px;position:relative;overflow:hidden;background:
- linear-gradient(rgba(11,55,63,.08),rgba(11,55,63,.08)),repeating-linear-gradient(35deg,#d9ccb8 0 18px,#eadfce 18px 38px)}
-.mapCard:before{content:"📍";position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);font-size:3.6rem}
-.mapCard:after{content:"Nacional s/n · Nuevo Urecho, Michoacán";position:absolute;left:14px;right:14px;bottom:14px;background:white;border-radius:12px;padding:10px 12px;font-size:.74rem;font-weight:800;color:var(--ocean)}
-.locationActions{display:flex;gap:8px;margin-top:15px;flex-wrap:wrap}
-.fieldGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px} .field{display:grid;gap:6px;font-size:.74rem;font-weight:700}
-.field input,.field select{min-height:48px;border:1px solid rgba(21,39,40,.12);border-radius:14px;background:white;padding:0 12px;color:var(--ink);outline:none}
-.full{grid-column:1/-1}
-
-.promoRail{display:flex;gap:14px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none}
-.promoRail::-webkit-scrollbar{display:none} .promo{min-width:min(80vw,330px);scroll-snap-align:start;border-radius:25px;padding:22px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;
- background:linear-gradient(145deg,#0d3942,#0c5f64);border:1px solid rgba(255,255,255,.09);box-shadow:0 18px 44px rgba(0,0,0,.17)}
-.promoIcon{font-size:1.7rem} .promoDay{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--aqua);font-weight:900}
-.promo h3{font-family:"Fraunces",serif;font-size:1.75rem;margin:6px 0 2px} .deal{font-size:1.55rem;color:#ffd198;font-weight:900} .promo p{font-size:.76rem;color:rgba(255,255,255,.64);margin:6px 0 0}
-
-footer{background:#04171b;color:rgba(255,255,255,.65);padding:48px 28px 110px}
-.footerGrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px} footer h4{color:white;margin:0 0 10px} footer a{display:block;margin:6px 0;font-size:.8rem}
-.footerBrand{display:flex;align-items:center;gap:10px} .footerBrand img{width:55px} .footerBrand b{color:white;letter-spacing:.12em}
-.footerCopy{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);font-size:.72rem}
-
-.bottomNav{position:fixed;z-index:220;bottom:10px;left:50%;transform:translateX(-50%);width:min(calc(100% - 20px),690px);display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:7px;
- border-radius:22px;background:rgba(250,246,239,.95);backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.26)}
-.bottomNav a,.bottomNav button{border:0;background:transparent;border-radius:15px;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5b6967;font-size:.62rem;font-weight:800}
-.bottomNav .active,.bottomNav a:hover,.bottomNav button:hover{background:var(--ocean);color:white} .bottomIcon{font-size:1rem}
-
-.sheetBg{position:fixed;inset:0;z-index:400;background:rgba(1,12,14,.68);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;padding:12px}
-.sheetBg.show{display:flex} .sheet{width:min(100%,760px);max-height:90vh;overflow:auto;background:var(--cream);color:var(--ink);border-radius:30px;padding:22px;box-shadow:var(--shadow);animation:rise .22s ease}
-@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
-.sheetHead{display:flex;justify-content:space-between;gap:12px;align-items:start} .sheetHead h3{font-family:"Fraunces",serif;font-size:2.2rem;line-height:1;margin:4px 0 12px}
-.close{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:white}
-.sheetMenu{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px} .orderMode{padding:17px;border-radius:19px;background:white;border:1px solid var(--line);text-align:left}
-.orderMode b{display:block;margin:6px 0;font-size:.9rem} .orderMode p{font-size:.75rem;color:var(--muted);margin:0}
-.menuTabs{display:flex;gap:7px;overflow:auto;margin:12px 0;scrollbar-width:none} .menuTabs::-webkit-scrollbar{display:none}
-.menuTabs button{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:999px;padding:9px 12px;font-size:.72rem;font-weight:800}
-.menuTabs button.active{background:var(--ocean);color:white}
-.menuItems{display:grid;grid-template-columns:1fr 1fr;gap:10px} .menuItem{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden}
-.menuItem img{width:100%;height:145px;object-fit:cover} .menuItemBody{padding:12px} .menuItemBody h4{font-family:"Fraunces",serif;font-size:1.25rem;margin:0 0 4px} .menuItemBody p{font-size:.72rem;color:var(--muted);min-height:34px}
-.menuItemBottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px} .menuItemBottom button{width:36px;height:36px;border:0;border-radius:11px;background:var(--ocean);color:white}
-.cartBar{position:sticky;bottom:0;margin-top:12px;background:var(--ocean);color:white;border-radius:17px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}
-.cartBar button{border:0;border-radius:12px;background:var(--amber);font-weight:900;padding:10px 13px}
-
-
-.galleryGrid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:260px 260px;gap:12px}
-.galleryTile{position:relative;overflow:hidden;border-radius:24px;box-shadow:var(--shadow2);background:var(--ocean)}
-.galleryTile.large{grid-row:1/3}
-.galleryTile img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.galleryTile:hover img{transform:scale(1.035)}
-.galleryTile:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,22,25,.45),transparent 55%);pointer-events:none}
-.galleryLabel{position:absolute;z-index:2;left:15px;bottom:14px;color:white;font-weight:800;font-size:.78rem}
-.galleryLabel small{display:block;color:rgba(255,255,255,.68);font-weight:600;margin-top:2px}
-.visitPhoto{height:190px;border-radius:20px;overflow:hidden;margin-top:15px;position:relative}
-.visitPhoto img{width:100%;height:100%;object-fit:cover}
-.visitPhoto:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,28,31,.45),transparent)}
-.reservePhoto{height:185px;border-radius:20px;overflow:hidden;margin-top:15px;position:relative}
-.reservePhoto img{width:100%;height:100%;object-fit:cover}
-.reservePhoto:after{content:"Tu mesa, la vista y un buen momento.";position:absolute;left:14px;right:14px;bottom:13px;color:white;font-weight:800;font-size:.8rem;text-shadow:0 2px 10px rgba(0,0,0,.4)}
-.promo.photoPromo{background-size:cover;background-position:center;position:relative;overflow:hidden}
-.promo.photoPromo:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,27,31,.93),rgba(4,27,31,.34));z-index:0}
-.promo.photoPromo>*{position:relative;z-index:1}
-@media(max-width:980px){.galleryGrid{grid-template-columns:1fr 1fr;grid-template-rows:320px 230px 230px}.galleryTile.large{grid-column:1/3;grid-row:auto}}
-@media(max-width:650px){.galleryGrid{grid-template-columns:1fr 1fr;grid-template-rows:330px 190px 190px}.galleryTile.large{grid-column:1/3}.galleryLabel{font-size:.68rem}}
-
-@media(max-width:980px){
- .navlinks{display:none} .menuToggle{display:block} .hero{padding-left:18px;padding-right:18px}
- .reviews{grid-template-columns:1fr} .reviewWrap,.locationReserve,.experienceGrid{grid-template-columns:1fr}
- .expStack{grid-template-columns:1fr 1fr;grid-template-rows:none} .footerGrid{grid-template-columns:1fr 1fr} .footerGrid>:first-child{grid-column:1/-1}
-}
-@media(max-width:650px){
- .topbar{top:7px;width:calc(100% - 14px)} .topactions .reserveTop{display:none}
- .hero{min-height:92svh;padding:96px 12px 24px} .hero h1{font-size:clamp(3.7rem,17vw,5.5rem)} .hero p{font-size:.94rem}
- .heroActions .btn{flex:1} .quickbar{top:73px;width:calc(100% - 18px);grid-template-columns:repeat(5,1fr);margin-top:-12px} .quickbar button{font-size:.62rem;min-height:52px}
- .section{padding:64px 12px} .head{display:grid;align-items:start} .feature{min-width:84vw} .feature img{height:300px}
- .expStack{grid-template-columns:1fr} .expCard{min-height:390px} .expStack .expCard{min-height:260px}
- .reviews{grid-template-columns:1fr} .fieldGrid,.menuItems,.sheetMenu{grid-template-columns:1fr}
- .full{grid-column:auto} .footerGrid{grid-template-columns:1fr} .footerGrid>:first-child{grid-column:auto}
- .bottomNav{grid-template-columns:repeat(6,1fr)} .bottomNav a,.bottomNav button{font-size:.57rem;min-height:55px}
-}
+:root{--ocean:#082a31;--ocean2:#0d3a43;--teal:#137a7e;--aqua:#7bc9c4;--cream:#f6f0e7;--sand:#e9ddca;--amber:#f09a52;--ink:#152728;--muted:#6c7977;--line:rgba(21,39,40,.11);--shadow:0 24px 70px rgba(5,27,31,.16);--shadow2:0 12px 34px rgba(5,27,31,.10);--max:1360px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"DM Sans",system-ui,sans-serif;background:#04171b;color:white;-webkit-font-smoothing:antialiased}body.no-scroll{overflow:hidden}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer}.app{max-width:var(--max);margin:auto;background:var(--cream);color:var(--ink);min-height:100vh;overflow:hidden;position:relative}
+.topbar{position:fixed;z-index:200;top:12px;left:50%;transform:translateX(-50%);width:min(calc(100% - 24px),1120px);display:flex;align-items:center;justify-content:space-between;padding:9px 10px 9px 12px;border-radius:22px;background:rgba(7,38,43,.78);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.11);box-shadow:0 12px 40px rgba(0,0,0,.18)}.brand{display:flex;align-items:center;gap:10px;color:white}.brand img{width:47px;height:47px;object-fit:contain}.brand b{display:block;font-size:.84rem;letter-spacing:.12em}.brand small{display:block;color:var(--aqua);font-weight:800;font-size:.6rem;letter-spacing:.14em;margin-top:2px}.navlinks{display:flex;gap:20px;color:rgba(255,255,255,.78);font-size:.8rem;font-weight:700}.navlinks a:hover{color:white}.topactions{display:flex;gap:8px}.topactions button{border:0;border-radius:14px;min-height:40px;padding:0 13px;font-weight:800}.reserveTop{background:var(--amber);color:#24150b}.orderTop{background:white;color:var(--ocean)}
+.hero{min-height:96svh;position:relative;display:flex;align-items:end;padding:120px 30px 34px;color:white;overflow:hidden}.hero-bg{position:absolute;inset:0;background:url('assets/hero.webp') center/cover no-repeat}.hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,22,25,.92),rgba(3,22,25,.7) 44%,rgba(3,22,25,.18) 75%),linear-gradient(0deg,rgba(3,22,25,.72),transparent 50%)}.heroContent{position:relative;z-index:2;max-width:720px;padding-bottom:24px}.kicker{font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--aqua)}.hero h1,.head h2,.feature h3,.expText h3,.reviewNote h3,.panel h3,.sheet h3{font-family:"Fraunces",serif}.hero h1{font-size:clamp(3.4rem,7vw,7.5rem);line-height:.93;letter-spacing:-.045em;margin:14px 0 16px}.hero h1 span{color:#ffd8a5}.hero p{max-width:610px;font-size:1.05rem;line-height:1.7;color:rgba(255,255,255,.78)}.heroActions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.btn{border:0;min-height:50px;padding:0 18px;border-radius:16px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}.btn:hover{transform:translateY(-2px)}.btnOrange{background:var(--amber);color:#25160b}.btnWhite{background:white;color:var(--ocean)}.btnGlass{color:white;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15)}.heroBadges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.heroBadge{padding:9px 11px;border-radius:999px;background:rgba(5,34,38,.55);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px);font-size:.72rem;font-weight:700}
+.quickbar{position:sticky;top:83px;z-index:120;width:min(calc(100% - 24px),800px);margin:-19px auto 0;padding:8px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;border-radius:22px;background:rgba(250,246,239,.94);backdrop-filter:blur(18px);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.8)}.quickbar button{border:0;background:transparent;border-radius:15px;min-height:56px;font-size:.72rem;font-weight:800;color:var(--ink)}.quickbar button:hover{background:var(--ocean);color:white}
+.section{padding:78px 28px}.sectionWhite{background:var(--cream)}.sectionSand{background:var(--sand)}.sectionDark{background:var(--ocean);color:white}.head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:28px}.head h2{font-size:clamp(2.4rem,4.7vw,4.5rem);line-height:.98;letter-spacing:-.035em;margin:6px 0 0}.head p{max-width:500px;color:var(--muted);font-size:.9rem;line-height:1.65}.sectionDark .head p{color:rgba(255,255,255,.62)}
+.featureRail{display:flex;gap:14px;overflow:auto;scroll-snap-type:x mandatory;padding:3px 2px 14px;scrollbar-width:none}.featureRail::-webkit-scrollbar{display:none}.feature{min-width:min(82vw,360px);border-radius:25px;overflow:hidden;background:white;border:1px solid var(--line);box-shadow:var(--shadow2);scroll-snap-align:start;position:relative}.feature img{width:100%;height:330px;object-fit:cover}.featureOverlay{position:absolute;inset:auto 0 0;padding:60px 18px 17px;background:linear-gradient(transparent,rgba(4,26,29,.93));color:white}.featureTag{font-size:.65rem;text-transform:uppercase;letter-spacing:.14em;color:#ffd29b;font-weight:900}.feature h3{font-size:1.8rem;margin:6px 0 4px}.feature p{font-size:.76rem;color:rgba(255,255,255,.72);margin:0}.featurePrice{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font-weight:800}.plus{width:38px;height:38px;border:0;border-radius:13px;background:var(--amber);color:#25160b;font-size:1.1rem}
+.experienceGrid{display:grid;grid-template-columns:1.12fr .88fr;gap:15px}.expCard{border-radius:28px;overflow:hidden;position:relative;min-height:480px;background:#0b343b;box-shadow:var(--shadow2)}.expCard img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.expCard:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,23,26,.86),transparent 54%)}.expText{position:absolute;z-index:2;left:20px;right:20px;bottom:18px;color:white}.expText h3{font-size:2rem;line-height:1;margin:0 0 6px}.expText p{font-size:.8rem;color:rgba(255,255,255,.7);max-width:480px}.expStack{display:grid;grid-template-rows:1fr 1fr;gap:15px}.expStack .expCard{min-height:232px}
+.galleryGrid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:260px 260px;gap:12px}.galleryTile{position:relative;overflow:hidden;border-radius:24px;box-shadow:var(--shadow2);background:var(--ocean)}.galleryTile.large{grid-row:1/3}.galleryTile img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}.galleryTile:hover img{transform:scale(1.035)}.galleryTile:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,22,25,.45),transparent 55%)}.galleryLabel{position:absolute;z-index:2;left:15px;bottom:14px;color:white;font-weight:800;font-size:.78rem}.galleryLabel small{display:block;color:rgba(255,255,255,.68);font-weight:600;margin-top:2px}
+.reviewWrap{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.review{background:#fffaf3;border:1px solid rgba(21,39,40,.09);border-radius:22px;padding:18px;box-shadow:var(--shadow2)}.reviewTop{display:flex;align-items:center;justify-content:space-between;gap:10px}.stars{color:#f1a548;letter-spacing:.08em}.demoTag{font-size:.59rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:rgba(19,122,126,.09);padding:6px 8px;border-radius:999px}.review h4{margin:12px 0 6px;font-size:.86rem}.review p{color:var(--muted);font-size:.78rem;line-height:1.55}.reviewNote{border-radius:28px;padding:24px;background:linear-gradient(145deg,var(--ocean2),#0d5258);color:white;display:flex;flex-direction:column;justify-content:end;box-shadow:var(--shadow2)}.reviewNote h3{font-size:2rem;margin:0 0 8px}.reviewNote p{color:rgba(255,255,255,.68);font-size:.8rem}
+.locationReserve{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{background:#fffaf3;border:1px solid rgba(21,39,40,.09);border-radius:28px;padding:22px;box-shadow:var(--shadow2)}.panel h3{font-size:2rem;margin:0 0 8px}.panel p{color:var(--muted);font-size:.82rem;line-height:1.55}.visitPhoto,.reservePhoto{height:185px;border-radius:20px;overflow:hidden;margin-top:15px;position:relative}.visitPhoto img,.reservePhoto img{width:100%;height:100%;object-fit:cover}.reservePhoto:after{content:"Tu mesa, la vista y un buen momento.";position:absolute;left:14px;right:14px;bottom:13px;color:white;font-weight:800;font-size:.8rem;text-shadow:0 2px 10px rgba(0,0,0,.4)}.mapCard{margin-top:14px;min-height:220px;border-radius:20px;position:relative;display:block;background:repeating-linear-gradient(35deg,#d9ccb8 0 18px,#eadfce 18px 38px)}.mapCard:before{content:"📍";position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);font-size:3.5rem}.mapCard:after{content:"Nacional s/n · Nuevo Urecho, Michoacán";position:absolute;left:14px;right:14px;bottom:14px;background:white;border-radius:12px;padding:10px 12px;font-size:.74rem;font-weight:800;color:var(--ocean)}.locationActions{display:flex;gap:8px;margin-top:15px;flex-wrap:wrap}.fieldGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.field{display:grid;gap:6px;font-size:.74rem;font-weight:700}.field input,.field select{min-height:48px;border:1px solid rgba(21,39,40,.12);border-radius:14px;background:white;padding:0 12px;color:var(--ink);outline:none}.full{grid-column:1/-1}
+.promoRail{display:flex;gap:14px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none}.promoRail::-webkit-scrollbar{display:none}.promo{min-width:min(80vw,330px);scroll-snap-align:start;border-radius:25px;padding:22px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#0d3942,#0c5f64);border:1px solid rgba(255,255,255,.09);box-shadow:0 18px 44px rgba(0,0,0,.17)}.promo.photoPromo{background-size:cover;background-position:center;position:relative;overflow:hidden}.promo.photoPromo:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,27,31,.93),rgba(4,27,31,.34))}.promo.photoPromo>*{position:relative;z-index:1}.promoIcon{font-size:1.7rem}.promoDay{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--aqua);font-weight:900}.promo h3{font-family:"Fraunces",serif;font-size:1.75rem;margin:6px 0 2px}.deal{font-size:1.55rem;color:#ffd198;font-weight:900}.promo p{font-size:.76rem;color:rgba(255,255,255,.64);margin:6px 0 0}
+footer{background:#04171b;color:rgba(255,255,255,.65);padding:48px 28px 110px}.footerGrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px}footer h4{color:white;margin:0 0 10px}footer a{display:block;margin:6px 0;font-size:.8rem}.footerBrand{display:flex;align-items:center;gap:10px}.footerBrand img{width:55px}.footerBrand b{color:white;letter-spacing:.12em}.footerCopy{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);font-size:.72rem}
+.bottomNav{position:fixed;z-index:220;bottom:10px;left:50%;transform:translateX(-50%);width:min(calc(100% - 20px),690px);display:grid;grid-template-columns:repeat(6,1fr);gap:4px;padding:7px;border-radius:22px;background:rgba(250,246,239,.95);backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.26)}.bottomNav a,.bottomNav button{border:0;background:transparent;border-radius:15px;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#5b6967;font-size:.62rem;font-weight:800}.bottomNav .active,.bottomNav a:hover,.bottomNav button:hover{background:var(--ocean);color:white}.bottomIcon{font-size:1rem}
+.sheetBg{position:fixed;inset:0;z-index:400;background:rgba(1,12,14,.68);backdrop-filter:blur(8px);display:none;align-items:flex-end;justify-content:center;padding:12px}.sheetBg.show{display:flex}.sheet{width:min(100%,760px);max-height:90vh;overflow:auto;background:var(--cream);color:var(--ink);border-radius:30px;padding:22px;box-shadow:var(--shadow)}.sheetHead{display:flex;justify-content:space-between;gap:12px;align-items:start}.sheet h3{font-size:2.2rem;line-height:1;margin:4px 0 12px}.close{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:white}.sheetMenu{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.orderMode{padding:17px;border-radius:19px;background:white;border:1px solid var(--line);text-align:left}.orderMode b{display:block;margin:6px 0;font-size:.9rem}.orderMode p{font-size:.75rem;color:var(--muted);margin:0}.menuTabs{display:flex;gap:7px;overflow:auto;margin:12px 0;scrollbar-width:none}.menuTabs button{white-space:nowrap;border:1px solid var(--line);background:white;border-radius:999px;padding:9px 12px;font-size:.72rem;font-weight:800}.menuTabs button.active{background:var(--ocean);color:white}.menuItems{display:grid;grid-template-columns:1fr 1fr;gap:10px}.menuItem{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden}.menuItem img{width:100%;height:145px;object-fit:cover}.menuItemBody{padding:12px}.menuItemBody h4{font-family:"Fraunces",serif;font-size:1.25rem;margin:0 0 4px}.menuItemBody p{font-size:.72rem;color:var(--muted);min-height:34px}.menuItemBottom{display:flex;justify-content:space-between;align-items:center;margin-top:8px}.menuItemBottom button{width:36px;height:36px;border:0;border-radius:11px;background:var(--ocean);color:white}.cartBar{position:sticky;bottom:0;margin-top:12px;background:var(--ocean);color:white;border-radius:17px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}.cartBar button{border:0;border-radius:12px;background:var(--amber);font-weight:900;padding:10px 13px}
+@media(max-width:980px){.navlinks{display:none}.reviewWrap,.locationReserve,.experienceGrid{grid-template-columns:1fr}.reviews{grid-template-columns:1fr}.expStack{grid-template-columns:1fr 1fr;grid-template-rows:none}.galleryGrid{grid-template-columns:1fr 1fr;grid-template-rows:320px 230px 230px}.galleryTile.large{grid-column:1/3;grid-row:auto}.footerGrid{grid-template-columns:1fr 1fr}.footerGrid>:first-child{grid-column:1/-1}}
+@media(max-width:650px){.topbar{top:7px;width:calc(100% - 14px)}.reserveTop{display:none}.hero{min-height:92svh;padding:96px 12px 24px}.hero h1{font-size:clamp(3.7rem,17vw,5.5rem)}.hero p{font-size:.94rem}.heroActions .btn{flex:1}.quickbar{top:73px;width:calc(100% - 18px);margin-top:-12px}.quickbar button{font-size:.62rem;min-height:52px}.section{padding:64px 12px}.head{display:grid;align-items:start}.feature{min-width:84vw}.feature img{height:300px}.expStack{grid-template-columns:1fr}.galleryGrid{grid-template-columns:1fr 1fr;grid-template-rows:330px 190px 190px}.galleryTile.large{grid-column:1/3}.locationReserve,.fieldGrid,.sheetMenu,.menuItems{grid-template-columns:1fr}.full{grid-column:auto}.footerGrid{grid-template-columns:1fr}.footerGrid>:first-child{grid-column:auto}.bottomNav a,.bottomNav button{font-size:.57rem;min-height:55px}}
 </style>
 </head>
 <body>
 <div class="app">
-  <header class="topbar">
-    <a class="brand" href="#inicio">
-      <img src="assets/logo.png" alt="CHIDOLIRO">
-      <span><b>CHIDOLIRO</b><small>SURF & TURF MX</small></span>
-    </a>
-    <nav class="navlinks">
-      <a href="#inicio">Inicio</a><a href="#imperdibles">Menú</a><a href="#promociones">Promociones</a><a href="#ubicacion">Ubicación</a><a href="#reservar">Reservar</a>
-    </nav>
-    <div class="topactions">
-      <button class="reserveTop" onclick="openSheet('reserveSheet')">Reservar</button>
-      <button class="orderTop" onclick="openSheet('orderSheet')">Pedir para llevar</button>
-      <button class="menuToggle" onclick="openSheet('menuSheet')">☰</button>
-    </div>
-  </header>
-
-  <section class="hero" id="inicio">
-    <div class="hero-bg"></div>
-    <div class="heroContent">
-      <div class="kicker">Naturaleza · sabor · buenos momentos</div>
-      <h1>Descubre las delicias de <span>CHIDOLIRO</span></h1>
-      <p>Mariscos, carnes, bebidas y una vista que convierte cada visita en algo especial. Ven por el sabor, quédate por el momento.</p>
-      <div class="heroActions">
-        <button class="btn btnOrange" onclick="openSheet('reserveSheet')">◷ Reservar ahora</button>
-        <button class="btn btnWhite" onclick="openSheet('menuSheet')">☰ Ver menú</button>
-        <button class="btn btnGlass" onclick="openSheet('orderSheet')">🛍 Pedir para llevar</button>
-      </div>
-      <div class="heroBadges">
-        <div class="heroBadge">🌊 Surf & Turf MX</div>
-        <div class="heroBadge">🌿 Rodeado de naturaleza</div>
-        <div class="heroBadge">🌅 Vistas para disfrutar</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="quickbar">
-    <button onclick="document.querySelector('#inicio').scrollIntoView({behavior:'smooth'})">⌂ Inicio</button>
-    <button onclick="openSheet('menuSheet')">☰ Menú</button>
-    <button onclick="document.querySelector('#promociones').scrollIntoView({behavior:'smooth'})">✦ Promos</button>
-    <button onclick="document.querySelector('#ubicacion').scrollIntoView({behavior:'smooth'})">⌖ Ubicación</button>
-    <button onclick="openSheet('reserveSheet')">◷ Reservar</button>
-  </div>
-
-  <section class="section sectionWhite" id="imperdibles">
-    <div class="head">
-      <div><div class="kicker" style="color:var(--teal)">Sabores del mar y la tierra</div><h2>Nuestros imperdibles</h2></div>
-      <p>Una primera probada de lo que hace especial a CHIDOLIRO. Explora, descubre y guarda tu favorito para tu próxima visita.</p>
-    </div>
-    <div class="featureRail">
-      <article class="feature"><img src="assets/molcajete.webp" alt="Molcajete de mariscos"><div class="featureOverlay"><div class="featureTag">Del mar</div><h3>Molcajete de mariscos</h3><p>Una de las opciones más abundantes para compartir.</p><div class="featurePrice"><span>$679</span><button class="plus" onclick="openSheet('menuSheet')">＋</button></div></div></article>
-      <article class="feature"><img src="assets/torre.webp" alt="Torre de mariscos"><div class="featureOverlay"><div class="featureTag">Especialidad</div><h3>Torre de mariscos</h3><p>Capas frescas, textura y una presentación que roba miradas.</p><div class="featurePrice"><span>$250</span><button class="plus" onclick="openSheet('menuSheet')">＋</button></div></div></article>
-      <article class="feature"><img src="assets/citric.webp" alt="Bebida cítrica"><div class="featureOverlay"><div class="featureTag">Bebida</div><h3>Refresher</h3><p>Mandarina, mojito, paloma o gin & tonic.</p><div class="featurePrice"><span>$60</span><button class="plus" onclick="openSheet('menuSheet')">＋</button></div></div></article>
-      <article class="feature"><img src="assets/carajillo.webp" alt="Carajillo"><div class="featureOverlay"><div class="featureTag">Después de comer</div><h3>Carajillo</h3><p>El cierre perfecto para una gran comida.</p><div class="featurePrice"><span>$109</span><button class="plus" onclick="openSheet('menuSheet')">＋</button></div></div></article>
-    </div>
-  </section>
-
-  <section class="section sectionDark">
-    <div class="head">
-      <div><div class="kicker">Más que un restaurante</div><h2>Una experiencia que se vive</h2></div>
-      <p>CHIDOLIRO combina sabor, naturaleza, atardeceres y un ambiente relajado para crear un plan que se disfruta desde que llegas.</p>
-    </div>
-    <div class="experienceGrid">
-      <div class="expCard"><img src="assets/hero.webp" alt="Terraza CHIDOLIRO"><div class="expText"><h3>Ven por la vista. Quédate por el sabor.</h3><p>Una mesa entre naturaleza, madera y luz cálida cambia por completo la experiencia de comer.</p></div></div>
-      <div class="expStack">
-        <div class="expCard"><img src="assets/pulpo.webp" alt="Pulpo CHIDOLIRO"><div class="expText"><h3>Sabores que se recuerdan</h3><p>Mariscos y preparaciones con personalidad.</p></div></div>
-        <div class="expCard"><img src="assets/citric.webp" alt="Bebidas CHIDOLIRO"><div class="expText"><h3>Un buen momento también se brinda</h3><p>Bebidas frescas para acompañar la tarde.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section sectionWhite" id="galeria">
-    <div class="head">
-      <div><div class="kicker" style="color:var(--teal)">Así se vive CHIDOLIRO</div><h2>Una probada antes de llegar</h2></div>
-      <p>Platillos, bebidas, naturaleza y ambiente real del restaurante. La idea es que desde el Home ya puedas imaginar tu visita.</p>
-    </div>
-    <div class="galleryGrid">
-      <article class="galleryTile large"><img src="assets/gallery-08.webp" alt="Experiencia CHIDOLIRO"><div class="galleryLabel">Sabor que entra por los ojos<small>Platillos reales del restaurante</small></div></article>
-      <article class="galleryTile"><img src="assets/gallery-03.webp" alt="Bebida CHIDOLIRO"><div class="galleryLabel">Bebidas con vista</div></article>
-      <article class="galleryTile"><img src="assets/gallery-07.webp" alt="Aguachile CHIDOLIRO"><div class="galleryLabel">Frescura del mar</div></article>
-      <article class="galleryTile"><img src="assets/gallery-05.webp" alt="Platillo CHIDOLIRO"><div class="galleryLabel">Preparaciones con personalidad</div></article>
-      <article class="galleryTile"><img src="assets/gallery-01.webp" alt="Bebida y naturaleza"><div class="galleryLabel">Un plan diferente</div></article>
-    </div>
-  </section>
-
-  <section class="section sectionWhite">
-    <div class="head">
-      <div><div class="kicker" style="color:var(--teal)">Lo que dicen de nosotros</div><h2>Momentos que vale la pena compartir</h2></div>
-      <p>La sección está preparada para conectar reseñas verificadas de Google y mostrar comentarios reales de clientes.</p>
-    </div>
-    <div class="reviewWrap">
-      <div class="reviews">
-        <div class="review"><div class="stars">★★★★★</div><h4>Reseña verificada</h4><p>Aquí aparecerá una reseña real destacando la experiencia, la comida y el servicio.</p></div>
-        <div class="review"><div class="stars">★★★★★</div><h4>Reseña verificada</h4><p>Aquí aparecerá una reseña real sobre los mariscos, bebidas y el ambiente.</p></div>
-        <div class="review"><div class="stars">★★★★★</div><h4>Reseña verificada</h4><p>Aquí aparecerá una reseña real sobre la vista y las ganas de regresar.</p></div>
-      </div>
-      <aside class="reviewNote"><div class="kicker">Próxima integración</div><h3>Reseñas reales, confianza real.</h3><p>Conectaremos Google Reviews para que esta sección se alimente de comentarios verificables y actualizados.</p></aside>
-    </div>
-  </section>
-
-  <section class="section sectionSand" id="ubicacion">
-    <div class="locationReserve">
-      <article class="panel">
-        <div class="kicker" style="color:var(--teal)">Nuestra ubicación</div>
-        <h3>Haz de CHIDOLIRO un plan</h3>
-        <p>Nacional s/n, 61750 Nuevo Urecho, Michoacán. Un espacio rodeado de naturaleza para comer, relajarte y disfrutar la vista.</p>
-        <div class="visitPhoto"><img src="assets/location-photo.webp" alt="Vista y terraza de CHIDOLIRO"></div>
-        <a class="mapCard" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Nacional+s%2Fn%2C+61750+Nuevo+Urecho%2C+Michoac%C3%A1n"></a>
-        <div class="locationActions"><a class="btn btnOrange" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Nacional+s%2Fn%2C+61750+Nuevo+Urecho%2C+Michoac%C3%A1n">⌖ Cómo llegar</a><button class="btn" style="background:var(--ocean);color:white" onclick="openSheet('reserveSheet')">◷ Reservar</button></div>
-      </article>
-
-      <article class="panel" id="reservar">
-        <div class="kicker" style="color:var(--teal)">Haz tu reservación</div>
-        <h3>Tu mesa te está esperando</h3>
-        <p>Elige fecha, hora y número de personas. La interfaz queda lista para conectarse al sistema de reservaciones.</p>
-        <div class="reservePhoto"><img src="assets/reserve-photo.webp" alt="Reservar una mesa en CHIDOLIRO"></div>
-        <div class="fieldGrid">
-          <label class="field">Fecha<input type="date" id="rDate"></label>
-          <label class="field">Hora<input type="time" id="rTime"></label>
-          <label class="field full">Personas<select id="rPeople"><option>2 personas</option><option>3 personas</option><option>4 personas</option><option>5 personas</option><option>6+ personas</option></select></label>
-        </div>
-        <button class="btn btnOrange" style="width:100%;margin-top:12px" onclick="reservationDemo()">◷ Reservar ahora</button>
-      </article>
-    </div>
-  </section>
-
-  <section class="section sectionDark" id="promociones">
-    <div class="head">
-      <div><div class="kicker">Más sabor · más motivos para visitarnos</div><h2>Promociones</h2></div>
-      <p>Promociones semanales tomadas del menú actual para que siempre haya una razón distinta para volver.</p>
-    </div>
-    <div class="promoRail">
-      <article class="promo photoPromo" style="background-image:url('assets/promo-michelada.webp')"><div><div class="promoIcon">🍺</div><div class="promoDay">Lunes</div><h3>Micheladas 1L</h3><div class="deal">$90</div></div><p>Promoción semanal · aplican restricciones.</p></article>
-      <article class="promo photoPromo" style="background-image:url('assets/promo-tacos.webp')"><div><div class="promoIcon">🌮</div><div class="promoDay">Viernes</div><h3>Taco de pescado</h3><div class="deal">$30</div></div><p>Aplican restricciones.</p></article>
-      <article class="promo photoPromo" style="background-image:url('assets/promo-sunset.webp')"><div><div class="promoIcon">🌅</div><div class="promoDay">Experiencia</div><h3>Atardeceres CHIDOLIRO</h3><div class="deal">Vista + sabor</div></div><p>Una tarde distinta para comer y compartir.</p></article>
-      <article class="promo photoPromo" style="background-image:url('assets/promo-drink.webp')"><div><div class="promoIcon">🎓</div><div class="promoDay">Lun–Vie</div><h3>Paquete estudiantes</h3><div class="deal">$79</div></div><p>2 tacos + 1 agua · presenta credencial.</p></article>
-      <article class="promo"><div><div class="promoIcon">🌊</div><div class="promoDay">Miércoles</div><h3>Tostadas</h3><div class="deal">2 × $60</div></div><p>Ceviche tradicional, carne apache y cangrejo.</p></article>
-      <article class="promo"><div><div class="promoIcon">🎁</div><div class="promoDay">Sábado</div><h3>Descuento en alimentos</h3><div class="deal">10% OFF</div></div><p>Con INE y dirección de Nuevo Urecho · aplican restricciones.</p></article>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footerGrid">
-      <div><div class="footerBrand"><img src="assets/logo.png" alt=""><div><b>CHIDOLIRO</b><div style="font-size:.65rem;color:var(--aqua);font-weight:800">SURF & TURF MX</div></div></div><p>Mar, naturaleza y buenos momentos. Una experiencia gastronómica para descubrir y compartir.</p></div>
-      <div><h4>Explora</h4><a href="#imperdibles">Imperdibles</a><a href="#promociones">Promociones</a><a href="#ubicacion">Ubicación</a></div>
-      <div><h4>Acciones</h4><a href="javascript:void(0)" onclick="openSheet('menuSheet')">Ver menú</a><a href="javascript:void(0)" onclick="openSheet('reserveSheet')">Reservar</a><a href="javascript:void(0)" onclick="openSheet('orderSheet')">Pedir para llevar</a></div>
-    </div>
-    <div class="footerCopy">© <span id="year"></span> CHIDOLIRO · Home con fotografías reales · experiencia digital preparada para pedidos, comandas y POS.</div>
-  </footer>
+<header class="topbar"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="CHIDOLIRO"><span><b>CHIDOLIRO</b><small>SURF & TURF MX</small></span></a><nav class="navlinks"><a href="#inicio">Inicio</a><a href="#imperdibles">Menú</a><a href="#promociones">Promociones</a><a href="#ubicacion">Ubicación</a><a href="#reservar">Reservar</a></nav><div class="topactions"><button class="reserveTop" onclick="openSheet('reserveSheet')">Reservar</button><button class="orderTop" onclick="openSheet('orderSheet')">Pedir para llevar</button></div></header>
+<section class="hero" id="inicio"><div class="hero-bg"></div><div class="heroContent"><div class="kicker">Naturaleza · sabor · buenos momentos</div><h1>Descubre las delicias de <span>CHIDOLIRO</span></h1><p>Mariscos, carnes, bebidas y una vista que convierte cada visita en algo especial. Ven por el sabor, quédate por el momento.</p><div class="heroActions"><button class="btn btnOrange" onclick="openSheet('reserveSheet')">◷ Reservar ahora</button><button class="btn btnWhite" onclick="openSheet('menuSheet')">☰ Ver menú</button><button class="btn btnGlass" onclick="openSheet('orderSheet')">🛍 Pedir para llevar</button></div><div class="heroBadges"><div class="heroBadge">🌊 Surf & Turf MX</div><div class="heroBadge">🌿 Rodeado de naturaleza</div><div class="heroBadge">🌅 Vistas para disfrutar</div></div></div></section>
+<div class="quickbar"><button onclick="location.hash='inicio'">⌂ Inicio</button><button onclick="openSheet('menuSheet')">☰ Menú</button><button onclick="location.hash='promociones'">✦ Promos</button><button onclick="location.hash='ubicacion'">⌖ Ubicación</button><button onclick="openSheet('reserveSheet')">◷ Reservar</button></div>
+<section class="section sectionWhite" id="imperdibles"><div class="head"><div><div class="kicker" style="color:var(--teal)">Sabores del mar y la tierra</div><h2>Nuestros imperdibles</h2></div><p>Una primera probada de lo que hace especial a CHIDOLIRO. Explora, descubre y guarda tu favorito para tu próxima visita.</p></div><div class="featureRail"><article class="feature"><img src="assets/molcajete.webp" alt="Molcajete de mariscos"><div class="featureOverlay"><div class="featureTag">Del mar</div><h3>Molcajete de mariscos</h3><p>Una de las opciones más abundantes para compartir.</p><div class="featurePrice"><span>$679</span><button class="plus" onclick="openSheet('menuSheet')">＋</button></div></div></article><article class="feature"><img src="assets/torre.webp" alt="Torre de mariscos"><div class="featureOverlay"><div class="featureTag">Especialidad</div><h3>Torre de mariscos</h3><p>Capas frescas, textura y una presentación que roba miradas.</p><div class="featurePrice"><span>$250</span><button class="plus" onclick="openSheet('menuSheet')">＋</button></div></div></article><article class="feature"><img src="assets/citric.webp" alt="Refresher"><div class="featureOverlay"><div class="featureTag">Bebida</div><h3>Refresher</h3><p>Mandarina, mojito, paloma o gin & tonic.</p><div class="featurePrice"><span>$60</span><button class="plus" onclick="openSheet('menuSheet')">＋</button></div></div></article><article class="feature"><img src="assets/carajillo.webp" alt="Carajillo"><div class="featureOverlay"><div class="featureTag">Después de comer</div><h3>Carajillo</h3><p>El cierre perfecto para una gran comida.</p><div class="featurePrice"><span>$109</span><button class="plus" onclick="openSheet('menuSheet')">＋</button></div></div></article></div></section>
+<section class="section sectionDark"><div class="head"><div><div class="kicker">Más que un restaurante</div><h2>Una experiencia que se vive</h2></div><p>CHIDOLIRO combina sabor, naturaleza, atardeceres y un ambiente relajado para crear un plan que se disfruta desde que llegas.</p></div><div class="experienceGrid"><div class="expCard"><img src="assets/hero.webp" alt="Terraza CHIDOLIRO"><div class="expText"><h3>Ven por la vista. Quédate por el sabor.</h3><p>Una mesa entre naturaleza, madera y luz cálida cambia por completo la experiencia de comer.</p></div></div><div class="expStack"><div class="expCard"><img src="assets/pulpo.webp" alt="Pulpo"><div class="expText"><h3>Sabores que se recuerdan</h3><p>Mariscos y preparaciones con personalidad.</p></div></div><div class="expCard"><img src="assets/citric.webp" alt="Bebidas"><div class="expText"><h3>Un buen momento también se brinda</h3><p>Bebidas frescas para acompañar la tarde.</p></div></div></div></div></section>
+<section class="section sectionWhite" id="galeria"><div class="head"><div><div class="kicker" style="color:var(--teal)">Así se vive CHIDOLIRO</div><h2>Una probada antes de llegar</h2></div><p>Platillos, bebidas, naturaleza y ambiente real del restaurante. Desde el Home ya puedes imaginar tu visita.</p></div><div class="galleryGrid"><article class="galleryTile large"><img src="assets/gallery-08.webp" alt="Platillo CHIDOLIRO"><div class="galleryLabel">Sabor que entra por los ojos<small>Platillos reales del restaurante</small></div></article><article class="galleryTile"><img src="assets/gallery-03.webp" alt="Bebida"><div class="galleryLabel">Bebidas con vista</div></article><article class="galleryTile"><img src="assets/gallery-07.webp" alt="Aguachile"><div class="galleryLabel">Frescura del mar</div></article><article class="galleryTile"><img src="assets/gallery-05.webp" alt="Platillo"><div class="galleryLabel">Preparaciones con personalidad</div></article><article class="galleryTile"><img src="assets/gallery-01.webp" alt="CHIDOLIRO"><div class="galleryLabel">Un plan diferente</div></article></div></section>
+<section class="section sectionWhite" id="resenas"><div class="head"><div><div class="kicker" style="color:var(--teal)">Lo que dicen de nosotros</div><h2>Momentos que vale la pena compartir</h2></div><p>Por ahora mostramos reseñas demo para visualizar la experiencia. Después las sustituiremos por opiniones verificadas de Google.</p></div><div class="reviewWrap"><div class="reviews"><article class="review"><div class="reviewTop"><div class="stars">★★★★★</div><span class="demoTag">Reseña demo</span></div><h4>Mariana G.</h4><p>“La vista está increíble y la comida todavía mejor. Pedimos mariscos para compartir y todo llegó fresco y muy bien servido. Es de esos lugares a los que quieres regresar con más gente.”</p></article><article class="review"><div class="reviewTop"><div class="stars">★★★★★</div><span class="demoTag">Reseña demo</span></div><h4>Carlos R.</h4><p>“Fuimos por recomendación y terminó siendo todo un plan. Muy buen ambiente, bebidas frías, mariscos con mucho sabor y una vista que hace que te quieras quedar toda la tarde.”</p></article><article class="review"><div class="reviewTop"><div class="stars">★★★★★</div><span class="demoTag">Reseña demo</span></div><h4>Fernanda M.</h4><p>“Me encantó la combinación del lugar con la comida. El pulpo y las bebidas estuvieron buenísimos, el servicio fue muy amable y el atardecer hizo la experiencia todavía más especial.”</p></article></div><aside class="reviewNote"><div class="kicker">Experiencias CHIDOLIRO</div><h3>Gente feliz. Mejores historias.</h3><p>Estas reseñas son únicamente demostrativas. Más adelante conectaremos Google Reviews para mostrar comentarios reales y actualizados.</p></aside></div></section>
+<section class="section sectionSand" id="ubicacion"><div class="locationReserve"><article class="panel"><div class="kicker" style="color:var(--teal)">Nuestra ubicación</div><h3>Haz de CHIDOLIRO un plan</h3><p>Nacional s/n, 61750 Nuevo Urecho, Michoacán. Un espacio rodeado de naturaleza para comer, relajarte y disfrutar la vista.</p><div class="visitPhoto"><img src="assets/location-photo.webp" alt="Vista de CHIDOLIRO"></div><a class="mapCard" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Nacional+s%2Fn%2C+61750+Nuevo+Urecho%2C+Michoac%C3%A1n"></a><div class="locationActions"><a class="btn btnOrange" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Nacional+s%2Fn%2C+61750+Nuevo+Urecho%2C+Michoac%C3%A1n">⌖ Cómo llegar</a><button class="btn" style="background:var(--ocean);color:white" onclick="openSheet('reserveSheet')">◷ Reservar</button></div></article><article class="panel" id="reservar"><div class="kicker" style="color:var(--teal)">Haz tu reservación</div><h3>Tu mesa te está esperando</h3><p>Elige fecha, hora y número de personas. La interfaz está lista para conectarse al sistema real de reservaciones.</p><div class="reservePhoto"><img src="assets/reserve-photo.webp" alt="Reservar una mesa"></div><div class="fieldGrid"><label class="field">Fecha<input type="date"></label><label class="field">Hora<input type="time"></label><label class="field full">Personas<select><option>2 personas</option><option>3 personas</option><option>4 personas</option><option>5 personas</option><option>6+ personas</option></select></label></div><button class="btn btnOrange" style="width:100%;margin-top:12px" onclick="reservationDemo()">◷ Reservar ahora</button></article></div></section>
+<section class="section sectionDark" id="promociones"><div class="head"><div><div class="kicker">Más sabor · más motivos para visitarnos</div><h2>Promociones</h2></div><p>Promociones semanales del menú actual para que siempre haya una razón distinta para volver.</p></div><div class="promoRail"><article class="promo photoPromo" style="background-image:url('assets/promo-michelada.webp')"><div><div class="promoIcon">🍺</div><div class="promoDay">Lunes</div><h3>Micheladas 1L</h3><div class="deal">$90</div></div><p>Aplican restricciones.</p></article><article class="promo photoPromo" style="background-image:url('assets/promo-tacos.webp')"><div><div class="promoIcon">🌮</div><div class="promoDay">Viernes</div><h3>Taco de pescado</h3><div class="deal">$30</div></div><p>Aplican restricciones.</p></article><article class="promo photoPromo" style="background-image:url('assets/promo-sunset.webp')"><div><div class="promoIcon">🌅</div><div class="promoDay">Experiencia</div><h3>Atardeceres CHIDOLIRO</h3><div class="deal">Vista + sabor</div></div><p>Una tarde distinta para comer y compartir.</p></article><article class="promo photoPromo" style="background-image:url('assets/promo-drink.webp')"><div><div class="promoIcon">🎓</div><div class="promoDay">Lun–Vie</div><h3>Paquete estudiantes</h3><div class="deal">$79</div></div><p>2 tacos + 1 agua · presenta credencial.</p></article><article class="promo"><div><div class="promoIcon">🌊</div><div class="promoDay">Miércoles</div><h3>Tostadas</h3><div class="deal">2 × $60</div></div><p>Ceviche tradicional, carne apache y cangrejo.</p></article><article class="promo"><div><div class="promoIcon">🎁</div><div class="promoDay">Sábado</div><h3>Descuento en alimentos</h3><div class="deal">10% OFF</div></div><p>Con INE y dirección de Nuevo Urecho · aplican restricciones.</p></article></div></section>
+<footer><div class="footerGrid"><div><div class="footerBrand"><img src="assets/logo.png" alt=""><div><b>CHIDOLIRO</b><div style="font-size:.65rem;color:var(--aqua);font-weight:800">SURF & TURF MX</div></div></div><p>Mar, naturaleza y buenos momentos. Una experiencia gastronómica para descubrir y compartir.</p></div><div><h4>Explora</h4><a href="#imperdibles">Imperdibles</a><a href="#promociones">Promociones</a><a href="#ubicacion">Ubicación</a></div><div><h4>Acciones</h4><a href="javascript:void(0)" onclick="openSheet('menuSheet')">Ver menú</a><a href="javascript:void(0)" onclick="openSheet('reserveSheet')">Reservar</a><a href="javascript:void(0)" onclick="openSheet('orderSheet')">Pedir para llevar</a></div></div><div class="footerCopy">© <span id="year"></span> CHIDOLIRO · Experiencia digital preparada para pedidos, comandas y POS.</div></footer>
 </div>
-
-<nav class="bottomNav">
-  <a class="active" href="#inicio"><span class="bottomIcon">⌂</span>Inicio</a>
-  <button onclick="openSheet('menuSheet')"><span class="bottomIcon">☰</span>Menú</button>
-  <a href="#promociones"><span class="bottomIcon">✦</span>Promos</a>
-  <a href="#ubicacion"><span class="bottomIcon">⌖</span>Ubicación</a>
-  <button onclick="openSheet('reserveSheet')"><span class="bottomIcon">◷</span>Reservar</button>
-  <button onclick="openSheet('orderSheet')"><span class="bottomIcon">🛍</span>Para llevar</button>
-</nav>
-
+<nav class="bottomNav"><a class="active" href="#inicio"><span class="bottomIcon">⌂</span>Inicio</a><button onclick="openSheet('menuSheet')"><span class="bottomIcon">☰</span>Menú</button><a href="#promociones"><span class="bottomIcon">✦</span>Promos</a><a href="#ubicacion"><span class="bottomIcon">⌖</span>Ubicación</a><button onclick="openSheet('reserveSheet')"><span class="bottomIcon">◷</span>Reservar</button><button onclick="openSheet('orderSheet')"><span class="bottomIcon">🛍</span>Para llevar</button></nav>
 <div class="sheetBg" id="reserveSheet"><div class="sheet"><div class="sheetHead"><div><div class="kicker" style="color:var(--teal)">Reservación</div><h3>Tu mesa. Tu momento.</h3></div><button class="close" onclick="closeSheets()">✕</button></div><div class="fieldGrid"><label class="field">Nombre<input placeholder="Tu nombre"></label><label class="field">Teléfono<input placeholder="Tu teléfono"></label><label class="field">Fecha<input type="date"></label><label class="field">Hora<input type="time"></label><label class="field full">Personas<select><option>2 personas</option><option>3 personas</option><option>4 personas</option><option>5 personas</option><option>6+ personas</option></select></label></div><button class="btn btnOrange" style="width:100%;margin-top:12px" onclick="reservationDemo()">Solicitar reservación</button></div></div>
-
 <div class="sheetBg" id="orderSheet"><div class="sheet"><div class="sheetHead"><div><div class="kicker" style="color:var(--teal)">Pedido</div><h3>¿Cómo quieres disfrutarlo?</h3></div><button class="close" onclick="closeSheets()">✕</button></div><div class="sheetMenu"><button class="orderMode" onclick="setOrderMode('Mesa')"><div style="font-size:1.4rem">🍽</div><b>Para mi mesa</b><p>Listo para QR por mesa y comanda directa a cocina.</p></button><button class="orderMode" onclick="setOrderMode('Para llevar')"><div style="font-size:1.4rem">🛍</div><b>Para llevar</b><p>Carrito, confirmación y seguimiento de preparación.</p></button></div></div></div>
-
 <div class="sheetBg" id="menuSheet"><div class="sheet"><div class="sheetHead"><div><div class="kicker" style="color:var(--teal)">Menú CHIDOLIRO</div><h3>Descubre qué se te antoja</h3></div><button class="close" onclick="closeSheets()">✕</button></div><div class="menuTabs" id="menuTabs"></div><div class="menuItems" id="menuItems"></div><div class="cartBar"><div><b><span id="cartCount">0</span> productos</b><div style="font-size:.7rem;color:rgba(255,255,255,.65)">Total <span id="cartTotal">$0</span></div></div><button onclick="checkoutDemo()">Continuar</button></div></div></div>
-
 <script>
-const MENU = {"Imperdibles": [{"name": "Aguachilón", "price": 389, "desc": "Una experiencia intensa, fresca y muy CHIDOLIRO.", "img": "molcajete.webp"}, {"name": "Molcajete de mariscos", "price": 679, "desc": "Mariscos para compartir, servido con carácter.", "img": "molcajete.webp"}, {"name": "Pulpo zarandeado", "price": 300, "desc": "Pulpo con sabor al fuego y presentación espectacular.", "img": "pulpo.webp"}, {"name": "Torre de mariscos", "price": 250, "desc": "Capas frescas, textura y una presentación que roba miradas.", "img": "torre.webp"}], "Del mar": [{"name": "Camarones al gusto", "price": 220, "desc": "Empanizados · Diabla · Ajo · Ajillo · Mantequilla", "img": "dishwide.webp"}, {"name": "Steak de salmón", "price": 290, "desc": "Preparación caliente del mar.", "img": "dishwide.webp"}, {"name": "Aguachile negro", "price": 240, "desc": "Fresco, intenso y lleno de contraste.", "img": "aguachile.webp"}, {"name": "Aguachile con pulpo", "price": 250, "desc": "Pulpo y frescura en una combinación de la casa.", "img": "aguachile.webp"}], "Tacos": [{"name": "Baja Style · Pescado", "price": 40, "desc": "Taco estilo Baja.", "img": "torre.webp"}, {"name": "Baja Style · Camarón", "price": 45, "desc": "Taco estilo Baja con camarón.", "img": "torre.webp"}, {"name": "Arrachera", "price": 45, "desc": "Taco de arrachera.", "img": "dishwide.webp"}], "Bebidas": [{"name": "Carajillo", "price": 109, "desc": "El cierre perfecto para una gran comida.", "img": "carajillo.webp"}, {"name": "Refresher", "price": 60, "desc": "Mandarina · Mojito · Paloma · Gin & Tonic", "img": "citric.webp"}, {"name": "Mezcalada", "price": 85, "desc": "Refrescante y con personalidad.", "img": "citric.webp"}, {"name": "Michelada", "price": 130, "desc": "Clásica, fría y lista para acompañar.", "img": "citric.webp"}]};
-let activeCategory="Imperdibles"; let cart=[]; let orderMode="Para llevar";
-
-function openSheet(id){closeSheets();document.getElementById(id).classList.add("show");document.body.classList.add("no-scroll");}
-function closeSheets(){document.querySelectorAll(".sheetBg").forEach(s=>s.classList.remove("show"));document.body.classList.remove("no-scroll");}
-document.querySelectorAll(".sheetBg").forEach(s=>s.addEventListener("click",e=>{if(e.target===s)closeSheets();}));
-function money(n){return "$"+Number(n).toLocaleString("es-MX")}
-function setOrderMode(mode){orderMode=mode;closeSheets();openSheet("menuSheet");}
-function renderTabs(){
- const el=document.getElementById("menuTabs");
- el.innerHTML=Object.keys(MENU).map(c=>`<button class="${c===activeCategory?'active':''}" onclick="activeCategory=${JSON.stringify(c)};renderTabs();renderMenu()">${c}</button>`).join("");
-}
-function renderMenu(){
- const el=document.getElementById("menuItems");
- el.innerHTML=MENU[activeCategory].map((it,i)=>`<article class="menuItem"><img src="assets/${it.img}" alt=""><div class="menuItemBody"><h4>${it.name}</h4><p>${it.desc||''}</p><div class="menuItemBottom"><b>${money(it.price)}</b><button onclick="addToCart(${i})">＋</button></div></div></article>`).join("");
-}
-function addToCart(i){const it=MENU[activeCategory][i];cart.push(it);updateCart();}
-function updateCart(){document.getElementById("cartCount").textContent=cart.length;document.getElementById("cartTotal").textContent=money(cart.reduce((s,x)=>s+x.price,0));}
-function checkoutDemo(){alert(`Flujo visual listo: ${orderMode}. Siguiente etapa: conectar carrito → comanda → cocina → cobro.`)}
-function reservationDemo(){alert("La experiencia de reservación está lista. Siguiente etapa: conectar disponibilidad y confirmación.")}
-renderTabs();renderMenu();updateCart();
-document.getElementById("year").textContent=new Date().getFullYear();
-if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}));}
+const MENU={"Imperdibles":[{"name":"Aguachilón","price":389,"desc":"Una experiencia intensa, fresca y muy CHIDOLIRO.","img":"molcajete.webp"},{"name":"Molcajete de mariscos","price":679,"desc":"Mariscos para compartir, servido con carácter.","img":"molcajete.webp"},{"name":"Pulpo zarandeado","price":300,"desc":"Pulpo con sabor al fuego y presentación espectacular.","img":"pulpo.webp"},{"name":"Torre de mariscos","price":250,"desc":"Capas frescas, textura y una presentación que roba miradas.","img":"torre.webp"}],"Del mar":[{"name":"Camarones al gusto","price":220,"desc":"Empanizados · Diabla · Ajo · Ajillo · Mantequilla","img":"dishwide.webp"},{"name":"Steak de salmón","price":290,"desc":"Preparación caliente del mar.","img":"dishwide.webp"},{"name":"Aguachile negro","price":240,"desc":"Fresco, intenso y lleno de contraste.","img":"aguachile.webp"},{"name":"Aguachile con pulpo","price":250,"desc":"Pulpo y frescura en una combinación de la casa.","img":"aguachile.webp"}],"Tacos":[{"name":"Baja Style · Pescado","price":40,"desc":"Taco estilo Baja.","img":"torre.webp"},{"name":"Baja Style · Camarón","price":45,"desc":"Taco estilo Baja con camarón.","img":"torre.webp"},{"name":"Arrachera","price":45,"desc":"Taco de arrachera.","img":"dishwide.webp"}],"Bebidas":[{"name":"Carajillo","price":109,"desc":"El cierre perfecto para una gran comida.","img":"carajillo.webp"},{"name":"Refresher","price":60,"desc":"Mandarina · Mojito · Paloma · Gin & Tonic","img":"citric.webp"},{"name":"Mezcalada","price":85,"desc":"Refrescante y con personalidad.","img":"citric.webp"},{"name":"Michelada","price":130,"desc":"Clásica, fría y lista para acompañar.","img":"citric.webp"}]};
+let activeCategory='Imperdibles',cart=[],orderMode='Para llevar';
+function openSheet(id){closeSheets();document.getElementById(id).classList.add('show');document.body.classList.add('no-scroll')}
+function closeSheets(){document.querySelectorAll('.sheetBg').forEach(s=>s.classList.remove('show'));document.body.classList.remove('no-scroll')}
+document.querySelectorAll('.sheetBg').forEach(s=>s.addEventListener('click',e=>{if(e.target===s)closeSheets()}));
+function money(n){return '$'+Number(n).toLocaleString('es-MX')}function setOrderMode(m){orderMode=m;closeSheets();openSheet('menuSheet')}
+function renderTabs(){document.getElementById('menuTabs').innerHTML=Object.keys(MENU).map(c=>`<button class="${c===activeCategory?'active':''}" onclick="activeCategory=${JSON.stringify(c)};renderTabs();renderMenu()">${c}</button>`).join('')}
+function renderMenu(){document.getElementById('menuItems').innerHTML=MENU[activeCategory].map((it,i)=>`<article class="menuItem"><img src="assets/${it.img}" alt=""><div class="menuItemBody"><h4>${it.name}</h4><p>${it.desc||''}</p><div class="menuItemBottom"><b>${money(it.price)}</b><button onclick="addToCart(${i})">＋</button></div></div></article>`).join('')}
+function addToCart(i){cart.push(MENU[activeCategory][i]);updateCart()}function updateCart(){document.getElementById('cartCount').textContent=cart.length;document.getElementById('cartTotal').textContent=money(cart.reduce((s,x)=>s+x.price,0))}
+function checkoutDemo(){alert(`Flujo visual listo: ${orderMode}. Siguiente etapa: conectar carrito → comanda → cocina → cobro.`)}function reservationDemo(){alert('La experiencia de reservación está lista. Siguiente etapa: conectar disponibilidad y confirmación.')}
+renderTabs();renderMenu();updateCart();document.getElementById('year').textContent=new Date().getFullYear();if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
 </script>
 </body></html>
