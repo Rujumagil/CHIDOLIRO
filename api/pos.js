@@ -2,7 +2,6 @@ const SUPABASE_URL = process.env.CHIDOLIRO_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.CHIDOLIRO_SUPABASE_ANON_KEY;
 
 async function rpc(name, body) {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) throw new Error('pos_config_missing');
   const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`, {
     method: 'POST',
     headers: {
@@ -29,6 +28,7 @@ module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store, max-age=0');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   try {
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return res.status(503).json({ok:false,error:'pos_config_missing'});
     const session = sessionFrom(req);
     if (!session) return res.status(401).json({ok:false,error:'missing_session'});
 
@@ -66,6 +66,6 @@ module.exports = async function handler(req, res) {
     return res.status(200).json(result);
   } catch (error) {
     console.error('[CHIDOLIRO API] pos error', error.message || error);
-    return res.status(502).json({ok:false,error:error.message==='pos_config_missing'?'pos_config_missing':'pos_upstream_failed'});
+    return res.status(502).json({ok:false,error:'pos_upstream_failed'});
   }
 };
