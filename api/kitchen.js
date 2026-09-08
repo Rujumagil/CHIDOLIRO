@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 const SUPABASE_URL = process.env.CHIDOLIRO_SUPABASE_URL || 'https://qwxydjotwhniahaovrff.supabase.co';
-const SUPABASE_ANON_KEY = process.env.CHIDOLIRO_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3eHlkam90d2huaWFoYW92cmZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1MTgxOTQsImV4cCI6MjEwMTA5NDE5NH0.bxRhmjNYrxPIXE4-SxS_YCxpWafFdQWVlaj9E1pdLSc';
+const SUPABASE_ANON_KEY = process.env.CHIDOLIRO_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJIUzI1NiIsInJlZiI6InF3eHlkam90d2huaWFoYW92cmZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1MTgxOTQsImV4cCI6MjEwMTA5NDE5NH0.bxRhmjNYrxPIXE4-SxS_YCxpWafFdQWVlaj9E1pdLSc';
 
 function fingerprint(req){
   const ip=String(req.headers['x-forwarded-for']||req.socket?.remoteAddress||'').split(',')[0].trim();
@@ -54,18 +54,28 @@ module.exports=async function handler(req,res){
       result=await rpc('chidoliro_staff_save',{session_token:session,payload});
     }else if(action==='station_orders'){
       result=await rpc('chidoliro_staff_station_orders',{session_token:session,station_input:String(body.station||'kitchen').trim().toLowerCase()});
+    }else if(action==='station_unit_update'){
+      result=await rpc('chidoliro_staff_station_unit_update',{session_token:session,target_unit_id:String(body.unit_id||''),new_status:String(body.status||'').trim().toLowerCase()});
     }else if(action==='station_item_update'){
-      result=await rpc('chidoliro_staff_station_item_update',{session_token:session,target_order_item_id:String(body.order_item_id||''),new_status:String(body.status||'').trim().toLowerCase()});
+      result=body.unit_id
+        ?await rpc('chidoliro_staff_station_unit_update',{session_token:session,target_unit_id:String(body.unit_id),new_status:String(body.status||'').trim().toLowerCase()})
+        :await rpc('chidoliro_staff_station_item_update',{session_token:session,target_order_item_id:String(body.order_item_id||''),new_status:String(body.status||'').trim().toLowerCase()});
     }else if(action==='station_update'||action==='update'){
       result=await rpc('chidoliro_staff_station_update',{session_token:session,target_order_id:String(body.order_id||''),station_input:String(body.station||'kitchen').trim().toLowerCase(),new_status:String(body.status||'').trim().toLowerCase()});
     }else if(action==='delivery_list'){
       result=await rpc('chidoliro_staff_delivery_orders',{session_token:session});
+    }else if(action==='mark_unit_delivered'){
+      result=await rpc('chidoliro_staff_mark_unit_delivered',{session_token:session,target_unit_id:String(body.unit_id||'')});
     }else if(action==='mark_item_delivered'){
-      result=await rpc('chidoliro_staff_mark_item_delivered',{session_token:session,target_order_item_id:String(body.order_item_id||'')});
+      result=body.unit_id
+        ?await rpc('chidoliro_staff_mark_unit_delivered',{session_token:session,target_unit_id:String(body.unit_id)})
+        :await rpc('chidoliro_staff_mark_item_delivered',{session_token:session,target_order_item_id:String(body.order_item_id||'')});
     }else if(action==='mark_delivered'){
-      result=body.order_item_id
-        ?await rpc('chidoliro_staff_mark_item_delivered',{session_token:session,target_order_item_id:String(body.order_item_id)})
-        :await rpc('chidoliro_staff_mark_station_delivered',{session_token:session,target_order_id:String(body.order_id||''),station_input:String(body.station||'').trim().toLowerCase()});
+      result=body.unit_id
+        ?await rpc('chidoliro_staff_mark_unit_delivered',{session_token:session,target_unit_id:String(body.unit_id)})
+        :body.order_item_id
+          ?await rpc('chidoliro_staff_mark_item_delivered',{session_token:session,target_order_item_id:String(body.order_item_id)})
+          :await rpc('chidoliro_staff_mark_station_delivered',{session_token:session,target_order_id:String(body.order_id||''),station_input:String(body.station||'').trim().toLowerCase()});
     }else if(action==='waiter_overview'){
       result=await rpc('chidoliro_pos_overview',{session_token:session});
     }else if(action==='assign_waiter'){
