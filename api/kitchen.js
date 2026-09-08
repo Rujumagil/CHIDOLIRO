@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 const SUPABASE_URL = process.env.CHIDOLIRO_SUPABASE_URL || 'https://qwxydjotwhniahaovrff.supabase.co';
-const SUPABASE_ANON_KEY = process.env.CHIDOLIRO_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3eHlkam90d2huaWFoYW92cmZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1MTgxOTQsImV4cCI6MjEwMTA5NDE5NH0.bxRhmjNYrxPIXE4-SxS_YCxpWafFdQWVlaj9E1pdLSc';
+const SUPABASE_ANON_KEY = process.env.CHIDOLIRO_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJIUzI1NiIsInJlZiI6InF3eHlkam90d2huaWFoYW92cmZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1MTgxOTQsImV4cCI6MjEwMTA5NDE5NH0.bxRhmjNYrxPIXE4-SxS_YCxpWafFdQWVlaj9E1pdLSc';
 
 function fingerprint(req) {
   const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim();
@@ -40,8 +40,8 @@ module.exports = async function handler(req, res) {
     if (req.method === 'GET') {
       const session = tokenFrom(req, null);
       if (!session) return res.status(401).json({ok:false,error:'missing_session'});
-      const result = await rpc('chidoliro_kitchen_orders', {session_token: session});
-      if (!result?.ok) return res.status(result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'kitchen_load_failed'});
+      const result = await rpc('chidoliro_staff_kitchen_orders', {session_token: session});
+      if (!result?.ok) return res.status(result?.error === 'forbidden' ? 403 : result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'kitchen_load_failed'});
       return res.status(200).json(result);
     }
 
@@ -51,7 +51,10 @@ module.exports = async function handler(req, res) {
 
     if (action === 'login') {
       const pin = String(body.pin || '').replace(/\D/g,'').slice(0,6);
-      const result = await rpc('chidoliro_kitchen_login', {pin_input: pin, client_fingerprint: fingerprint(req)});
+      const username = String(body.username || '').trim().toLowerCase();
+      const result = username
+        ? await rpc('chidoliro_staff_login', {username_input:username,pin_input:pin,client_fingerprint:fingerprint(req)})
+        : await rpc('chidoliro_kitchen_login', {pin_input:pin,client_fingerprint:fingerprint(req)});
       if (!result?.ok) return res.status(result?.error === 'too_many_attempts' ? 429 : 401).json(result || {ok:false,error:'login_failed'});
       return res.status(200).json(result);
     }
@@ -59,18 +62,24 @@ module.exports = async function handler(req, res) {
     const session = tokenFrom(req, body);
     if (!session) return res.status(401).json({ok:false,error:'missing_session'});
 
+    if (action === 'profile') {
+      const result = await rpc('chidoliro_staff_session', {session_token:session});
+      if (!result?.ok) return res.status(401).json(result || {ok:false,error:'unauthorized'});
+      return res.status(200).json(result);
+    }
+
     if (action === 'update') {
       const orderId = String(body.order_id || '').trim();
       const status = String(body.status || '').trim();
-      const result = await rpc('chidoliro_kitchen_update_order', {session_token: session, target_order_id: orderId, new_status: status});
-      if (!result?.ok) return res.status(result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'update_failed'});
+      const result = await rpc('chidoliro_staff_kitchen_update_order', {session_token: session, target_order_id: orderId, new_status: status});
+      if (!result?.ok) return res.status(result?.error === 'forbidden' ? 403 : result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'update_failed'});
       return res.status(200).json(result);
     }
 
     if (action === 'change_pin') {
       const newPin = String(body.new_pin || '').replace(/\D/g,'').slice(0,6);
       const result = await rpc('chidoliro_kitchen_change_pin', {session_token: session, new_pin: newPin});
-      if (!result?.ok) return res.status(result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'pin_change_failed'});
+      if (!result?.ok) return res.status(result?.error === 'forbidden' ? 403 : result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'pin_change_failed'});
       return res.status(200).json(result);
     }
 
