@@ -27,7 +27,7 @@ module.exports=async function handler(req,res){
     const action=String(body.action||'').trim();
     let result;
     if(action==='save_item'){
-      result=await rpc('chidoliro_menu_admin_save_item',{session_token,payload:{id:body.id||null,category_id:body.category_id||null,name:body.name||'',description:body.description||null,price:body.price??null,price_label:body.price_label||null,is_available:body.is_available!==false,is_featured:!!body.is_featured,is_active:body.is_active!==false,is_alcoholic:!!body.is_alcoholic,sort_order:Number(body.sort_order||0)}});
+      result=await rpc('chidoliro_menu_admin_save_item',{session_token,payload:{id:body.id||null,category_id:body.category_id||null,name:body.name||'',description:body.description||null,price:body.price??null,price_label:body.price_label||null,is_available:body.is_available!==false,is_featured:!!body.is_featured,is_active:body.is_active!==false,is_alcoholic:!!body.is_alcoholic,prep_station:['kitchen','bar'].includes(String(body.prep_station||''))?String(body.prep_station):'kitchen',sort_order:Number(body.sort_order||0)}});
     }else if(action==='upload_image'){
       const base64=String(body.image_base64||'');
       if(base64.length>3500000) return res.status(413).json({ok:false,error:'image_too_large'});
