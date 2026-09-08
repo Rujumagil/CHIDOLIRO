@@ -21,8 +21,8 @@ module.exports = async function handler(req,res){
     const session_token=sessionFrom(req);
     if(!session_token) return res.status(401).json({ok:false,error:'missing_session'});
     if(req.method==='GET'){
-      const result=await rpc('chidoliro_inventory_overview',{session_token});
-      if(!result?.ok) return res.status(result?.error==='unauthorized'?401:400).json(result||{ok:false,error:'inventory_load_failed'});
+      const result=await rpc('chidoliro_staff_inventory_overview',{session_token});
+      if(!result?.ok) return res.status(result?.error==='forbidden'?403:result?.error==='unauthorized'?401:400).json(result||{ok:false,error:'inventory_load_failed'});
       return res.status(200).json(result);
     }
     if(req.method!=='POST') return res.status(405).json({ok:false,error:'method_not_allowed'});
@@ -30,13 +30,13 @@ module.exports = async function handler(req,res){
     const action=String(body.action||'').trim();
     let result;
     if(action==='save_item'){
-      result=await rpc('chidoliro_inventory_upsert_item',{session_token,item_payload:{id:body.id||null,name:body.name||'',unit:body.unit||'pza',reorder_level:body.reorder_level??0,unit_cost:body.unit_cost??0}});
+      result=await rpc('chidoliro_staff_inventory_upsert',{session_token,item_payload:{id:body.id||null,name:body.name||'',unit:body.unit||'pza',reorder_level:body.reorder_level??0,unit_cost:body.unit_cost??0}});
     }else if(action==='movement'){
-      result=await rpc('chidoliro_inventory_adjust',{session_token,target_item_id:String(body.item_id||''),movement_type_input:String(body.movement_type||''),quantity_input:Number(body.quantity||0),unit_cost_input:body.unit_cost===null||body.unit_cost===undefined||body.unit_cost===''?null:Number(body.unit_cost),notes_input:body.notes||null});
+      result=await rpc('chidoliro_staff_inventory_adjust',{session_token,target_item_id:String(body.item_id||''),movement_type_input:String(body.movement_type||''),quantity_input:Number(body.quantity||0),unit_cost_input:body.unit_cost===null||body.unit_cost===undefined||body.unit_cost===''?null:Number(body.unit_cost),notes_input:body.notes||null});
     }else if(action==='save_recipe'){
-      result=await rpc('chidoliro_inventory_set_recipe',{session_token,target_menu_item_id:String(body.menu_item_id||''),ingredients:Array.isArray(body.ingredients)?body.ingredients:[]});
+      result=await rpc('chidoliro_staff_inventory_recipe',{session_token,target_menu_item_id:String(body.menu_item_id||''),ingredients:Array.isArray(body.ingredients)?body.ingredients:[]});
     }else return res.status(400).json({ok:false,error:'unknown_action'});
-    if(!result?.ok) return res.status(result?.error==='unauthorized'?401:400).json(result||{ok:false,error:'inventory_action_failed'});
+    if(!result?.ok) return res.status(result?.error==='forbidden'?403:result?.error==='unauthorized'?401:400).json(result||{ok:false,error:'inventory_action_failed'});
     return res.status(200).json(result);
   }catch(error){
     console.error('[CHIDOLIRO API] inventory error',error.message||error);
