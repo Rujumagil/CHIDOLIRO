@@ -1,5 +1,5 @@
 const SUPABASE_URL = process.env.CHIDOLIRO_SUPABASE_URL || 'https://qwxydjotwhniahaovrff.supabase.co';
-const SUPABASE_ANON_KEY = process.env.CHIDOLIRO_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJxd3h5ZGpvdHdobmlhaGFvdnJmZiIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzg1NTE4MTk0LCJleHAiOjIxMDEwOTQxOTR9.bxRhmjNYrxPIXE4-SxS_YCxpWafFdQWVlaj9E1pdLSc';
+const SUPABASE_ANON_KEY = process.env.CHIDOLIRO_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3eHlkam90d2huaWFoYW92cmZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1MTgxOTQsImV4cCI6MjEwMTA5NDE5NH0.bxRhmjNYrxPIXE4-SxS_YCxpWafFdQWVlaj9E1pdLSc';
 
 async function rpc(name,body){
   const r=await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`,{
