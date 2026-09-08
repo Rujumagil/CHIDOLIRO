@@ -32,6 +32,9 @@ function tokenFrom(req, body) {
   if (auth.toLowerCase().startsWith('bearer ')) return auth.slice(7).trim();
   return String(body?.session_token || '').trim();
 }
+function statusFor(result){
+  return result?.error === 'forbidden' ? 403 : result?.error === 'unauthorized' ? 401 : result?.error === 'too_many_attempts' ? 429 : 400;
+}
 
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store, max-age=0');
@@ -41,7 +44,7 @@ module.exports = async function handler(req, res) {
       const session = tokenFrom(req, null);
       if (!session) return res.status(401).json({ok:false,error:'missing_session'});
       const result = await rpc('chidoliro_staff_kitchen_orders', {session_token: session});
-      if (!result?.ok) return res.status(result?.error === 'forbidden' ? 403 : result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'kitchen_load_failed'});
+      if (!result?.ok) return res.status(statusFor(result)).json(result || {ok:false,error:'kitchen_load_failed'});
       return res.status(200).json(result);
     }
 
@@ -55,7 +58,7 @@ module.exports = async function handler(req, res) {
       const result = username
         ? await rpc('chidoliro_staff_login', {username_input:username,pin_input:pin,client_fingerprint:fingerprint(req)})
         : await rpc('chidoliro_kitchen_login', {pin_input:pin,client_fingerprint:fingerprint(req)});
-      if (!result?.ok) return res.status(result?.error === 'too_many_attempts' ? 429 : 401).json(result || {ok:false,error:'login_failed'});
+      if (!result?.ok) return res.status(statusFor(result)).json(result || {ok:false,error:'login_failed'});
       return res.status(200).json(result);
     }
 
@@ -64,7 +67,27 @@ module.exports = async function handler(req, res) {
 
     if (action === 'profile') {
       const result = await rpc('chidoliro_staff_session', {session_token:session});
-      if (!result?.ok) return res.status(401).json(result || {ok:false,error:'unauthorized'});
+      if (!result?.ok) return res.status(statusFor(result)).json(result || {ok:false,error:'unauthorized'});
+      return res.status(200).json(result);
+    }
+
+    if (action === 'list_users') {
+      const result = await rpc('chidoliro_staff_list', {session_token:session});
+      if (!result?.ok) return res.status(statusFor(result)).json(result || {ok:false,error:'staff_load_failed'});
+      return res.status(200).json(result);
+    }
+
+    if (action === 'save_user') {
+      const payload = {
+        id: body.id || null,
+        username: String(body.username || '').trim().toLowerCase(),
+        display_name: String(body.display_name || '').trim(),
+        role: String(body.role || '').trim().toLowerCase(),
+        pin: String(body.pin || '').replace(/\D/g,'').slice(0,6),
+        is_active: body.is_active !== false
+      };
+      const result = await rpc('chidoliro_staff_save', {session_token:session,payload});
+      if (!result?.ok) return res.status(statusFor(result)).json(result || {ok:false,error:'save_user_failed'});
       return res.status(200).json(result);
     }
 
@@ -72,14 +95,14 @@ module.exports = async function handler(req, res) {
       const orderId = String(body.order_id || '').trim();
       const status = String(body.status || '').trim();
       const result = await rpc('chidoliro_staff_kitchen_update_order', {session_token: session, target_order_id: orderId, new_status: status});
-      if (!result?.ok) return res.status(result?.error === 'forbidden' ? 403 : result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'update_failed'});
+      if (!result?.ok) return res.status(statusFor(result)).json(result || {ok:false,error:'update_failed'});
       return res.status(200).json(result);
     }
 
     if (action === 'change_pin') {
       const newPin = String(body.new_pin || '').replace(/\D/g,'').slice(0,6);
       const result = await rpc('chidoliro_kitchen_change_pin', {session_token: session, new_pin: newPin});
-      if (!result?.ok) return res.status(result?.error === 'forbidden' ? 403 : result?.error === 'unauthorized' ? 401 : 400).json(result || {ok:false,error:'pin_change_failed'});
+      if (!result?.ok) return res.status(statusFor(result)).json(result || {ok:false,error:'pin_change_failed'});
       return res.status(200).json(result);
     }
 
