@@ -74,6 +74,18 @@ module.exports=async function handler(req,res){
       if(!result?.ok)return res.status(statusFor(result)).json(result||{ok:false,error:'update_failed'});
       return res.status(200).json(result);
     }
+    if(action==='delivery_list'){
+      const result=await rpc('chidoliro_staff_delivery_orders',{session_token:session});
+      if(!result?.ok)return res.status(statusFor(result)).json(result||{ok:false,error:'delivery_load_failed'});
+      return res.status(200).json(result);
+    }
+    if(action==='mark_delivered'){
+      const orderId=String(body.order_id||'').trim();
+      const station=String(body.station||'').trim().toLowerCase();
+      const result=await rpc('chidoliro_staff_mark_station_delivered',{session_token:session,target_order_id:orderId,station_input:station});
+      if(!result?.ok)return res.status(statusFor(result)).json(result||{ok:false,error:'delivery_update_failed'});
+      return res.status(200).json(result);
+    }
     if(action==='activity'){
       const result=await rpc('chidoliro_staff_activity',{session_token:session,limit_input:Number(body.limit||100),offset_input:Number(body.offset||0)});
       if(!result?.ok)return res.status(statusFor(result)).json(result||{ok:false,error:'activity_load_failed'});
