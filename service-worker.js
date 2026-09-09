@@ -1,4 +1,4 @@
-const CACHE='chidoliro-admin-v28-unified';
+const CACHE='chidoliro-admin-v29-v22';
 const ADMIN_ASSETS=['./control.html','./control-v21.html','./panel.html','./control-shell.js','./control-manifest.json','./reportes.html','./reports-module.js','./reservaciones.html','./mesas.html','./pos.html','./cocina.html','./bebidas.html','./caja.html','./inventario.html','./menu-admin.html','./menu-config.html','./actividad.html','./usuarios.html','./entregas.html','./assets/logo.png','./assets/icon-192.png','./assets/icon-512.png'];
 const ADMIN_PATHS=new Set(['/control.html','/control-v21.html','/panel.html','/control-v2.html','/reportes.html','/reservaciones.html','/mesas.html','/pos.html','/cocina.html','/bebidas.html','/caja.html','/inventario.html','/menu-admin.html','/menu-config.html','/actividad.html','/usuarios.html','/entregas.html']);
 self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ADMIN_ASSETS)))});
