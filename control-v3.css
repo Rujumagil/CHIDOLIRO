@@ -1,0 +1,63 @@
+/* CHIDOLIRO Command Center V3 — dashboard-only visual layer */
+body.chidoliro-v3-dashboard{--v3-bg:#031114;--v3-panel:rgba(8,36,40,.72);--v3-panel2:rgba(10,48,52,.62);--v3-line:rgba(82,235,220,.16);--v3-line-strong:rgba(82,235,220,.34);--v3-aqua:#54eadc;--v3-aqua2:#28b9b4;--v3-amber:#ffb45f;--v3-text:#eefcf9;--v3-muted:#7fa8a5;background:radial-gradient(circle at 15% -15%,rgba(20,118,120,.23),transparent 34%),radial-gradient(circle at 84% 2%,rgba(24,179,165,.10),transparent 28%),linear-gradient(180deg,#031114 0%,#04181b 48%,#021013 100%)!important;color:var(--v3-text)!important;min-height:100vh}
+body.chidoliro-v3-dashboard:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(79,224,214,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(79,224,214,.025) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 82%)}
+body.chidoliro-v3-dashboard .app,body.chidoliro-v3-dashboard .main,body.chidoliro-v3-dashboard .top{position:relative;z-index:1}
+body.chidoliro-v3-dashboard .top{background:rgba(2,20,23,.84)!important;border-bottom:1px solid rgba(84,234,220,.12)!important;backdrop-filter:blur(20px) saturate(140%)!important}
+body.chidoliro-v3-dashboard .topRow{max-width:1680px!important;padding:10px 18px!important}
+body.chidoliro-v3-dashboard .brand img{filter:drop-shadow(0 0 16px rgba(84,234,220,.23))}
+body.chidoliro-v3-dashboard .connection{border:1px solid rgba(84,234,220,.2);background:rgba(84,234,220,.06);padding:7px 10px;border-radius:999px}
+body.chidoliro-v3-dashboard .dot{animation:v3pulse 1.8s ease-in-out infinite}
+@keyframes v3pulse{0%,100%{box-shadow:0 0 0 3px rgba(83,210,138,.10),0 0 10px rgba(83,210,138,.18)}50%{box-shadow:0 0 0 7px rgba(83,210,138,.03),0 0 18px rgba(83,210,138,.42)}}
+body.chidoliro-v3-dashboard .main{max-width:1680px!important;padding:16px 18px 72px!important;margin:auto}
+body.chidoliro-v3-dashboard .hero{border-radius:28px!important;padding:30px 32px!important;min-height:176px;display:flex;align-items:center;background:linear-gradient(118deg,rgba(7,69,74,.96),rgba(4,42,47,.91) 52%,rgba(5,96,92,.76))!important;border:1px solid rgba(84,234,220,.22)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 30px 80px rgba(0,0,0,.30),0 0 70px rgba(41,200,190,.05)!important}
+body.chidoliro-v3-dashboard .hero:before{content:"COMMAND CENTER";position:absolute;right:28px;top:25px;font-size:.52rem;letter-spacing:.3em;font-weight:900;color:rgba(126,251,239,.32)}
+body.chidoliro-v3-dashboard .hero:after{width:520px!important;height:520px!important;right:-150px!important;top:-270px!important;background:radial-gradient(circle,rgba(79,239,224,.21),rgba(36,189,181,.06) 38%,transparent 67%)!important}
+body.chidoliro-v3-dashboard .heroGrid{width:100%;align-items:center!important;grid-template-columns:minmax(0,1fr) auto!important}
+body.chidoliro-v3-dashboard .eyebrow{color:#83fff3!important;letter-spacing:.18em!important}
+body.chidoliro-v3-dashboard .hero h1{font-size:clamp(2rem,3vw,3.1rem)!important;letter-spacing:-.045em;margin:8px 0 7px!important;text-shadow:0 0 28px rgba(84,234,220,.06)}
+body.chidoliro-v3-dashboard .hero p{font-size:.76rem!important;color:#a6c8c5!important;max-width:640px}
+body.chidoliro-v3-dashboard .statusPill{padding:9px 12px!important;background:rgba(2,21,24,.36)!important;border-color:rgba(134,255,242,.15)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+body.chidoliro-v3-dashboard .statusPill.ok{color:#9cffc9!important;border-color:rgba(82,255,159,.20)!important}
+body.chidoliro-v3-dashboard .v3-command-strip{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:10px;margin:12px 0 2px}
+body.chidoliro-v3-dashboard .v3-command-card{position:relative;overflow:hidden;min-height:96px;padding:15px 16px;border-radius:19px;background:linear-gradient(135deg,rgba(8,38,43,.88),rgba(5,27,31,.78));border:1px solid var(--v3-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 16px 36px rgba(0,0,0,.14)}
+body.chidoliro-v3-dashboard .v3-command-card:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-46px;top:-58px;background:radial-gradient(circle,rgba(84,234,220,.12),transparent 68%)}
+body.chidoliro-v3-dashboard .v3-command-card.primary{border-color:rgba(84,234,220,.29);background:linear-gradient(135deg,rgba(9,64,67,.92),rgba(6,34,39,.8))}
+body.chidoliro-v3-dashboard .v3-label{font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:#6e9c99;font-weight:900}
+body.chidoliro-v3-dashboard .v3-value{display:block;font-size:1.55rem;line-height:1.08;margin-top:7px;font-weight:900;color:#f5fffd}
+body.chidoliro-v3-dashboard .v3-sub{font-size:.55rem;color:#6f9997;margin-top:5px}
+body.chidoliro-v3-dashboard .v3-signal{display:inline-flex;align-items:center;gap:6px;color:#8fffe9;font-size:.56rem;font-weight:800;margin-top:8px}
+body.chidoliro-v3-dashboard .v3-signal i{width:6px;height:6px;border-radius:50%;background:#58f3c1;box-shadow:0 0 12px rgba(88,243,193,.8)}
+body.chidoliro-v3-dashboard .quickHead h2,body.chidoliro-v3-dashboard .sectionHead h2{color:#f0fbf9!important;font-size:1.03rem!important;letter-spacing:-.02em}
+body.chidoliro-v3-dashboard .quickHead p,body.chidoliro-v3-dashboard .sectionHead p,body.chidoliro-v3-dashboard .updated{color:#638886!important}
+body.chidoliro-v3-dashboard .quick{gap:10px!important}
+body.chidoliro-v3-dashboard .quick a,body.chidoliro-v3-dashboard .module,body.chidoliro-v3-dashboard .kpi,body.chidoliro-v3-dashboard .panel{background:linear-gradient(145deg,rgba(8,35,39,.80),rgba(5,27,31,.76))!important;border:1px solid var(--v3-line)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 16px 34px rgba(0,0,0,.11)!important;color:var(--v3-text)!important;backdrop-filter:blur(14px)}
+body.chidoliro-v3-dashboard .quick a,body.chidoliro-v3-dashboard .module{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease}
+body.chidoliro-v3-dashboard .quick a:hover,body.chidoliro-v3-dashboard .module:hover{transform:translateY(-3px);border-color:rgba(84,234,220,.42)!important;background:linear-gradient(145deg,rgba(10,52,56,.9),rgba(5,31,35,.84))!important;box-shadow:0 18px 44px rgba(0,0,0,.20),0 0 26px rgba(52,226,213,.06)!important}
+body.chidoliro-v3-dashboard .quickIcon,body.chidoliro-v3-dashboard .moduleIcon,body.chidoliro-v3-dashboard .kpiIcon,body.chidoliro-v3-dashboard .alertIcon{background:linear-gradient(145deg,rgba(35,153,149,.22),rgba(24,100,103,.14))!important;border:1px solid rgba(84,234,220,.14);box-shadow:inset 0 0 20px rgba(84,234,220,.035)}
+body.chidoliro-v3-dashboard .quick span,body.chidoliro-v3-dashboard .module p,body.chidoliro-v3-dashboard .kpi p,body.chidoliro-v3-dashboard .row p,body.chidoliro-v3-dashboard .alert p,body.chidoliro-v3-dashboard .liveCard span{color:#6f9694!important}
+body.chidoliro-v3-dashboard .module h3,body.chidoliro-v3-dashboard .quick b,body.chidoliro-v3-dashboard .panelHead h3,body.chidoliro-v3-dashboard .row b{color:#eefbf9!important}
+body.chidoliro-v3-dashboard .moduleFooter,body.chidoliro-v3-dashboard .panelHead a{color:#58e9dc!important}
+body.chidoliro-v3-dashboard .kpi{position:relative;overflow:hidden;min-height:104px!important;padding:15px!important}
+body.chidoliro-v3-dashboard .kpi:after{content:"";position:absolute;left:0;bottom:0;width:44%;height:2px;background:linear-gradient(90deg,#33d8cf,transparent);box-shadow:0 0 12px rgba(51,216,207,.45)}
+body.chidoliro-v3-dashboard .kpiTop small{color:#6e9a97!important}
+body.chidoliro-v3-dashboard .kpi strong{font-size:1.62rem!important;color:#f5fffd!important;margin-top:9px!important}
+body.chidoliro-v3-dashboard .module{min-height:118px!important;padding:14px!important}
+body.chidoliro-v3-dashboard .groupGrid{gap:10px!important}
+body.chidoliro-v3-dashboard .panelHead{border-bottom:1px solid rgba(84,234,220,.11)!important}
+body.chidoliro-v3-dashboard .row{border-top:1px solid rgba(84,234,220,.075)!important}
+body.chidoliro-v3-dashboard .liveCard{background:rgba(8,40,43,.72)!important;border-color:rgba(84,234,220,.14)!important;min-height:72px;padding:12px!important}
+body.chidoliro-v3-dashboard .liveCard.ok{background:rgba(9,62,47,.36)!important;border-color:rgba(82,239,170,.18)!important}
+body.chidoliro-v3-dashboard .liveCard.warn{background:rgba(91,58,12,.28)!important;border-color:rgba(255,180,95,.22)!important}
+body.chidoliro-v3-dashboard .liveCard.danger{background:rgba(96,24,29,.28)!important;border-color:rgba(255,105,114,.24)!important}
+body.chidoliro-v3-dashboard .liveCard strong{color:#f6fffd!important;font-size:1.18rem!important}
+body.chidoliro-v3-dashboard .alert{background:rgba(8,35,39,.68)!important;border-color:rgba(84,234,220,.10)!important}
+body.chidoliro-v3-dashboard .attention{background:linear-gradient(90deg,rgba(108,65,14,.30),rgba(61,35,8,.16))!important;border-color:rgba(255,180,95,.25)!important;color:#f2c58b!important}
+body.chidoliro-v3-dashboard .attention b{color:#ffd7a8!important}
+body.chidoliro-v3-dashboard .v3-dock{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:55;display:none;flex-direction:column;gap:8px;padding:8px;border-radius:18px;background:rgba(3,20,23,.80);border:1px solid rgba(84,234,220,.15);backdrop-filter:blur(18px);box-shadow:0 18px 50px rgba(0,0,0,.28)}
+body.chidoliro-v3-dashboard .v3-dock a{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;color:#91b9b5;text-decoration:none;border:1px solid transparent;background:rgba(255,255,255,.025);font-size:1rem;transition:.18s}
+body.chidoliro-v3-dashboard .v3-dock a:hover{color:#dffffa;border-color:rgba(84,234,220,.24);background:rgba(84,234,220,.09);box-shadow:0 0 24px rgba(84,234,220,.07)}
+body.chidoliro-v3-dashboard .v3-dock a[data-v3-home="1"]{color:#5df1df;background:rgba(84,234,220,.10);border-color:rgba(84,234,220,.22)}
+body.chidoliro-v3-dashboard .footer{color:#496b69!important}
+@media(min-width:1540px){body.chidoliro-v3-dashboard .v3-dock{display:flex}body.chidoliro-v3-dashboard .main{padding-left:78px!important}}
+@media(max-width:900px){body.chidoliro-v3-dashboard .hero{padding:24px!important;min-height:auto}body.chidoliro-v3-dashboard .v3-command-strip{grid-template-columns:repeat(2,1fr)}body.chidoliro-v3-dashboard .heroGrid{grid-template-columns:1fr!important}}
+@media(max-width:620px){body.chidoliro-v3-dashboard .main{padding:9px 9px 86px!important}body.chidoliro-v3-dashboard .hero{padding:20px!important;border-radius:22px!important}body.chidoliro-v3-dashboard .hero h1{font-size:1.8rem!important}body.chidoliro-v3-dashboard .hero:before{display:none}body.chidoliro-v3-dashboard .v3-command-strip{grid-template-columns:1fr 1fr;gap:7px}.v3-command-card{min-height:88px!important}.quick a{min-height:70px!important}.kpi{min-height:96px!important}.module{min-height:104px!important}}
