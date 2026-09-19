@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /panel.html
+Disallow: /cocina.html
+Disallow: /caja.html
+Disallow: /pos.html
+Disallow: /inventario.html
+Disallow: /reportes.html
+Disallow: /usuarios.html
+Disallow: /menu-admin.html
+Disallow: /menu-config.html
+Disallow: /mesas.html
+Disallow: /actividad.html
+Disallow: /entregas.html
+Disallow: /reservaciones.html
+
+Sitemap: https://chidoliromx.com/sitemap.xml
