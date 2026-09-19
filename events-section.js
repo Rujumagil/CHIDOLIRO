@@ -23,7 +23,7 @@
   section.innerHTML = `
     <div class="sectionHead"><h2 class="sectionTitle">Próximos eventos</h2><p>Música, activaciones y fechas especiales para vivir CHIDOLIRO de otra manera.</p></div>
     <article class="eventCard">
-      <div class="eventPoster"><img id="eventPosterImg" alt="Flyer del primer aniversario de CHIDOLIRO, domingo 18 de octubre"></div>
+      <div class="eventPoster"><img id="eventPosterImg" alt="Cartel del 1er aniversario de CHIDOLIRO con los artistas invitados"></div>
       <div class="eventBody">
         <span class="eventKicker">1er aniversario · Dom 18 Oct</span>
         <h3>CHIDOLIRO cumple 1 año</h3>
@@ -45,7 +45,7 @@
 
   const posterWrap = section.querySelector('.eventPoster');
   const poster = section.querySelector('#eventPosterImg');
-  const posterParts = Array.from({length:6}, (_,i) => `assets/evento-aniversario-b64-v3/part-${String(i+1).padStart(2,'0')}.txt?v=3`);
+  const posterParts = Array.from({length:7}, (_,i) => `assets/evento-aniversario-clean-v4/part-${String(i+1).padStart(2,'0')}.txt?v=4`);
   Promise.all(posterParts.map(url => fetch(url,{cache:'force-cache'}).then(r => {
     if (!r.ok) throw new Error('No se pudo cargar el cartel');
     return r.text();
