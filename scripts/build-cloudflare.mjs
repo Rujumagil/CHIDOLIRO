@@ -26,6 +26,7 @@ async function copyEntry(name) {
 
 for (const entry of await readdir(root)) {
   if (["api", "cloudflare", "scripts", "dist-static", ".git", ".asset-upload", "node_modules"].includes(entry)) continue;
+  if (entry === "package.json") continue;
   await copyEntry(entry);
 }
 
