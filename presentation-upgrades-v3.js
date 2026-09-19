@@ -86,13 +86,21 @@
   }
 
   function injectSeo() {
+    if (!document.querySelector('link[rel="canonical"]')) {
+      const canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      canonical.href = 'https://chidoliromx.com/';
+      document.head.appendChild(canonical);
+    }
     if (!document.querySelector('meta[property="og:title"]')) {
       const meta = [
         ['property', 'og:title', 'CHIDOLIRO · Surf & Turf MX'],
         ['property', 'og:description', 'Mariscos, carnes, bebidas y atardeceres en Nuevo Urecho, Michoacán.'],
         ['property', 'og:type', 'restaurant'],
-        ['property', 'og:image', 'https://chidoliro.vercel.app/assets/hero.webp'],
-        ['name', 'twitter:card', 'summary_large_image']
+        ['property', 'og:url', 'https://chidoliromx.com/'],
+        ['property', 'og:image', 'https://chidoliromx.com/assets/hero.webp'],
+        ['name', 'twitter:card', 'summary_large_image'],
+        ['name', 'twitter:image', 'https://chidoliromx.com/assets/hero.webp']
       ];
       meta.forEach(([kind, key, value]) => {
         const tag = document.createElement('meta');
@@ -109,8 +117,8 @@
         '@context': 'https://schema.org',
         '@type': 'Restaurant',
         name: 'CHIDOLIRO Surf & Turf MX',
-        url: 'https://chidoliro.vercel.app/',
-        image: 'https://chidoliro.vercel.app/assets/hero.webp',
+        url: 'https://chidoliromx.com/',
+        image: 'https://chidoliromx.com/assets/hero.webp',
         servesCuisine: ['Mariscos', 'Surf & Turf', 'Parrilla'],
         address: {
           '@type': 'PostalAddress',
