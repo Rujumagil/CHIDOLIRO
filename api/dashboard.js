@@ -4,7 +4,7 @@ function sessionFrom(req){
 }
 function originFrom(req){
   const proto=String(req.headers['x-forwarded-proto']||'https').split(',')[0].trim();
-  const host=String(req.headers.host||'chidoliro.vercel.app');
+  const host=String(req.headers.host||'chidoliromx.com');
   return `${proto}://${host}`;
 }
 module.exports=async function handler(req,res){
