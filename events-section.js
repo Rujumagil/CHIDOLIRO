@@ -1,6 +1,6 @@
 (()=> {
   const css = `
-  .eventCard{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);background:#071d21;color:white;border:1px solid rgba(255,255,255,.1);border-radius:30px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+  .section#eventos{scroll-margin-top:118px}.eventCard{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);background:#071d21;color:white;border:1px solid rgba(255,255,255,.1);border-radius:30px;overflow:hidden;box-shadow:var(--shadow);position:relative}
   .eventCard:after{content:"";position:absolute;right:-90px;top:-90px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(240,154,82,.18),transparent 68%);pointer-events:none}
   .eventPoster{background:#04171b;display:grid;place-items:center;padding:16px;min-height:520px}.eventPoster img{display:block;width:min(100%,320px);height:auto;max-height:610px;object-fit:contain;border-radius:20px;box-shadow:0 22px 52px rgba(0,0,0,.38)}
   .eventBody{padding:30px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}.eventKicker{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;background:rgba(240,154,82,.13);border:1px solid rgba(240,154,82,.34);color:#ffd29b;font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
@@ -23,7 +23,7 @@
   section.innerHTML = `
     <div class="sectionHead"><h2 class="sectionTitle">Próximos eventos</h2><p>Música, activaciones y fechas especiales para vivir CHIDOLIRO de otra manera.</p></div>
     <article class="eventCard">
-      <div class="eventPoster"><img src="assets/evento-aniversario-18-oct.webp" alt="Flyer del primer aniversario de CHIDOLIRO, domingo 18 de octubre"></div>
+      <div class="eventPoster"><img src="assets/evento-aniversario-18-oct-v2.webp" alt="Flyer del primer aniversario de CHIDOLIRO, domingo 18 de octubre"></div>
       <div class="eventBody">
         <span class="eventKicker">1er aniversario · Dom 18 Oct</span>
         <h3>CHIDOLIRO cumple 1 año</h3>
