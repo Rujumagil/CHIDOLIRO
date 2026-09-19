@@ -45,7 +45,7 @@
 
   const posterWrap = section.querySelector('.eventPoster');
   const poster = section.querySelector('#eventPosterImg');
-  const posterParts = Array.from({length:7}, (_,i) => `assets/evento-aniversario-clean-v4/part-${String(i+1).padStart(2,'0')}.txt?v=4`);
+  const posterParts = Array.from({length:7}, (_,i) => `assets/evento-aniversario-clean-v4/part-${String(i+1).padStart(2,'0')}.txt?v=5`);
   Promise.all(posterParts.map(url => fetch(url,{cache:'force-cache'}).then(r => {
     if (!r.ok) throw new Error('No se pudo cargar el cartel');
     return r.text();
