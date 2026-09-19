@@ -5,7 +5,7 @@ function sessionFrom(req) {
 
 async function callOrderApi(req, payload) {
   const proto = String(req.headers['x-forwarded-proto'] || 'https').split(',')[0].trim();
-  const host = String(req.headers.host || 'chidoliro.vercel.app');
+  const host = String(req.headers.host || 'chidoliromx.com');
   const r = await fetch(`${proto}://${host}/api/order`, {
     method: 'POST',
     headers: {'Content-Type':'application/json'},
