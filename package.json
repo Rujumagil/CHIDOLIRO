@@ -1,7 +1,6 @@
 {
   "name": "chidoliro",
   "private": true,
-  "type": "module",
   "scripts": {
     "build:cloudflare": "node scripts/build-cloudflare.mjs",
     "deploy:cloudflare": "npm run build:cloudflare && wrangler deploy"
