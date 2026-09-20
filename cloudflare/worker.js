@@ -709,6 +709,116 @@ function base64Bytes(base64) {
   return bytes;
 }
 
+async function handleEvents(request, env) {
+  if (request.method !== "GET") return json({ ok: false, error: "method_not_allowed" }, 405);
+  try {
+    const result = await rpcData(env, "chidoliro_events_public", {});
+    if (!result?.ok) return json(result || { ok: false, error: "events_failed" }, 400);
+    return json(result, 200, { "cache-control": "public, max-age=60, stale-while-revalidate=300" });
+  } catch (error) {
+    console.error("[CHIDOLIRO API] events error", error);
+    return json({ ok: false, error: "events_upstream_failed" }, 502);
+  }
+}
+
+async function handleEventsAdmin(request, env) {
+  try {
+    const session_token = authToken(request);
+    if (!session_token) return json({ ok: false, error: "missing_session" }, 401);
+
+    if (request.method === "GET") {
+      const result = await rpcData(env, "chidoliro_events_admin_overview", { session_token });
+      if (!result?.ok) return json(result || { ok: false, error: "events_admin_load_failed" }, statusFor(result));
+      return json(result);
+    }
+
+    if (request.method !== "POST") return json({ ok: false, error: "method_not_allowed" }, 405);
+    const body = await readJson(request);
+    const action = String(body.action || "").trim();
+    let result;
+
+    if (action === "save") {
+      result = await rpcData(env, "chidoliro_events_admin_save", {
+        session_token,
+        payload: {
+          id: body.id || null,
+          title: body.title || "",
+          slug: body.slug || "",
+          eyebrow: body.eyebrow || null,
+          subtitle: body.subtitle || null,
+          description: body.description || null,
+          event_date: body.event_date || null,
+          start_time: body.start_time || null,
+          end_time: body.end_time || null,
+          location: body.location || null,
+          address: body.address || null,
+          whatsapp: body.whatsapp || null,
+          reservation_message: body.reservation_message || null,
+          sponsor: body.sponsor || null,
+          artists: Array.isArray(body.artists) ? body.artists : [],
+          is_featured: !!body.is_featured,
+          is_published: !!body.is_published,
+          show_home: !!body.show_home,
+          sort_order: Number(body.sort_order || 0)
+        }
+      });
+    } else if (action === "upload_image") {
+      const base64 = String(body.image_base64 || "");
+      if (base64.length > 3500000) return json({ ok: false, error: "image_too_large" }, 413);
+      result = await rpcData(env, "chidoliro_events_admin_upload_image", {
+        session_token,
+        target_event_id: String(body.event_id || ""),
+        mime_input: String(body.mime_type || ""),
+        base64_input: base64,
+        width_input: body.width ? Number(body.width) : null,
+        height_input: body.height ? Number(body.height) : null
+      });
+    } else if (action === "remove_image") {
+      result = await rpcData(env, "chidoliro_events_admin_remove_image", {
+        session_token,
+        target_event_id: String(body.event_id || "")
+      });
+    } else if (action === "delete") {
+      result = await rpcData(env, "chidoliro_events_admin_delete", {
+        session_token,
+        target_event_id: String(body.event_id || "")
+      });
+    } else {
+      return json({ ok: false, error: "unknown_action" }, 400);
+    }
+
+    if (!result?.ok) return json(result || { ok: false, error: "events_admin_action_failed" }, statusFor(result));
+    return json(result);
+  } catch (error) {
+    console.error("[CHIDOLIRO API] events admin error", error);
+    return json({ ok: false, error: "events_admin_upstream_failed" }, 502);
+  }
+}
+
+async function handleEventImage(request, env) {
+  if (request.method !== "GET") return new Response(null, { status: 405 });
+  const eventId = String(new URL(request.url).searchParams.get("event_id") || "").trim();
+  if (!UUID_RE.test(eventId)) return new Response(null, { status: 404 });
+  try {
+    const { response, data } = await rpc(env, "chidoliro_event_image_public", { target_event_id: eventId });
+    if (!response.ok || !data?.ok || !data.image_base64) return new Response(null, { status: 404 });
+    const bytes = base64Bytes(data.image_base64);
+    return new Response(bytes, {
+      status: 200,
+      headers: {
+        "content-type": data.mime_type || "image/webp",
+        "content-length": String(bytes.length),
+        "cache-control": "public, max-age=3600, stale-while-revalidate=86400",
+        "etag": `W/"event-${eventId}-${new Date(data.updated_at || 0).getTime()}-${bytes.length}"`,
+        "x-chidoliro-edge": "cloudflare"
+      }
+    });
+  } catch (error) {
+    console.error("[CHIDOLIRO API] event image error", error);
+    return new Response(null, { status: 404 });
+  }
+}
+
 async function handleMenuImage(request, env) {
   if (request.method !== "GET") return new Response(null, { status: 405 });
   const itemId = String(new URL(request.url).searchParams.get("item_id") || "").trim();
@@ -757,6 +867,9 @@ export default {
     if (url.pathname === "/api/reports") return handleReports(request, env);
     if (url.pathname === "/api/tables") return handleTables(request, env);
     if (url.pathname === "/api/menu-admin") return handleMenuAdmin(request, env);
+    if (url.pathname === "/api/events") return handleEvents(request, env);
+    if (url.pathname === "/api/events-admin") return handleEventsAdmin(request, env);
+    if (url.pathname === "/api/event-image") return handleEventImage(request, env);
     if (url.pathname === "/api/dashboard") return handleDashboard(request, env);
     if (url.pathname === "/api/menu-image") return handleMenuImage(request, env);
 
