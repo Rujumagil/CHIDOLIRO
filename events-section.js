@@ -7,7 +7,7 @@
   .eventBody h3{font-family:"Fraunces",serif;font-size:clamp(2.45rem,4.7vw,4.8rem);line-height:.94;letter-spacing:-.035em;margin:15px 0 9px;color:white}.eventSubtitle{color:#ffd4a8;font-size:.76rem;font-weight:900;margin:0 0 8px}.eventBody>p{max-width:620px;color:rgba(255,255,255,.7);font-size:.88rem;line-height:1.65;margin:0}
   .eventMeta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}.eventMeta span{display:inline-flex;align-items:center;min-height:36px;padding:0 11px;border-radius:11px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);font-size:.72rem;font-weight:800;color:rgba(255,255,255,.86)}
   .eventLineup{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:2px}.eventLineup div{padding:12px;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}.eventLineup b{display:block;color:white;font-size:.78rem;line-height:1.2}.eventLineup span{display:block;color:rgba(255,255,255,.5);font-size:.64rem;line-height:1.35;margin-top:4px}
-  .eventSponsor{margin-top:10px;padding:11px 13px;border-left:3px solid var(--amber);background:rgba(240,154,82,.08);border-radius:0 12px 12px 0;color:#ffd7aa;font-size:.72rem;font-weight:800}.eventActions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.eventGhost{background:rgba(255,255,255,.07);color:white;border:1px solid rgba(255,255,255,.12)}
+  .eventSponsor{margin-top:10px;padding:11px 13px;border-left:3px solid var(--amber);background:rgba(240,154,82,.08);border-radius:0 12px 12px 0;color:#ffd7aa;font-size:.72rem;font-weight:800}.eventActions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.eventActions button{font:inherit;border:0;cursor:pointer}.eventGhost{background:rgba(255,255,255,.07);color:white;border:1px solid rgba(255,255,255,.12)}
   @media(max-width:820px){.eventCard{grid-template-columns:1fr}.eventPoster{min-height:0;padding:16px 12px 18px}.eventPoster img{width:min(100%,340px)}.eventBody{padding:23px 18px 25px}.eventLineup{grid-template-columns:1fr}}
   `;
   const style=document.createElement('style');style.textContent=css;document.head.appendChild(style);
@@ -35,9 +35,23 @@
   function render(events){
     const root=document.getElementById('eventCards');root.innerHTML=events.map((e,i)=>{
       const artists=Array.isArray(e.artists)?e.artists.filter(a=>a&&a.name):[],wa=whatsappHref(e);
-      return '<article class="eventCard" data-event-id="'+esc(e.id||i)+'"><div class="eventPoster"><img alt="'+esc('Cartel de '+e.title)+'"></div><div class="eventBody"><span class="eventKicker">'+esc(e.eyebrow||dateLabel(e.event_date))+'</span><h3>'+esc(e.title)+'</h3>'+(e.subtitle?'<div class="eventSubtitle">'+esc(e.subtitle)+'</div>':'')+'<p>'+esc(e.description||'')+'</p><div class="eventMeta">'+(e.start_time?'<span>◷ Desde las '+esc(timeLabel(e.start_time))+'</span>':'')+(e.location?'<span>⌖ '+esc(e.location)+'</span>':'')+'</div>'+(artists.length?'<div class="eventLineup">'+artists.map(a=>'<div><b>'+esc(a.name)+'</b>'+(a.detail?'<span>'+esc(a.detail)+'</span>':'')+'</div>').join('')+'</div>':'')+(e.sponsor?'<div class="eventSponsor">'+esc(e.sponsor)+'</div>':'')+'<div class="eventActions">'+(wa?'<a class="btn btnOrange" target="_blank" rel="noopener" href="'+esc(wa)+'">Reservar por WhatsApp</a>':'')+(e.location||e.address?'<a class="btn eventGhost" target="_blank" rel="noopener" href="'+esc(mapHref(e))+'">Cómo llegar</a>':'')+'</div></div></article>';
+      return '<article class="eventCard" data-event-id="'+esc(e.id||i)+'"><div class="eventPoster"><img alt="'+esc('Cartel de '+e.title)+'"></div><div class="eventBody"><span class="eventKicker">'+esc(e.eyebrow||dateLabel(e.event_date))+'</span><h3>'+esc(e.title)+'</h3>'+(e.subtitle?'<div class="eventSubtitle">'+esc(e.subtitle)+'</div>':'')+'<p>'+esc(e.description||'')+'</p><div class="eventMeta">'+(e.start_time?'<span>◷ Desde las '+esc(timeLabel(e.start_time))+'</span>':'')+(e.location?'<span>⌖ '+esc(e.location)+'</span>':'')+'</div>'+(artists.length?'<div class="eventLineup">'+artists.map(a=>'<div><b>'+esc(a.name)+'</b>'+(a.detail?'<span>'+esc(a.detail)+'</span>':'')+'</div>').join('')+'</div>':'')+(e.sponsor?'<div class="eventSponsor">'+esc(e.sponsor)+'</div>':'')+'<div class="eventActions">'+((e.slug==='primer-aniversario-2026'||e.event_date==='2026-10-18')?'<button class="btn btnOrange eventReserveNative" data-event-reserve="'+esc(e.id||i)+'">Reservar para el aniversario</button>':'')+(wa?'<a class="btn eventGhost" target="_blank" rel="noopener" href="'+esc(wa)+'">WhatsApp</a>':'')+(e.location||e.address?'<a class="btn eventGhost" target="_blank" rel="noopener" href="'+esc(mapHref(e))+'">Cómo llegar</a>':'')+'</div></div></article>';
     }).join('');
     events.forEach((e,i)=>loadPoster(root.children[i]?.querySelector('.eventPoster'),e));
+    root.querySelectorAll('[data-event-reserve]').forEach(button=>button.addEventListener('click',()=>{
+      const id=button.dataset.eventReserve;
+      const event=events.find((x,idx)=>String(x.id||idx)===String(id))||events.find(x=>x.slug==='primer-aniversario-2026'||x.event_date==='2026-10-18');
+      if(!event)return;
+      if(typeof window.openEventReservation==='function'){
+        window.openEventReservation({
+          slug:event.slug||'primer-aniversario-2026',
+          title:'1er Aniversario CHIDOLIRO',
+          date:event.event_date||'2026-10-18',
+          startTime:String(event.start_time||'14:00').slice(0,5),
+          meta:'Domingo 18 de octubre · desde las 2 PM'
+        });
+      }else if(typeof openSheet==='function'){openSheet('reserveSheet');}
+    }));
   }
 
   function loadPoster(wrap,e){
