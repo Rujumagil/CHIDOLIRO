@@ -34,6 +34,73 @@
     document.body.appendChild(dock);
   }
 
+  function normalizeIcons(){
+    const quickMap={
+      '/pos.html':'▣',
+      '/cocina.html':'♨',
+      '/bebidas.html':'◒',
+      '/entregas.html':'✓',
+      '/caja.html':'▤',
+      '/reservaciones.html':'◷'
+    };
+    document.querySelectorAll('.quick a').forEach(a=>{
+      const path=new URL(a.href,location.origin).pathname;
+      const icon=a.querySelector('.quickIcon');
+      if(icon&&quickMap[path]&&icon.textContent!==quickMap[path]) icon.textContent=quickMap[path];
+    });
+    const kpis=[
+      ['#salesToday','
+    const k=text('#liveKitchen');
+    const b=text('#liveBar');
+    const d=text('#liveDelivery');
+    const ks=text('#liveKitchenNote','sin preparación activa');
+    const bs=text('#liveBarNote','sin bebidas activas');
+    const ds=text('#liveDeliveryNote','sin pendientes');
+    const set=(id,v)=>{const n=document.getElementById(id);if(n&&n.textContent!==v)n.textContent=v};
+    set('v3Kitchen',k); set('v3KitchenSub',ks);
+    set('v3Bar',b); set('v3BarSub',bs);
+    set('v3Delivery',d); set('v3DeliverySub',ds);
+    const active=Number((text('#activeOrders')||'0').replace(/\D/g,''))||0;
+    const tables=Number((text('#openTables')||'0').replace(/\D/g,''))||0;
+    const ready=Number(d.replace(/\D/g,''))||0;
+    let label='Pulso operativo', headline='Operación estable', sub=`${tables} mesa${tables===1?'':'s'} abierta${tables===1?'':'s'} · ${active} comanda${active===1?'':'s'} activa${active===1?'':'s'}`;
+    if(ready>0){label='Atención ahora';headline=`${ready} entrega${ready===1?'':'s'} esperando`;sub=`${active} comanda${active===1?'':'s'} activa${active===1?'':'s'} · ${tables} mesa${tables===1?'':'s'} abierta${tables===1?'':'s'}`}
+    else if(active>0){headline=`${active} comanda${active===1?'':'s'} en curso`;sub=`${tables} mesa${tables===1?'':'s'} abierta${tables===1?'':'s'} · producción activa`}
+    set('v3PulseLabel',label); set('v3PulseValue',headline); set('v3PulseSub',sub);
+  }
+
+  function promoteLive(){
+    const live=$('#liveKitchenCard')?.closest('.panel');
+    const activity=[...document.querySelectorAll('.sectionHead h2')].find(h=>/Actividad del día/i.test(h.textContent||''))?.closest('.sectionHead');
+    if(live&&activity&&live.parentElement){
+      const panel=live;
+      if(!panel.dataset.v3Promoted){panel.dataset.v3Promoted='1';panel.style.boxShadow='0 0 0 1px rgba(84,234,220,.05),0 18px 44px rgba(0,0,0,.16)'}
+    }
+  }
+
+  makeCommandStrip();
+  makeDock();
+  promoteLive();
+  normalizeIcons();
+  sync();
+  const mo=new MutationObserver(()=>sync());
+  ['#liveKitchen','#liveBar','#liveDelivery','#activeOrders','#openTables'].forEach(sel=>{const n=$(sel);if(n)mo.observe(n,{childList:true,subtree:true,characterData:true})});
+  setInterval(()=>{normalizeIcons();sync()},2500);
+})();
+],
+      ['#avgTicket','≡'],
+      ['#activeOrders','♨'],
+      ['#openTables','⌑'],
+      ['#reservationsToday','◷'],
+      ['#cashStatus','▤']
+    ];
+    kpis.forEach(([valueSel,symbol])=>{
+      const card=$(valueSel)?.closest('.kpi');
+      const icon=card?.querySelector('.kpiIcon');
+      if(icon&&icon.textContent!==symbol) icon.textContent=symbol;
+    });
+  }
+
   function sync(){
     const k=text('#liveKitchen');
     const b=text('#liveBar');
