@@ -854,3 +854,143 @@ body.chidoliro-v3-dashboard .moduleGroup.group-production .moduleFooter{
     display:none!important;
   }
 }
+
+
+/* CHIDOLIRO administration + management refinement */
+body.chidoliro-v3-dashboard .moduleGroup.group-admin,
+body.chidoliro-v3-dashboard .moduleGroup.group-management{
+  margin-top:14px!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .sectionHead,
+body.chidoliro-v3-dashboard .moduleGroup.group-management .sectionHead{
+  margin:0 2px 6px!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .sectionHead h2,
+body.chidoliro-v3-dashboard .moduleGroup.group-management .sectionHead h2{
+  color:#173f70!important;
+  font-size:1.00rem!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .sectionHead p,
+body.chidoliro-v3-dashboard .moduleGroup.group-management .sectionHead p{
+  font-size:.54rem!important;
+  color:#7a878f!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .groupGrid{
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  gap:7px!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-management .groupGrid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:7px!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .module,
+body.chidoliro-v3-dashboard .moduleGroup.group-management .module{
+  min-height:88px!important;
+  padding:10px 11px!important;
+  border-radius:15px!important;
+  background:rgba(255,253,248,.97)!important;
+  border:1px solid rgba(15,82,186,.13)!important;
+  box-shadow:0 7px 20px rgba(29,67,117,.05)!important;
+  display:grid!important;
+  grid-template-columns:34px minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  column-gap:9px!important;
+  align-items:center!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .moduleIcon,
+body.chidoliro-v3-dashboard .moduleGroup.group-management .moduleIcon{
+  width:34px!important;
+  height:34px!important;
+  border-radius:10px!important;
+  margin:0!important;
+  grid-row:1 / span 2!important;
+  background:#edf4ff!important;
+  border:1px solid rgba(15,82,186,.15)!important;
+  color:#0f52ba!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:.94rem!important;
+  font-weight:900!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .module h3,
+body.chidoliro-v3-dashboard .moduleGroup.group-management .module h3{
+  margin:0!important;
+  font-size:.68rem!important;
+  line-height:1.15!important;
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .module p,
+body.chidoliro-v3-dashboard .moduleGroup.group-management .module p{
+  margin:3px 0 0!important;
+  font-size:.48rem!important;
+  line-height:1.25!important;
+  color:#7b8890!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .moduleFooter,
+body.chidoliro-v3-dashboard .moduleGroup.group-management .moduleFooter{
+  grid-column:1/-1!important;
+  margin-top:6px!important;
+  padding-top:6px!important;
+  border-top:1px solid rgba(15,82,186,.08)!important;
+  color:#0f52ba!important;
+  font-size:.48rem!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .module[data-module="events"]{
+  background:linear-gradient(145deg,#f8fbff,#fffdf8)!important;
+  border-color:rgba(15,82,186,.24)!important;
+  box-shadow:0 8px 22px rgba(15,82,186,.07)!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-admin .module[data-module="events"] .moduleIcon{
+  background:#e6f0ff!important;
+  border-color:rgba(15,82,186,.22)!important;
+}
+@media(max-width:1180px){
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin .groupGrid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:620px){
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin,
+  body.chidoliro-v3-dashboard .moduleGroup.group-management{
+    margin-top:12px!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin .groupGrid,
+  body.chidoliro-v3-dashboard .moduleGroup.group-management .groupGrid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:6px!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin .module,
+  body.chidoliro-v3-dashboard .moduleGroup.group-management .module{
+    min-height:92px!important;
+    padding:9px 8px!important;
+    grid-template-columns:1fr!important;
+    grid-template-rows:auto auto auto!important;
+    text-align:left!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin .moduleIcon,
+  body.chidoliro-v3-dashboard .moduleGroup.group-management .moduleIcon{
+    grid-row:auto!important;
+    width:30px!important;
+    height:30px!important;
+    font-size:.82rem!important;
+    margin-bottom:2px!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin .module h3,
+  body.chidoliro-v3-dashboard .moduleGroup.group-management .module h3{
+    font-size:.60rem!important;
+    line-height:1.12!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin .module p,
+  body.chidoliro-v3-dashboard .moduleGroup.group-management .module p{
+    display:none!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin .moduleFooter,
+  body.chidoliro-v3-dashboard .moduleGroup.group-management .moduleFooter{
+    margin-top:4px!important;
+    padding-top:5px!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-admin .moduleFooter span:first-child,
+  body.chidoliro-v3-dashboard .moduleGroup.group-management .moduleFooter span:first-child{
+    display:none!important;
+  }
+}
