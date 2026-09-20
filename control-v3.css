@@ -194,3 +194,278 @@ body.chidoliro-v3-dashboard .statusPill.warn{
     font-size:.55rem!important;
   }
 }
+
+
+/* CHIDOLIRO sapphire cream system · full dashboard */
+body.chidoliro-v3-dashboard{
+  --v3-bg:#f7f1e5!important;
+  --v3-panel:#fffdf8!important;
+  --v3-panel2:#f4ecde!important;
+  --v3-line:rgba(15,82,186,.16)!important;
+  --v3-line-strong:rgba(15,82,186,.30)!important;
+  --v3-aqua:#0f52ba!important;
+  --v3-aqua2:#2d6fcb!important;
+  --v3-amber:#d69a45!important;
+  --v3-text:#17324d!important;
+  --v3-muted:#6d7d87!important;
+  background:#f7f1e5!important;
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard:before{
+  content:""!important;
+  position:fixed!important;
+  inset:0!important;
+  pointer-events:none!important;
+  z-index:0!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='980' height='320' viewBox='0 0 980 320'%3E%3Cg fill='none' stroke='%230F52BA' stroke-width='1.25' opacity='.10'%3E%3Cpath d='M-40 44C75 10 155 76 270 43s214-24 329 10 209 28 324-8 181-21 243 5'/%3E%3Cpath d='M-20 95C92 59 170 125 285 92s213-24 330 10 210 28 324-8 181-21 243 5'/%3E%3Cpath d='M-36 148c113-35 192 31 306-2s213-24 330 10 210 28 325-8 180-21 242 5'/%3E%3Cpath d='M-18 204c112-36 191 30 305-3s213-24 330 10 210 28 325-8 180-21 242 5'/%3E%3Cpath d='M-35 260c113-35 192 31 306-2s213-24 330 10 210 28 325-8 180-21 242 5'/%3E%3C/g%3E%3C/svg%3E")!important;
+  background-size:auto 320px!important;
+  background-repeat:repeat!important;
+  mask-image:none!important;
+}
+body.chidoliro-v3-dashboard .top{
+  background:linear-gradient(90deg,#082f6a,#0b4a9a)!important;
+  border-bottom:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:0 8px 28px rgba(8,47,106,.18)!important;
+  backdrop-filter:blur(18px)!important;
+}
+body.chidoliro-v3-dashboard .brand img{
+  filter:drop-shadow(0 5px 12px rgba(0,0,0,.18))!important;
+}
+body.chidoliro-v3-dashboard .brand b{
+  color:#fff!important;
+}
+body.chidoliro-v3-dashboard .brand small,
+body.chidoliro-v3-dashboard .user span{
+  color:#dbe8ff!important;
+}
+body.chidoliro-v3-dashboard .connection{
+  color:#e7efff!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  background:rgba(255,255,255,.08)!important;
+}
+body.chidoliro-v3-dashboard .topActions button,
+body.chidoliro-v3-dashboard .topActions a{
+  background:rgba(255,255,255,.08)!important;
+  border-color:rgba(255,255,255,.16)!important;
+  color:#fff!important;
+}
+body.chidoliro-v3-dashboard .topActions button:hover,
+body.chidoliro-v3-dashboard .topActions a:hover{
+  background:rgba(255,255,255,.15)!important;
+  border-color:rgba(255,255,255,.28)!important;
+}
+body.chidoliro-v3-dashboard .main{
+  background:transparent!important;
+}
+body.chidoliro-v3-dashboard .hero{
+  background:#f8f1e4!important;
+  border:1px solid rgba(15,82,186,.19)!important;
+  box-shadow:0 16px 38px rgba(29,67,117,.10)!important;
+}
+body.chidoliro-v3-dashboard .hero:before{
+  background:linear-gradient(180deg,#0f52ba,#2f74cf)!important;
+}
+body.chidoliro-v3-dashboard .hero:after{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='260' viewBox='0 0 900 260'%3E%3Cg fill='none' stroke='%230F52BA' stroke-width='1.35' opacity='.20'%3E%3Cpath d='M-20 36C75 5 145 70 240 39S420 11 515 43s180 35 275 1 165-26 220 0'/%3E%3Cpath d='M-35 78C60 46 135 112 232 82s183-27 280 4 178 31 272-4 170-28 228 3'/%3E%3Cpath d='M-18 122c95-31 170 36 264 5s179-26 276 7 180 29 274-6 169-25 227 4'/%3E%3Cpath d='M-30 166c93-34 170 30 266 1s180-24 278 8 181 28 275-8 168-25 225 3'/%3E%3Cpath d='M-15 210c98-30 172 39 268 8s180-24 276 8 180 29 274-7 170-24 226 4'/%3E%3C/g%3E%3C/svg%3E")!important;
+}
+body.chidoliro-v3-dashboard .eyebrow{
+  color:#0f52ba!important;
+}
+body.chidoliro-v3-dashboard .hero h1{
+  color:#163a62!important;
+}
+body.chidoliro-v3-dashboard .hero p{
+  color:#657684!important;
+}
+body.chidoliro-v3-dashboard .statusPill{
+  background:rgba(255,255,255,.76)!important;
+  border-color:rgba(15,82,186,.16)!important;
+  color:#31506e!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .statusPill.ok,
+body.chidoliro-v3-dashboard .statusPill.warn{
+  background:#edf4ff!important;
+  color:#0f52ba!important;
+  border-color:rgba(15,82,186,.20)!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card{
+  background:rgba(255,253,248,.92)!important;
+  border:1px solid rgba(15,82,186,.16)!important;
+  box-shadow:0 12px 28px rgba(29,67,117,.08)!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card:after{
+  background:radial-gradient(circle,rgba(15,82,186,.10),transparent 68%)!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card.primary{
+  background:linear-gradient(135deg,#0f52ba,#2e6fc7)!important;
+  border-color:#0f52ba!important;
+  box-shadow:0 14px 30px rgba(15,82,186,.18)!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card.primary .v3-label,
+body.chidoliro-v3-dashboard .v3-command-card.primary .v3-sub{
+  color:#dbe8ff!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card.primary .v3-value,
+body.chidoliro-v3-dashboard .v3-command-card.primary .v3-signal{
+  color:#fff!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card:not(.primary) .v3-label{
+  color:#6d7d87!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card:not(.primary) .v3-value{
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card:not(.primary) .v3-sub{
+  color:#7a8992!important;
+}
+body.chidoliro-v3-dashboard .v3-signal{
+  color:#dbe8ff!important;
+}
+body.chidoliro-v3-dashboard .v3-signal i{
+  background:#8db7f4!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .quickHead h2,
+body.chidoliro-v3-dashboard .sectionHead h2{
+  color:#153b67!important;
+}
+body.chidoliro-v3-dashboard .quickHead p,
+body.chidoliro-v3-dashboard .sectionHead p,
+body.chidoliro-v3-dashboard .updated{
+  color:#72818a!important;
+}
+body.chidoliro-v3-dashboard .quick a,
+body.chidoliro-v3-dashboard .module,
+body.chidoliro-v3-dashboard .kpi,
+body.chidoliro-v3-dashboard .panel{
+  background:rgba(255,253,248,.93)!important;
+  border:1px solid rgba(15,82,186,.14)!important;
+  box-shadow:0 10px 26px rgba(29,67,117,.07)!important;
+  color:#17324d!important;
+  backdrop-filter:none!important;
+}
+body.chidoliro-v3-dashboard .quick a:hover,
+body.chidoliro-v3-dashboard .module:hover{
+  transform:translateY(-2px)!important;
+  border-color:rgba(15,82,186,.34)!important;
+  background:#fff!important;
+  box-shadow:0 14px 32px rgba(15,82,186,.11)!important;
+}
+body.chidoliro-v3-dashboard .quickIcon,
+body.chidoliro-v3-dashboard .moduleIcon,
+body.chidoliro-v3-dashboard .kpiIcon,
+body.chidoliro-v3-dashboard .alertIcon{
+  background:#edf4ff!important;
+  border:1px solid rgba(15,82,186,.15)!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .quick b,
+body.chidoliro-v3-dashboard .module h3,
+body.chidoliro-v3-dashboard .panelHead h3,
+body.chidoliro-v3-dashboard .row b{
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard .quick span,
+body.chidoliro-v3-dashboard .module p,
+body.chidoliro-v3-dashboard .kpi p,
+body.chidoliro-v3-dashboard .row p,
+body.chidoliro-v3-dashboard .alert p,
+body.chidoliro-v3-dashboard .liveCard span{
+  color:#75838b!important;
+}
+body.chidoliro-v3-dashboard .moduleFooter,
+body.chidoliro-v3-dashboard .panelHead a{
+  color:#0f52ba!important;
+}
+body.chidoliro-v3-dashboard .kpi:after{
+  background:linear-gradient(90deg,#0f52ba,rgba(15,82,186,0))!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .kpiTop small{
+  color:#6d7d87!important;
+}
+body.chidoliro-v3-dashboard .kpi strong{
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard .panelHead{
+  background:rgba(237,244,255,.58)!important;
+  border-bottom:1px solid rgba(15,82,186,.12)!important;
+}
+body.chidoliro-v3-dashboard .row{
+  border-top:1px solid rgba(15,82,186,.08)!important;
+}
+body.chidoliro-v3-dashboard .pill{
+  background:#eef2f6!important;
+  color:#5f6f79!important;
+}
+body.chidoliro-v3-dashboard .pill.ok{
+  background:#edf4ff!important;
+  color:#0f52ba!important;
+}
+body.chidoliro-v3-dashboard .pill.warn{
+  background:#fff3df!important;
+  color:#94601f!important;
+}
+body.chidoliro-v3-dashboard .liveCard{
+  background:#f7f2e8!important;
+  border-color:rgba(15,82,186,.12)!important;
+}
+body.chidoliro-v3-dashboard .liveCard.ok{
+  background:#edf4ff!important;
+  border-color:rgba(15,82,186,.18)!important;
+}
+body.chidoliro-v3-dashboard .liveCard.warn{
+  background:#fff5e7!important;
+  border-color:#efd2a8!important;
+}
+body.chidoliro-v3-dashboard .liveCard.danger{
+  background:#fff0ef!important;
+  border-color:#ecc9c6!important;
+}
+body.chidoliro-v3-dashboard .liveCard small{
+  color:#6d7d87!important;
+}
+body.chidoliro-v3-dashboard .liveCard strong{
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard .alert{
+  background:#fffdf8!important;
+  border-color:rgba(15,82,186,.12)!important;
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard .attention{
+  background:#fff4df!important;
+  border-color:#e8c996!important;
+  color:#805522!important;
+}
+body.chidoliro-v3-dashboard .attention b{
+  color:#6f4716!important;
+}
+body.chidoliro-v3-dashboard .footer{
+  color:#839099!important;
+}
+body.chidoliro-v3-dashboard .v3-dock{
+  background:#0b3f86!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:0 18px 50px rgba(8,47,106,.20)!important;
+}
+body.chidoliro-v3-dashboard .v3-dock a{
+  color:#dbe8ff!important;
+  background:rgba(255,255,255,.05)!important;
+}
+body.chidoliro-v3-dashboard .v3-dock a:hover,
+body.chidoliro-v3-dashboard .v3-dock a[data-v3-home="1"]{
+  color:#fff!important;
+  border-color:rgba(255,255,255,.24)!important;
+  background:rgba(255,255,255,.14)!important;
+  box-shadow:none!important;
+}
+@media(max-width:620px){
+  body.chidoliro-v3-dashboard .hero{
+    background:#f8f1e4!important;
+  }
+  body.chidoliro-v3-dashboard .v3-command-card{
+    min-height:88px!important;
+  }
+}
