@@ -12,7 +12,7 @@
     '/caja.html':{key:'cash',title:'Caja y corte',icon:'💳',dock:'Caja'},
     '/inventario.html':{key:'inventory',title:'Inventario y costos',icon:'📦',dock:'Inventario'},
     '/menu-admin.html':{key:'menu',title:'Menú',icon:'🍽️',dock:'Menú'},
-    '/menu-config.html':{key:'menu',title:'Menú avanzado',icon:'⚙️',dock:'Config.'},
+    '/menu-config.html':{key:'menu',title:'Menú avanzado',icon:'⚙️',dock:'Config.'},\n    '/eventos-admin.html':{key:'events',title:'Eventos',icon:'🎟️',dock:'Eventos'},
     '/actividad.html':{key:'activity',title:'Actividad',icon:'🧾',dock:'Actividad'},
     '/usuarios.html':{key:'staff',title:'Personal y accesos',icon:'👥',dock:'Personal'},
     '/entregas.html':{key:'pos',title:'Entregas',icon:'✅',dock:'Entregas'}
