@@ -469,3 +469,170 @@ body.chidoliro-v3-dashboard .v3-dock a[data-v3-home="1"]{
     min-height:88px!important;
   }
 }
+
+
+/* CHIDOLIRO operational pulse + quick actions refinement */
+body.chidoliro-v3-dashboard .v3-command-strip{
+  display:grid!important;
+  grid-template-columns:minmax(250px,1.35fr) repeat(3,minmax(0,.82fr))!important;
+  gap:8px!important;
+  margin:12px 0 4px!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card{
+  min-height:82px!important;
+  padding:12px 14px!important;
+  border-radius:16px!important;
+  background:rgba(255,253,248,.96)!important;
+  border:1px solid rgba(15,82,186,.14)!important;
+  box-shadow:0 8px 22px rgba(29,67,117,.06)!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card:after{
+  width:90px!important;
+  height:90px!important;
+  right:-34px!important;
+  top:-45px!important;
+  background:radial-gradient(circle,rgba(15,82,186,.08),transparent 70%)!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card.primary{
+  background:linear-gradient(135deg,#0f52ba,#2b6dca)!important;
+  border-color:#0f52ba!important;
+  box-shadow:0 10px 26px rgba(15,82,186,.16)!important;
+}
+body.chidoliro-v3-dashboard .v3-label{
+  color:#6c7a86!important;
+  font-size:.48rem!important;
+  letter-spacing:.11em!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card.primary .v3-label{
+  color:#dfeaff!important;
+}
+body.chidoliro-v3-dashboard .v3-value{
+  margin-top:5px!important;
+  font-size:1.26rem!important;
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card.primary .v3-value{
+  color:#fff!important;
+}
+body.chidoliro-v3-dashboard .v3-sub{
+  margin-top:4px!important;
+  font-size:.50rem!important;
+  color:#74818a!important;
+  line-height:1.3!important;
+}
+body.chidoliro-v3-dashboard .v3-command-card.primary .v3-sub{
+  color:#d8e5fb!important;
+}
+body.chidoliro-v3-dashboard .v3-signal{
+  margin-top:6px!important;
+  font-size:.49rem!important;
+  color:#f3f7ff!important;
+}
+body.chidoliro-v3-dashboard .v3-signal i{
+  background:#c9dcff!important;
+  width:5px!important;
+  height:5px!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .attention{
+  margin-top:8px!important;
+  padding:8px 11px!important;
+  border-radius:12px!important;
+  font-size:.59rem!important;
+  background:#fff6e9!important;
+  border-color:#ebcf9e!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .quickHead{
+  margin:13px 2px 6px!important;
+}
+body.chidoliro-v3-dashboard .quickHead h2{
+  font-size:1.00rem!important;
+}
+body.chidoliro-v3-dashboard .quick{
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:7px!important;
+}
+body.chidoliro-v3-dashboard .quick a{
+  min-height:56px!important;
+  padding:8px 10px!important;
+  gap:8px!important;
+  border-radius:14px!important;
+  background:rgba(255,253,248,.96)!important;
+  border:1px solid rgba(15,82,186,.13)!important;
+  box-shadow:0 7px 20px rgba(29,67,117,.05)!important;
+}
+body.chidoliro-v3-dashboard .quick a:hover{
+  transform:translateY(-1px)!important;
+  border-color:rgba(15,82,186,.32)!important;
+  box-shadow:0 10px 25px rgba(15,82,186,.08)!important;
+}
+body.chidoliro-v3-dashboard .quickIcon{
+  width:34px!important;
+  height:34px!important;
+  border-radius:10px!important;
+  background:#edf4ff!important;
+  border:1px solid rgba(15,82,186,.15)!important;
+  color:#0f52ba!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:1rem!important;
+  font-weight:800!important;
+}
+body.chidoliro-v3-dashboard .quick b{
+  color:#17324d!important;
+  font-size:.68rem!important;
+  line-height:1.15!important;
+}
+body.chidoliro-v3-dashboard .quick span{
+  color:#7a878f!important;
+  font-size:.49rem!important;
+  margin-top:2px!important;
+}
+@media(max-width:1180px){
+  body.chidoliro-v3-dashboard .quick{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:850px){
+  body.chidoliro-v3-dashboard .v3-command-strip{
+    grid-template-columns:1fr repeat(3,minmax(0,.65fr))!important;
+  }
+  body.chidoliro-v3-dashboard .v3-command-card{
+    min-height:76px!important;
+  }
+}
+@media(max-width:620px){
+  body.chidoliro-v3-dashboard .v3-command-strip{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:6px!important;
+    margin-top:9px!important;
+  }
+  body.chidoliro-v3-dashboard .v3-command-card.primary{
+    grid-column:1/-1!important;
+    min-height:84px!important;
+    padding:13px 15px!important;
+  }
+  body.chidoliro-v3-dashboard .v3-command-card:not(.primary){
+    min-height:66px!important;
+    padding:9px 9px!important;
+  }
+  body.chidoliro-v3-dashboard .v3-command-card:not(.primary) .v3-value{
+    font-size:1.1rem!important;
+  }
+  body.chidoliro-v3-dashboard .v3-command-card:not(.primary) .v3-sub{
+    display:none!important;
+  }
+  body.chidoliro-v3-dashboard .quick{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:7px!important;
+  }
+  body.chidoliro-v3-dashboard .quick a{
+    min-height:52px!important;
+    padding:7px 9px!important;
+    border-radius:13px!important;
+  }
+  body.chidoliro-v3-dashboard .quickIcon{
+    width:32px!important;
+    height:32px!important;
+  }
+}
