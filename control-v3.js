@@ -11,7 +11,7 @@
     const strip=document.createElement('section');
     strip.className='v3-command-strip';
     strip.innerHTML=`
-      <article class="v3-command-card primary"><div class="v3-label">Pulso operativo</div><strong class="v3-value" id="v3PulseValue">Sistema activo</strong><div class="v3-sub" id="v3PulseSub">Sincronizando estaciones…</div><div class="v3-signal"><i></i><span>Actualización en vivo</span></div></article>
+      <article class="v3-command-card primary"><div class="v3-label" id="v3PulseLabel">Pulso operativo</div><strong class="v3-value" id="v3PulseValue">Sistema activo</strong><div class="v3-sub" id="v3PulseSub">Sincronizando estaciones…</div><div class="v3-signal"><i></i><span>Actualización en vivo</span></div></article>
       <article class="v3-command-card"><div class="v3-label">Cocina</div><strong class="v3-value" id="v3Kitchen">0</strong><div class="v3-sub" id="v3KitchenSub">sin preparación activa</div></article>
       <article class="v3-command-card"><div class="v3-label">Barra</div><strong class="v3-value" id="v3Bar">0</strong><div class="v3-sub" id="v3BarSub">sin bebidas activas</div></article>
       <article class="v3-command-card"><div class="v3-label">Entregas</div><strong class="v3-value" id="v3Delivery">0</strong><div class="v3-sub" id="v3DeliverySub">sin pendientes</div></article>`;
@@ -48,10 +48,10 @@
     const active=Number((text('#activeOrders')||'0').replace(/\D/g,''))||0;
     const tables=Number((text('#openTables')||'0').replace(/\D/g,''))||0;
     const ready=Number(d.replace(/\D/g,''))||0;
-    let headline='Operación estable', sub=`${tables} mesa${tables===1?'':'s'} activa${tables===1?'':'s'} · ${active} comanda${active===1?'':'s'} en curso`;
-    if(ready>0){headline=`${ready} entrega${ready===1?'':'s'} esperando`;sub='Prioridad de servicio en mesa'}
-    else if(active>0){headline=`${active} comanda${active===1?'':'s'} en curso`;sub='Producción y servicio sincronizados'}
-    set('v3PulseValue',headline); set('v3PulseSub',sub);
+    let label='Pulso operativo', headline='Operación estable', sub=`${tables} mesa${tables===1?'':'s'} abierta${tables===1?'':'s'} · ${active} comanda${active===1?'':'s'} activa${active===1?'':'s'}`;
+    if(ready>0){label='Atención ahora';headline=`${ready} entrega${ready===1?'':'s'} esperando`;sub=`${active} comanda${active===1?'':'s'} activa${active===1?'':'s'} · ${tables} mesa${tables===1?'':'s'} abierta${tables===1?'':'s'}`}
+    else if(active>0){headline=`${active} comanda${active===1?'':'s'} en curso`;sub=`${tables} mesa${tables===1?'':'s'} abierta${tables===1?'':'s'} · producción activa`}
+    set('v3PulseLabel',label); set('v3PulseValue',headline); set('v3PulseSub',sub);
   }
 
   function promoteLive(){
