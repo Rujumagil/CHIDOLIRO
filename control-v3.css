@@ -636,3 +636,103 @@ body.chidoliro-v3-dashboard .quick span{
     height:32px!important;
   }
 }
+
+
+/* CHIDOLIRO KPI refinement */
+body.chidoliro-v3-dashboard .sectionHead{
+  margin:13px 2px 6px!important;
+}
+body.chidoliro-v3-dashboard .sectionHead h2{
+  font-size:1.02rem!important;
+  color:#173f70!important;
+}
+body.chidoliro-v3-dashboard .sectionHead p{
+  font-size:.56rem!important;
+  color:#7a878f!important;
+}
+body.chidoliro-v3-dashboard .kpis{
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:7px!important;
+}
+body.chidoliro-v3-dashboard .kpi{
+  min-height:94px!important;
+  padding:11px 12px!important;
+  border-radius:15px!important;
+  background:rgba(255,253,248,.97)!important;
+  border:1px solid rgba(15,82,186,.13)!important;
+  box-shadow:0 7px 20px rgba(29,67,117,.05)!important;
+  position:relative!important;
+  overflow:hidden!important;
+}
+body.chidoliro-v3-dashboard .kpi:after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  bottom:0!important;
+  width:34%!important;
+  height:2px!important;
+  background:linear-gradient(90deg,#0f52ba,rgba(15,82,186,0))!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .kpiTop{
+  align-items:flex-start!important;
+}
+body.chidoliro-v3-dashboard .kpiTop small{
+  font-size:.47rem!important;
+  letter-spacing:.08em!important;
+  color:#71808b!important;
+}
+body.chidoliro-v3-dashboard .kpiIcon{
+  width:27px!important;
+  height:27px!important;
+  border-radius:9px!important;
+  background:#edf4ff!important;
+  border:1px solid rgba(15,82,186,.14)!important;
+  color:#0f52ba!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:.78rem!important;
+  font-weight:900!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .kpi strong{
+  display:block!important;
+  font-size:1.45rem!important;
+  line-height:1!important;
+  margin-top:7px!important;
+  color:#17324d!important;
+  letter-spacing:-.03em!important;
+}
+body.chidoliro-v3-dashboard .kpi p{
+  margin:5px 0 0!important;
+  font-size:.50rem!important;
+  color:#7b8890!important;
+}
+@media(max-width:1180px){
+  body.chidoliro-v3-dashboard .kpis{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:620px){
+  body.chidoliro-v3-dashboard .sectionHead{
+    margin-top:12px!important;
+    margin-bottom:5px!important;
+  }
+  body.chidoliro-v3-dashboard .kpis{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:7px!important;
+  }
+  body.chidoliro-v3-dashboard .kpi{
+    min-height:88px!important;
+    padding:10px 11px!important;
+    border-radius:14px!important;
+  }
+  body.chidoliro-v3-dashboard .kpi strong{
+    font-size:1.35rem!important;
+    margin-top:6px!important;
+  }
+  body.chidoliro-v3-dashboard .kpiIcon{
+    width:25px!important;
+    height:25px!important;
+    font-size:.72rem!important;
+  }
+}
