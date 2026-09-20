@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#061f24">
+<title>CHIDOLIRO · Eventos</title>
+<style>
+:root{--bg:#edf1ed;--panel:#fff;--ink:#142728;--muted:#71817f;--ocean:#061f24;--teal:#0f7478;--amber:#ee9a52;--line:rgba(20,39,40,.11);--ok:#2e7d51;--danger:#b74444;--shadow:0 14px 38px rgba(5,28,31,.08)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}button,input,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.top{position:sticky;top:0;z-index:30;background:rgba(6,31,36,.97);backdrop-filter:blur(16px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}.topRow{max-width:1320px;margin:auto;padding:10px 14px;display:flex;align-items:center;gap:10px}.back{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font-size:1.05rem;font-weight:900}.brand{min-width:0}.brand b{display:block;font-size:.86rem}.brand small{display:block;color:#91cec8;font-size:.55rem;font-weight:900;letter-spacing:.09em}.topActions{margin-left:auto;display:flex;gap:7px}.topActions a,.topActions button{min-height:38px;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:white;text-decoration:none;padding:0 11px;font-size:.65rem;font-weight:900;display:flex;align-items:center}
+.main{max-width:1320px;margin:auto;padding:15px 14px 40px}.hero{border-radius:25px;padding:23px;background:linear-gradient(135deg,#083a40,#0d5b61);color:#fff;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr auto;gap:15px;align-items:end}.hero .eyebrow{font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:#9dd9d4;font-weight:950}.hero h1{margin:5px 0 6px;font-size:2rem;letter-spacing:-.04em}.hero p{margin:0;color:#c8dcda;font-size:.75rem;line-height:1.5}.heroStats{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.stat{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);border-radius:999px;padding:8px 10px;font-size:.61rem;font-weight:900}
+.grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);gap:12px;margin-top:12px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}.panelHead{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}.panelHead h2{font-size:.98rem;margin:0}.panelHead p{margin:3px 0 0;color:var(--muted);font-size:.58rem}.panelHead .spacer{margin-left:auto}.ghostBtn,.primaryBtn,.dangerBtn{border:0;border-radius:12px;min-height:40px;padding:0 13px;font-size:.67rem;font-weight:950}.ghostBtn{background:#edf3f0;color:var(--ocean)}.primaryBtn{background:var(--ocean);color:white}.dangerBtn{background:#fff0ef;color:var(--danger);border:1px solid #edcecb}.form{padding:14px;display:grid;gap:11px}.cols2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.field{display:grid;gap:5px}.field>span{font-size:.59rem;font-weight:900;color:#425756}.field input,.field textarea{width:100%;border:1px solid var(--line);background:#fafcfb;color:var(--ink);border-radius:12px;outline:none;padding:10px 11px;font-size:.72rem}.field input{height:44px}.field textarea{min-height:82px;resize:vertical;line-height:1.45}.field input:focus,.field textarea:focus{border-color:rgba(15,116,120,.55);box-shadow:0 0 0 3px rgba(15,116,120,.08)}
+.switches{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.switch{display:flex;align-items:center;gap:8px;padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:#f8faf8;font-size:.62rem;font-weight:900}.switch input{width:18px;height:18px;accent-color:var(--teal)}
+.artistBox{border:1px solid var(--line);border-radius:14px;padding:10px;background:#f9fbfa}.artistHead{display:flex;align-items:center;gap:8px;margin-bottom:8px}.artistHead b{font-size:.67rem}.artistHead button{margin-left:auto;border:0;background:#e8f2ef;color:var(--teal);border-radius:9px;padding:7px 9px;font-size:.58rem;font-weight:950}.artistRow{display:grid;grid-template-columns:1fr 1.2fr auto;gap:7px;margin-top:7px}.artistRow input{height:40px;border:1px solid var(--line);border-radius:10px;padding:0 9px;font-size:.67rem;background:white}.artistRow button{width:40px;border:0;border-radius:10px;background:#fff0ef;color:var(--danger);font-weight:950}
+.imageBox{display:grid;grid-template-columns:150px 1fr;gap:12px;border:1px dashed rgba(15,116,120,.3);border-radius:16px;padding:11px;background:#f7fbf9}.preview{aspect-ratio:9/16;background:#082126;border-radius:13px;overflow:hidden;display:grid;place-items:center;color:#91aaa7;font-size:.58rem;text-align:center}.preview img{width:100%;height:100%;object-fit:cover;display:block}.imageActions{display:flex;flex-direction:column;justify-content:center;gap:7px}.fileBtn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;border-radius:11px;background:#e8f3f0;color:var(--teal);font-size:.64rem;font-weight:950;padding:0 11px}.fileBtn input{display:none}.imageHint{font-size:.55rem;color:var(--muted);line-height:1.4}.formActions{display:flex;gap:8px;justify-content:flex-end;padding-top:2px}
+.list{padding:10px;display:grid;gap:9px;max-height:calc(100vh - 210px);overflow:auto}.empty{padding:28px 15px;text-align:center;color:var(--muted);font-size:.7rem}.event{border:1px solid var(--line);border-radius:16px;padding:11px;background:#fbfcfb}.eventTop{display:flex;gap:9px;align-items:flex-start}.eventThumb{width:68px;aspect-ratio:9/16;border-radius:10px;background:#082126;overflow:hidden;display:grid;place-items:center;color:#9eb0ae;font-size:.45rem;text-align:center;flex:0 0 auto}.eventThumb img{width:100%;height:100%;object-fit:cover}.eventInfo{min-width:0;flex:1}.eventInfo h3{font-size:.75rem;margin:0 0 3px}.eventInfo p{font-size:.55rem;color:var(--muted);margin:0;line-height:1.35}.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.badge{display:inline-flex;border-radius:999px;padding:4px 7px;background:#edf0eb;color:var(--muted);font-size:.49rem;font-weight:950}.badge.ok{background:#e5f1ea;color:var(--ok)}.badge.warn{background:#fff1e0;color:#9b5b1c}.eventActions{display:flex;gap:6px;margin-top:9px}.eventActions button{flex:1;border:0;border-radius:9px;min-height:34px;font-size:.56rem;font-weight:950;background:#edf3f0;color:var(--ocean)}.eventActions .delete{background:#fff0ef;color:var(--danger)}
+.toast{position:fixed;left:50%;bottom:18px;z-index:100;transform:translate(-50%,18px);opacity:0;background:var(--ocean);color:#fff;padding:10px 13px;border-radius:12px;font-size:.65rem;font-weight:900;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.list{max-height:none}.hero{grid-template-columns:1fr}.heroStats{justify-content:flex-start}}@media(max-width:620px){.main{padding:9px 9px 30px}.hero{padding:18px;border-radius:19px}.hero h1{font-size:1.65rem}.cols2,.cols3{grid-template-columns:1fr}.switches{grid-template-columns:1fr}.imageBox{grid-template-columns:110px 1fr}.artistRow{grid-template-columns:1fr}.artistRow button{width:100%;height:34px}.topActions .label{display:none}.panel{border-radius:16px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topRow">
+  <button class="back" id="backBtn" aria-label="Volver">←</button>
+  <div class="brand"><b>Eventos</b><small>CHIDOLIRO CONTROL</small></div>
+  <div class="topActions"><a href="/#eventos" target="_blank"><span class="label">Ver página</span> ↗</a><button id="reloadBtn">↻ <span class="label">Actualizar</span></button></div>
+</div></header>
+
+<main class="main">
+<section class="hero">
+  <div><div class="eyebrow">Contenido del restaurante</div><h1>Eventos</h1><p>Crea, publica y actualiza los eventos que aparecen en la página principal sin tocar código.</p></div>
+  <div class="heroStats"><span class="stat" id="totalStat">0 eventos</span><span class="stat" id="publishedStat">0 publicados</span><span class="stat" id="homeStat">0 en inicio</span></div>
+</section>
+
+<section class="grid">
+  <article class="panel">
+    <div class="panelHead"><div><h2 id="formTitle">Nuevo evento</h2><p>Guarda primero la información y luego la imagen si es necesaria.</p></div><span class="spacer"></span><button class="ghostBtn" id="newBtn">+ Nuevo</button></div>
+    <form class="form" id="eventForm">
+      <input type="hidden" id="eventId">
+      <div class="cols2">
+        <label class="field"><span>Título *</span><input id="title" maxlength="120" placeholder="Ej. CHIDOLIRO cumple 1 año" required></label>
+        <label class="field"><span>Etiqueta superior</span><input id="eyebrow" maxlength="90" placeholder="1ER ANIVERSARIO · DOM 18 OCT"></label>
+      </div>
+      <label class="field"><span>Subtítulo</span><input id="subtitle" maxlength="160" placeholder="Presenta a los mejores imitadores"></label>
+      <label class="field"><span>Descripción</span><textarea id="description" maxlength="800" placeholder="Describe brevemente la experiencia del evento."></textarea></label>
+      <div class="cols3">
+        <label class="field"><span>Fecha *</span><input id="eventDate" type="date" required></label>
+        <label class="field"><span>Hora de inicio</span><input id="startTime" type="time"></label>
+        <label class="field"><span>Hora de término</span><input id="endTime" type="time"></label>
+      </div>
+      <div class="cols2">
+        <label class="field"><span>Ubicación</span><input id="location" maxlength="160" placeholder="Nuevo Urecho, Michoacán"></label>
+        <label class="field"><span>Dirección / referencia</span><input id="address" maxlength="220" placeholder="Dirección para Cómo llegar"></label>
+      </div>
+      <div class="cols2">
+        <label class="field"><span>WhatsApp para reservaciones</span><input id="whatsapp" inputmode="tel" maxlength="24" placeholder="524521590691"></label>
+        <label class="field"><span>Patrocinador / activación</span><input id="sponsor" maxlength="180" placeholder="Tesoro Azul · activación de 2 a 5 PM"></label>
+      </div>
+      <label class="field"><span>Mensaje de reservación</span><textarea id="reservationMessage" maxlength="500" placeholder="Hola CHIDOLIRO, quiero reservar para..."></textarea></label>
+
+      <div class="artistBox">
+        <div class="artistHead"><b>Artistas / invitados</b><button type="button" id="addArtist">+ Agregar artista</button></div>
+        <div id="artists"></div>
+      </div>
+
+      <div class="cols2">
+        <label class="field"><span>Slug</span><input id="slug" maxlength="120" placeholder="Se genera automáticamente"></label>
+        <label class="field"><span>Orden</span><input id="sortOrder" type="number" value="0" min="-99" max="999"></label>
+      </div>
+
+      <div class="switches">
+        <label class="switch"><input id="isPublished" type="checkbox"> Publicado</label>
+        <label class="switch"><input id="showHome" type="checkbox"> Mostrar en inicio</label>
+        <label class="switch"><input id="isFeatured" type="checkbox"> Evento destacado</label>
+      </div>
+
+      <div class="imageBox">
+        <div class="preview" id="preview"><span>Sin imagen</span></div>
+        <div class="imageActions">
+          <label class="fileBtn">Seleccionar cartel<input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp"></label>
+          <button class="ghostBtn hidden" type="button" id="removeImageBtn">Quitar imagen</button>
+          <div class="imageHint" id="imageHint">JPG, PNG o WebP. La imagen se optimiza antes de subirla. Recomendado: formato vertical.</div>
+        </div>
+      </div>
+
+      <div class="formActions"><button class="ghostBtn" type="button" id="cancelBtn">Limpiar</button><button class="primaryBtn" type="submit" id="saveBtn">Guardar evento</button></div>
+    </form>
+  </article>
+
+  <aside class="panel">
+    <div class="panelHead"><div><h2>Eventos registrados</h2><p>Administra publicación, contenido e imagen.</p></div></div>
+    <div class="list" id="eventList"><div class="empty">Cargando eventos…</div></div>
+  </aside>
+</section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+(()=>{
+const KEY='chidoliro_kitchen_session';
+const state={token:sessionStorage.getItem(KEY)||'',events:[],editing:null,pendingImage:null};
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+function toast(msg){const e=$('toast');e.textContent=msg;e.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('show'),2200)}
+function auth(){return {Authorization:'Bearer '+state.token}}
+async function api(url,options={}){const r=await fetch(url,{cache:'no-store',...options,headers:{...(options.headers||{}),...auth()}});const p=await r.json().catch(()=>null);if(!r.ok||p?.ok===false)throw new Error(p?.error||'request_failed');return p}
+function fmtDate(v){if(!v)return 'Sin fecha';const d=new Date(v+'T12:00:00');return new Intl.DateTimeFormat('es-MX',{weekday:'short',day:'numeric',month:'short',year:'numeric'}).format(d)}
+function fmtTime(v){if(!v)return '';const s=String(v).slice(0,5),[h,m]=s.split(':').map(Number);const d=new Date();d.setHours(h,m,0,0);return new Intl.DateTimeFormat('es-MX',{hour:'numeric',minute:'2-digit'}).format(d)}
+function addArtistRow(data={}){const row=document.createElement('div');row.className='artistRow';row.innerHTML='<input class="artistName" maxlength="100" placeholder="Nombre del artista" value="'+esc(data.name||'')+'"><input class="artistDetail" maxlength="160" placeholder="Descripción breve" value="'+esc(data.detail||'')+'"><button type="button" aria-label="Eliminar artista">×</button>';row.querySelector('button').onclick=()=>row.remove();$('artists').appendChild(row)}
+function artistsValue(){return [...document.querySelectorAll('.artistRow')].map(r=>({name:r.querySelector('.artistName').value.trim(),detail:r.querySelector('.artistDetail').value.trim()})).filter(x=>x.name)}
+function resetForm(){
+  state.editing=null;state.pendingImage=null;$('eventForm').reset();$('eventId').value='';$('sortOrder').value='0';$('artists').innerHTML='';addArtistRow();$('formTitle').textContent='Nuevo evento';$('preview').innerHTML='<span>Sin imagen</span>';$('removeImageBtn').classList.add('hidden');$('imageHint').textContent='JPG, PNG o WebP. La imagen se optimiza antes de subirla. Recomendado: formato vertical.';window.scrollTo({top:0,behavior:'smooth'});
+}
+function eventImageUrl(e){return e.image_url?e.image_url+(e.image_url.includes('?')?'&':'?')+'v='+(e.image_version||Date.now()):''}
+function editEvent(id){
+  const e=state.events.find(x=>x.id===id);if(!e)return;state.editing=e;state.pendingImage=null;
+  $('eventId').value=e.id;$('title').value=e.title||'';$('eyebrow').value=e.eyebrow||'';$('subtitle').value=e.subtitle||'';$('description').value=e.description||'';$('eventDate').value=e.event_date||'';$('startTime').value=(e.start_time||'').slice(0,5);$('endTime').value=(e.end_time||'').slice(0,5);$('location').value=e.location||'';$('address').value=e.address||'';$('whatsapp').value=e.whatsapp||'';$('reservationMessage').value=e.reservation_message||'';$('sponsor').value=e.sponsor||'';$('slug').value=e.slug||'';$('sortOrder').value=e.sort_order||0;$('isPublished').checked=!!e.is_published;$('showHome').checked=!!e.show_home;$('isFeatured').checked=!!e.is_featured;
+  $('artists').innerHTML='';(Array.isArray(e.artists)&&e.artists.length?e.artists:[{}]).forEach(addArtistRow);$('formTitle').textContent='Editar evento';
+  const src=eventImageUrl(e);$('preview').innerHTML=src?'<img src="'+esc(src)+'" alt="">':'<span>Sin imagen cargada</span>';$('removeImageBtn').classList.toggle('hidden',!e.has_uploaded_image);
+  $('imageHint').textContent=e.has_uploaded_image?'Puedes reemplazar el cartel seleccionando una nueva imagen.':'Este evento todavía no tiene una imagen administrable.';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function render(){
+  const events=state.events;$('totalStat').textContent=events.length+' evento'+(events.length===1?'':'s');$('publishedStat').textContent=events.filter(x=>x.is_published).length+' publicados';$('homeStat').textContent=events.filter(x=>x.is_published&&x.show_home).length+' en inicio';
+  if(!events.length){$('eventList').innerHTML='<div class="empty">Todavía no hay eventos. Crea el primero.</div>';return}
+  $('eventList').innerHTML=events.map(e=>{
+    const src=eventImageUrl(e),when=fmtDate(e.event_date)+(e.start_time?' · '+fmtTime(e.start_time):'');
+    return '<article class="event"><div class="eventTop"><div class="eventThumb">'+(src?'<img src="'+esc(src)+'" alt="">':'Sin imagen')+'</div><div class="eventInfo"><h3>'+esc(e.title)+'</h3><p>'+esc(when)+'</p><p>'+esc(e.location||'Ubicación por definir')+'</p><div class="badges">'+(e.is_published?'<span class="badge ok">Publicado</span>':'<span class="badge">Borrador</span>')+(e.show_home?'<span class="badge ok">En inicio</span>':'')+(e.is_featured?'<span class="badge warn">Destacado</span>':'')+'</div></div></div><div class="eventActions"><button data-edit="'+e.id+'">Editar</button><button data-toggle="'+e.id+'">'+(e.is_published?'Ocultar':'Publicar')+'</button><button class="delete" data-delete="'+e.id+'">Eliminar</button></div></article>';
+  }).join('');
+  document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editEvent(b.dataset.edit));
+  document.querySelectorAll('[data-toggle]').forEach(b=>b.onclick=()=>quickToggle(b.dataset.toggle));
+  document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>removeEvent(b.dataset.delete));
+}
+async function load(){
+  if(!state.token){location.replace('/control-v21.html');return}
+  try{const p=await api('/api/events-admin');state.events=Array.isArray(p.events)?p.events:[];render()}catch(e){if(e.message==='forbidden'||e.message==='unauthorized'||e.message==='missing_session'){location.replace('/control-v21.html');return}$('eventList').innerHTML='<div class="empty">No se pudieron cargar los eventos.</div>';toast('No se pudo cargar')}
+}
+function payloadFromForm(){return {action:'save',id:$('eventId').value||null,title:$('title').value.trim(),eyebrow:$('eyebrow').value.trim(),subtitle:$('subtitle').value.trim(),description:$('description').value.trim(),event_date:$('eventDate').value,start_time:$('startTime').value||null,end_time:$('endTime').value||null,location:$('location').value.trim(),address:$('address').value.trim(),whatsapp:$('whatsapp').value.trim(),reservation_message:$('reservationMessage').value.trim(),sponsor:$('sponsor').value.trim(),artists:artistsValue(),slug:$('slug').value.trim(),sort_order:Number($('sortOrder').value||0),is_published:$('isPublished').checked,show_home:$('showHome').checked,is_featured:$('isFeatured').checked}}
+async function save(e){e.preventDefault();if(!$('title').value.trim()||!$('eventDate').value){toast('Completa título y fecha');return}$('saveBtn').disabled=true;$('saveBtn').textContent='Guardando…';try{const saved=await api('/api/events-admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payloadFromForm())});const id=saved.id||$('eventId').value;if(state.pendingImage&&id)await uploadImage(id,state.pendingImage);toast('Evento guardado');resetForm();await load()}catch(x){const map={slug_exists:'Ese slug ya está en uso',image_too_large:'La imagen es demasiado pesada',invalid_image_type:'Formato de imagen no válido',forbidden:'No tienes permiso para eventos'};toast(map[x.message]||'No se pudo guardar')}finally{$('saveBtn').disabled=false;$('saveBtn').textContent='Guardar evento'}}
+async function quickToggle(id){const e=state.events.find(x=>x.id===id);if(!e)return;try{await api('/api/events-admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'save',...e,is_published:!e.is_published})});toast(e.is_published?'Evento ocultado':'Evento publicado');await load()}catch(_){toast('No se pudo actualizar')}}
+async function removeEvent(id){const e=state.events.find(x=>x.id===id);if(!e||!confirm('¿Eliminar "'+e.title+'"? Esta acción no se puede deshacer.'))return;try{await api('/api/events-admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'delete',event_id:id})});if(state.editing?.id===id)resetForm();toast('Evento eliminado');await load()}catch(_){toast('No se pudo eliminar')}}
+async function uploadImage(eventId,img){await api('/api/events-admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'upload_image',event_id:eventId,mime_type:img.mime,image_base64:img.base64,width:img.width,height:img.height})})}
+async function prepareImage(file){
+  if(!file||!/^image\/(jpeg|png|webp)$/i.test(file.type))throw new Error('invalid_image_type');
+  const url=URL.createObjectURL(file),image=new Image();await new Promise((res,rej)=>{image.onload=res;image.onerror=rej;image.src=url});
+  const max=1600,scale=Math.min(1,max/Math.max(image.width,image.height)),w=Math.round(image.width*scale),h=Math.round(image.height*scale),canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;canvas.getContext('2d').drawImage(image,0,0,w,h);URL.revokeObjectURL(url);
+  let blob=await new Promise(res=>canvas.toBlob(res,'image/webp',.84));if(blob.size>2200000)blob=await new Promise(res=>canvas.toBlob(res,'image/webp',.68));if(blob.size>2450000)throw new Error('image_too_large');
+  const dataUrl=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(blob)});
+  return {mime:'image/webp',base64:String(dataUrl).split(',')[1],width:w,height:h,url:dataUrl,size:blob.size}
+}
+$('imageInput').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;$('imageHint').textContent='Optimizando imagen…';try{state.pendingImage=await prepareImage(file);$('preview').innerHTML='<img src="'+state.pendingImage.url+'" alt="">';$('imageHint').textContent='Lista para subir · '+Math.round(state.pendingImage.size/1024)+' KB';}catch(x){state.pendingImage=null;toast(x.message==='image_too_large'?'La imagen sigue siendo demasiado pesada':'No se pudo procesar la imagen');$('imageHint').textContent='Selecciona JPG, PNG o WebP.'}};
+$('removeImageBtn').onclick=async()=>{const id=$('eventId').value;if(!id)return;if(!confirm('¿Quitar la imagen de este evento?'))return;try{await api('/api/events-admin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'remove_image',event_id:id})});state.pendingImage=null;$('preview').innerHTML='<span>Sin imagen</span>';$('removeImageBtn').classList.add('hidden');toast('Imagen eliminada');await load()}catch(_){toast('No se pudo quitar la imagen')}};
+$('addArtist').onclick=()=>addArtistRow();$('eventForm').onsubmit=save;$('newBtn').onclick=resetForm;$('cancelBtn').onclick=resetForm;$('reloadBtn').onclick=load;$('backBtn').onclick=()=>location.href='/control-v21.html';
+addArtistRow();load();
+})();
+</script>
+</body></html>
