@@ -736,3 +736,121 @@ body.chidoliro-v3-dashboard .kpi p{
     font-size:.72rem!important;
   }
 }
+
+
+/* CHIDOLIRO operation + production refinement */
+body.chidoliro-v3-dashboard .moduleGroup.group-operation,
+body.chidoliro-v3-dashboard .moduleGroup.group-production{
+  margin-top:12px!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .sectionHead,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .sectionHead{
+  margin:0 2px 6px!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .sectionHead h2,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .sectionHead h2{
+  color:#173f70!important;
+  font-size:1.00rem!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .sectionHead p,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .sectionHead p{
+  font-size:.54rem!important;
+  color:#7a878f!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .groupGrid,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .groupGrid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:7px!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .module,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .module{
+  min-height:82px!important;
+  padding:10px 11px!important;
+  border-radius:15px!important;
+  background:rgba(255,253,248,.97)!important;
+  border:1px solid rgba(15,82,186,.13)!important;
+  box-shadow:0 7px 20px rgba(29,67,117,.05)!important;
+  display:grid!important;
+  grid-template-columns:34px minmax(0,1fr)!important;
+  grid-template-rows:auto auto!important;
+  column-gap:9px!important;
+  align-items:center!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .moduleIcon,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .moduleIcon{
+  width:34px!important;
+  height:34px!important;
+  border-radius:10px!important;
+  margin:0!important;
+  grid-row:1 / span 2!important;
+  background:#edf4ff!important;
+  border:1px solid rgba(15,82,186,.15)!important;
+  color:#0f52ba!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-size:.94rem!important;
+  font-weight:900!important;
+  box-shadow:none!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .module h3,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .module h3{
+  margin:0!important;
+  font-size:.70rem!important;
+  line-height:1.15!important;
+  color:#17324d!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .module p,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .module p{
+  margin:3px 0 0!important;
+  font-size:.49rem!important;
+  line-height:1.25!important;
+  color:#7b8890!important;
+}
+body.chidoliro-v3-dashboard .moduleGroup.group-operation .moduleFooter,
+body.chidoliro-v3-dashboard .moduleGroup.group-production .moduleFooter{
+  grid-column:1/-1!important;
+  margin-top:6px!important;
+  padding-top:6px!important;
+  border-top:1px solid rgba(15,82,186,.08)!important;
+  color:#0f52ba!important;
+  font-size:.48rem!important;
+}
+@media(max-width:620px){
+  body.chidoliro-v3-dashboard .moduleGroup.group-operation .groupGrid,
+  body.chidoliro-v3-dashboard .moduleGroup.group-production .groupGrid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:6px!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-operation .module,
+  body.chidoliro-v3-dashboard .moduleGroup.group-production .module{
+    min-height:92px!important;
+    padding:9px 8px!important;
+    grid-template-columns:1fr!important;
+    grid-template-rows:auto auto auto!important;
+    text-align:left!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-operation .moduleIcon,
+  body.chidoliro-v3-dashboard .moduleGroup.group-production .moduleIcon{
+    grid-row:auto!important;
+    width:30px!important;
+    height:30px!important;
+    font-size:.82rem!important;
+    margin-bottom:2px!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-operation .module h3,
+  body.chidoliro-v3-dashboard .moduleGroup.group-production .module h3{
+    font-size:.62rem!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-operation .module p,
+  body.chidoliro-v3-dashboard .moduleGroup.group-production .module p{
+    display:none!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-operation .moduleFooter,
+  body.chidoliro-v3-dashboard .moduleGroup.group-production .moduleFooter{
+    margin-top:4px!important;
+    padding-top:5px!important;
+  }
+  body.chidoliro-v3-dashboard .moduleGroup.group-operation .moduleFooter span:first-child,
+  body.chidoliro-v3-dashboard .moduleGroup.group-production .moduleFooter span:first-child{
+    display:none!important;
+  }
+}
