@@ -61,6 +61,11 @@ html,body{background:#f7f1e5;color:#17324d}
 .sourceRecipe{margin:10px 0;padding:10px;border:1px solid rgba(15,82,186,.12);border-radius:13px;background:#fff}.sourceRecipeHead{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.sourceRecipeHead span{display:block;font-size:.40rem;font-weight:950;letter-spacing:.08em;color:#0f52ba}.sourceRecipeHead h4{margin:3px 0 0;font-size:.70rem;color:#17324d}.sourceYield{padding:5px 8px;border-radius:999px;background:#edf4ff;color:#0f52ba;font-size:.43rem;font-weight:950}.ingredientList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:9px}.ingredientList>div{display:flex;justify-content:space-between;gap:8px;padding:7px 8px;border-radius:9px;background:#f7f9fb}.ingredientList span{font-size:.46rem;color:#17324d}.ingredientList b{font-size:.45rem;color:#526d83;text-align:right}.sourceRecipe p{margin:8px 0 0;font-size:.44rem;line-height:1.45;color:#74818a}
 @media(max-width:700px){.ingredientList{grid-template-columns:1fr}}
 
+
+/* CHIDOLIRO Inventario · researched recipe bases */
+.recipeSourceLink{display:inline-flex;margin-top:4px;font-size:.42rem;font-weight:900;color:#0f52ba;text-decoration:none}
+.recipeSourceLink:hover{text-decoration:underline}
+
 </style>
 </head>
 <body>
@@ -95,99 +100,149 @@ const TEST_PROTEINS=[
 {id:'pollo',name:'Pollo',kg:20,default_g:180,keywords:['pollo']}
 ];
 const TEST_RECIPES=[
-{name:'Aguachile de camarón',protein_id:'camaron',grams:200},
-{name:'Aguachile negro',protein_id:'camaron',grams:null},
-{name:'Aguachile con pulpo',protein_id:'pulpo',grams:160},
-{name:'Tostada de pulpo',protein_id:'pulpo',grams:null},
-{name:'Pulpo zarandeado',protein_id:'pulpo',grams:250},
-{name:'Camarones al gusto',protein_id:'camaron',grams:220},
-{name:'Steak de salmón',protein_id:'salmon',grams:220},
-{name:'Baja Style · Pescado',protein_id:'pescado',grams:100},
-{name:'Baja Style · Camarón',protein_id:'camaron',grams:90},
+{name:'Aguachile de camarón',protein_id:'camaron',grams:125},
+{name:'Aguachile negro',protein_id:'camaron',grams:125},
+{name:'Aguachile con pulpo',protein_id:'pulpo',grams:250},
+{name:'Aguachile de rib eye',protein_id:'ribeye',grams:100},
+{name:'Ceviche tradicional',aliases:['Tradicional'],protein_id:'pescado',grams:100},
+{name:'Ceviche de camarón',aliases:['Camarón'],protein_id:'camaron',grams:125},
 {name:'Tostada de camarón',protein_id:'camaron',grams:100},
-{name:'Ensalada de pollo',protein_id:'pollo',grams:160},
-{name:'Carne apache',protein_id:'carne',grams:150}
+{name:'Tostada de pulpo',protein_id:'pulpo',grams:50},
+{name:'Baja Style · Pescado',protein_id:'pescado',grams:125},
+{name:'Steak de salmón',protein_id:'salmon',grams:200}
 ];
 const RECIPE_DETAILS=[
 {
  name:'Aguachile de camarón',
- source_label:'Aguachile verde',
- servings:5,
- batch_protein_g:1000,
+ source_label:'Base investigada · Aguachile verde de camarón',
+ source_url:'https://www.elreydelcallo.com/blogs/recetas/aguachile-verde-de-camaron',
+ servings:4,batch_protein_g:500,
  ingredients:[
-  ['Camarón sin cabeza','1 kg'],
-  ['Pepino mediano','3 pzas'],
-  ['Cilantro','1 manojo'],
-  ['Cebolla morada grande','1 pza'],
-  ['Chile verde o serrano','3 pzas'],
-  ['Limón','1/2 kg'],
-  ['Sal','Al gusto']
+  ['Camarón limpio','500 g'],['Jugo de limón','3/4 taza'],['Chile serrano','2–3 pzas'],
+  ['Pepino','1 pza'],['Cilantro','1/4 taza'],['Cebolla morada','1/2 pza'],
+  ['Sal','Al gusto'],['Pimienta negra','Al gusto'],['Aguacate','Para servir'],['Tostadas','Para acompañar']
  ],
- notes:'Receta fuente de 5 raciones. Rendimiento operativo: 200 g de camarón por platillo.'
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 4 porciones: 125 g de camarón por platillo.'
 },
 {
  name:'Aguachile negro',
- source_label:'Receta recibida',
- servings:null,
- batch_protein_g:500,
+ source_label:'Base investigada · Aguachile negro de camarón',
+ source_url:'https://foodandtravel.mx/recetas/aguachile-negro-de-camaron-con-el-chef-alejandro-daboub/',
+ servings:4,batch_protein_g:500,
  ingredients:[
-  ['Camarón pelado y limpio','500 g'],
-  ['Jugo de limón','1 taza'],
-  ['Salsa de soya','2 cucharadas'],
-  ['Chile verde serrano o jalapeño','2 pzas'],
-  ['Cilantro','1 manojo'],
-  ['Ajo','1 diente'],
-  ['Tortilla de maíz quemada','1/4 pza'],
-  ['Cebolla morada','1/4 pza'],
-  ['Aguacate','1 pza'],
-  ['Sal y pimienta','Al gusto'],
-  ['Brotes de betabel','Opcional']
+  ['Camarón pelado','500 g'],['Chile ancho','50 g'],['Tortilla','1 pza'],
+  ['Pepino','200 g'],['Piña','200 g'],['Jugo de limón','250 ml'],
+  ['Manzana verde','30 g']
  ],
- notes:'Asignada a Aguachile negro por el uso de tortilla quemada para dar color. Falta confirmar cuántas porciones rinde el lote de 500 g.'
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 4 porciones: 125 g de camarón por platillo.'
 },
 {
- name:'Tostada de pulpo',
- source_label:'Receta de pulpo recibida',
- servings:null,
- batch_protein_g:500,
+ name:'Aguachile con pulpo',
+ source_label:'Base investigada · Aguachile verde de pulpo',
+ source_url:'https://www.eluniversal.com.mx/menu/receta-aguachile-verde-de-pulpo/',
+ servings:2,batch_protein_g:500,
  ingredients:[
-  ['Pulpo fresco','500 g'],
-  ['Tomate','2 pzas'],
-  ['Cebolla roja','1 pza'],
-  ['Cilantro fresco picado','4 cucharadas'],
-  ['Eneldo fresco picado','2 cucharadas'],
-  ['Salsa inglesa','1/2 cucharadita'],
-  ['Tomate en polvo o jugo de tomate','1 cucharada o 1/2 taza'],
-  ['Lima','3 pzas'],
-  ['Sal','Al gusto'],
-  ['Pimienta molida','1 pizca'],
-  ['Aceite de oliva','2 cucharadas']
+  ['Pulpo cocido en rodajas','500 g'],['Cebolla morada','2 tazas'],['Pepino','2 tazas'],
+  ['Jugo de limón','500 ml'],['Aceite de oliva','2 cucharadas'],['Aguacate','1/2 pza'],
+  ['Cilantro','1/2 taza'],['Chile serrano','5 pzas'],['Sal gruesa','3 cucharadas']
  ],
- notes:'Mapeada provisionalmente a Tostada de pulpo. Falta confirmar el número de tostadas/porciones que rinde el lote de 500 g.'
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 2 porciones: 250 g de pulpo por platillo.'
+},
+{
+ name:'Aguachile de rib eye',
+ source_label:'Base investigada · Aguachile de Rib Eye',
+ source_url:'https://www.casademexico.es/noticia/receta/aguachile-de-rib-eye/',
+ servings:8,batch_protein_g:800,
+ ingredients:[
+  ['Rib eye','800 g'],['Jugo de naranja','400 ml'],['Jugo de limón','200 ml'],
+  ['Salsa de soya','200 ml'],['Salsa Maggi','4 cucharadas'],['Tostadas','8 pzas'],
+  ['Cebolla morada','1 pza'],['Pepino persa','1 pza'],['Chile jalapeño','3 pzas'],
+  ['Cilantro','1 manojo']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 800 g para 8 porciones: 100 g de rib eye por platillo.'
+},
+{
+ name:'Ceviche tradicional',
+ aliases:['Tradicional'],
+ source_label:'Base investigada · Ceviche mexicano de pescado',
+ source_url:'https://recetasmexas.com/es-mx/receta/ceviche-de-pescado',
+ servings:6,batch_protein_g:600,
+ ingredients:[
+  ['Pescado blanco','600 g'],['Limón','10 pzas'],['Jitomate','3 pzas'],
+  ['Cebolla morada','1 pza'],['Chile serrano','2 pzas'],['Cilantro','1 manojo'],
+  ['Pepino','1 pza'],['Aguacate','1 pza'],['Aceite de oliva','1 cucharada'],
+  ['Orégano','1/2 cucharadita'],['Tostadas','12 pzas'],['Sal y pimienta','Al gusto']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 600 g para 6 porciones: 100 g de pescado por porción.'
+},
+{
+ name:'Ceviche de camarón',
+ aliases:['Camarón'],
+ source_label:'Base investigada · Ceviche de camarón',
+ source_url:'https://www.recetasnestle.com.mx/recetas/ceviche-de-camaron',
+ servings:4,batch_protein_g:500,
+ ingredients:[
+  ['Camarón','500 g'],['Cebolla','1 pza'],['Chile serrano','3 pzas'],
+  ['Cilantro','10 ramitas'],['Jugo de limón','4 cucharadas'],
+  ['Sazonador líquido','6 cucharadas'],['Salsa inglesa','4 cucharadas']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 4 porciones: 125 g de camarón por porción.'
 },
 {
  name:'Tostada de camarón',
- source_label:'Receta recibida',
- servings:8,
- batch_protein_g:800,
+ source_label:'Base recibida · Tostada de camarón',
+ source_url:'',
+ servings:8,batch_protein_g:800,
  ingredients:[
-  ['Camarón','800 g'],
-  ['Tomate','2 pzas'],
-  ['Cebolla grande','1 pza'],
-  ['Chile serrano','1 pza'],
-  ['Jugo de limón','6 limones'],
-  ['Cilantro','1 puñado'],
-  ['Sal','Al gusto'],
-  ['Pimienta','Al gusto'],
-  ['Aceite de oliva','1 cucharada'],
-  ['Tostadas','8 pzas']
+  ['Camarón','800 g'],['Tomate','2 pzas'],['Cebolla grande','1 pza'],
+  ['Chile serrano','1 pza'],['Jugo de limón','6 limones'],['Cilantro','1 puñado'],
+  ['Sal','Al gusto'],['Pimienta','Al gusto'],['Aceite de oliva','1 cucharada'],['Tostadas','8 pzas']
  ],
- notes:'Receta fuente para 8 tostadas. Rendimiento operativo: 100 g de camarón por tostada.'
+ notes:'Base recibida previamente. 800 g para 8 tostadas: 100 g de camarón por tostada.'
+},
+{
+ name:'Tostada de pulpo',
+ source_label:'Base investigada · Tostada de pulpo',
+ source_url:'https://freshbox.mx/blogs/nuestras-recetas/tostada-de-pulpo-receta',
+ servings:4,batch_protein_g:200,
+ ingredients:[
+  ['Pulpo cocido','200 g'],['Tostadas de maíz','4 pzas'],['Aguacate','1 pza'],
+  ['Limón','Al gusto'],['Ajonjolí','Al gusto'],['Salsa de soya','Al gusto'],
+  ['Mayonesa','Al gusto'],['Chile en polvo','Al gusto'],['Cebollín','Al gusto']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 200 g para 4 tostadas: 50 g de pulpo por tostada.'
+},
+{
+ name:'Baja Style · Pescado',
+ source_label:'Base investigada · Tacos de pescado estilo Baja California',
+ source_url:'https://www.kiwilimon.com/receta/platos-fuertes/tacos-de-pescado-estilo-baja-california',
+ servings:4,batch_protein_g:500,
+ ingredients:[
+  ['Filete de pescado blanco','500 g'],['Harina de trigo','250 g'],['Tequila','50 ml'],
+  ['Cerveza clara','300 ml'],['Polvo para hornear','3 cucharaditas'],['Miel','2 cucharaditas'],
+  ['Chile en polvo','2 cucharadas'],['Mayonesa','3/4 taza'],['Salsa picante','1/2 taza']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 4 porciones: 125 g de pescado por porción. Ajustar después al número real de tacos servidos por orden.'
+},
+{
+ name:'Steak de salmón',
+ source_label:'Base investigada · Salmón a la parrilla',
+ source_url:'https://foodandtravel.mx/recetas/salmon-la-parrilla-ensalada-gazpacho/',
+ servings:4,batch_protein_g:800,
+ ingredients:[
+  ['Filete de salmón','4 pzas de 200 g'],['Jitomate','2 pzas'],['Pepino','1 pza'],
+  ['Pimiento rojo','1 pza'],['Pimiento verde','1 pza'],['Cebolla morada','1/4 pza'],
+  ['Ajo','1 diente'],['Páprika ahumada','1/4 cucharada'],['Aceite de oliva','2 cucharadas'],
+  ['Sal y pimienta','Al gusto']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. Porción de referencia: 200 g de salmón.'
 }
 ];
-function recipeDetailFor(menu){const n=normName(menu?.name);return RECIPE_DETAILS.find(r=>normName(r.name)===n)||null}
+function recipeNames(r){return [r.name,...(r.aliases||[])].map(normName)}
+function recipeMatch(list,menu){const n=normName(menu?.name);return list.find(r=>recipeNames(r).includes(n))||null}
+function recipeDetailFor(menu){return recipeMatch(RECIPE_DETAILS,menu)}
 function normName(v){return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
-function testRecipeFor(menu){const n=normName(menu?.name);return TEST_RECIPES.find(r=>normName(r.name)===n)||null}
+function testRecipeFor(menu){return recipeMatch(TEST_RECIPES,menu)}
 function criticalFor(menu){const saved=state.criticalMap?.[menu.id];if(saved){const p=TEST_PROTEINS.find(x=>x.id===saved.protein_id);if(p)return{protein:p,grams:Number(saved.grams||p.default_g),source:'custom'}}const test=testRecipeFor(menu);if(test){const p=TEST_PROTEINS.find(x=>x.id===test.protein_id);if(p)return{protein:p,grams:test.grams==null?null:Number(test.grams),source:'test'}}return null}
 function saveCritical(menuId,proteinId,grams){state.criticalMap[menuId]={protein_id:proteinId,grams:Number(grams)};localStorage.setItem('chidoliro_critical_recipe_map',JSON.stringify(state.criticalMap))}
 function inventoryForProtein(p){return (state.data?.items||[]).find(i=>normName(i.name)===normName(p.name))||null}
@@ -208,10 +263,10 @@ function movementHtml(rows){return rows.length?rows.map(m=>`<div class="move"><d
 function renderMovements(){document.getElementById('movementList').innerHTML=movementHtml(state.data?.movements||[])}
 function switchView(v){state.view=v;['stock','proteins','recipes','yields','costs','movements'].forEach(x=>document.getElementById(x+'View')?.classList.toggle('hidden',x!==v));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v))}
 function renderProteins(){const menu=state.data?.menu_items||[],grid=document.getElementById('proteinGrid');if(!grid)return;grid.innerHTML=TEST_PROTEINS.map(p=>{const item=inventoryForProtein(p),kg=proteinStockKg(p),related=menu.filter(m=>criticalFor(m)?.protein.id===p.id),base=Math.floor((kg*1000)/p.default_g);return `<article class="proteinCard"><div class="proteinTop"><div><span>PROTEÍNA CRÍTICA</span><h3>${p.name}</h3></div><strong>${num(kg)} <small>kg</small></strong></div><div class="proteinMetrics"><div><span>Stock físico</span><b>${num(kg)} kg</b></div><div><span>Comprometido</span><b>0 kg</b></div><div><span>Disponible</span><b>${num(kg)} kg</b></div></div><div class="proteinMetrics proteinMetrics2"><div><span>Porción base</span><b>${p.default_g} g</b></div><div><span>Rendimiento base</span><b>≈ ${base} porciones</b></div><div><span>Recetas</span><b>${related.length}</b></div></div><div class="proteinBar"><span style="width:${kg>0?100:0}%"></span></div><div class="proteinFoot">${item?'Inventario real · '+unitLabel(item.unit):'Pendiente de crear en inventario'}</div></article>`}).join('')}
-function renderYields(){const grid=document.getElementById('yieldGrid');if(!grid)return;const menu=(state.data?.menu_items||[]).filter(m=>criticalFor(m));grid.innerHTML=TEST_PROTEINS.map(p=>{const kg=proteinStockKg(p),items=menu.filter(m=>criticalFor(m).protein.id===p.id);return `<article class="yieldCard"><div class="yieldHead"><div><span>STOCK REAL COMPARTIDO</span><h3>${p.name}</h3></div><strong>${num(kg)} kg</strong></div><p class="yieldNote">Solo aparecen recetas configuradas explícitamente. Todos los rendimientos comparten este mismo stock.</p><div class="yieldItems">${items.length?items.map(m=>{const cfg=criticalFor(m),count=cfg.grams>0?Math.floor((kg*1000)/cfg.grams):null;return `<div><span>${esc(m.name)}<small>${cfg.grams?cfg.grams+' g por platillo':'Rendimiento pendiente'} · ${recipeDetailFor(m)?'receta integrada':cfg.source==='test'?'receta de prueba':'configurada'}</small></span><b>${count==null?'Pendiente':'≈ '+count}</b></div>`}).join(''):'<div class="empty compactEmpty">Sin recetas explícitas para esta proteína.</div>'}</div></article>`}).join('')}
-function renderMenuList(){let rows=state.data?.menu_items||[];if(state.menuSearch)rows=rows.filter(x=>x.name.toLowerCase().includes(state.menuSearch));document.getElementById('menuList').innerHTML=rows.length?rows.map(m=>{const cfg=criticalFor(m),detail=recipeDetailFor(m),sub=cfg?(cfg.grams?`${cfg.protein.name} · ${cfg.grams} g por platillo${detail?' · receta integrada':cfg.source==='test'?' · receta de prueba':''}`:`${cfg.protein.name} · rendimiento pendiente${detail?' · receta integrada':''}`):(m.recipe_count?`${m.recipe_count} insumo(s) · costo ${money(m.recipe_cost)}`:'Sin receta configurada');return `<button class="menuPick ${state.selectedMenu===m.id?'active':''}" data-menu="${esc(m.id)}"><b>${esc(m.name)}</b><small>${esc(sub)}</small></button>`}).join(''):'<div class="empty">No hay platillos disponibles.</div>';document.querySelectorAll('[data-menu]').forEach(b=>b.addEventListener('click',()=>{state.selectedMenu=b.dataset.menu;renderMenuList();renderRecipeEditor()}))}
+function renderYields(){const grid=document.getElementById('yieldGrid');if(!grid)return;const menu=(state.data?.menu_items||[]).filter(m=>criticalFor(m));grid.innerHTML=TEST_PROTEINS.map(p=>{const kg=proteinStockKg(p),items=menu.filter(m=>criticalFor(m).protein.id===p.id);return `<article class="yieldCard"><div class="yieldHead"><div><span>STOCK REAL COMPARTIDO</span><h3>${p.name}</h3></div><strong>${num(kg)} kg</strong></div><p class="yieldNote">Solo aparecen recetas configuradas explícitamente. Todos los rendimientos comparten este mismo stock.</p><div class="yieldItems">${items.length?items.map(m=>{const cfg=criticalFor(m),count=cfg.grams>0?Math.floor((kg*1000)/cfg.grams):null;return `<div><span>${esc(m.name)}<small>${cfg.grams?cfg.grams+' g por platillo':'Rendimiento pendiente'} · ${recipeDetailFor(m)?'receta base':cfg.source==='test'?'receta de prueba':'configurada'}</small></span><b>${count==null?'Pendiente':'≈ '+count}</b></div>`}).join(''):'<div class="empty compactEmpty">Sin recetas explícitas para esta proteína.</div>'}</div></article>`}).join('')}
+function renderMenuList(){let rows=state.data?.menu_items||[];if(state.menuSearch)rows=rows.filter(x=>x.name.toLowerCase().includes(state.menuSearch));document.getElementById('menuList').innerHTML=rows.length?rows.map(m=>{const cfg=criticalFor(m),detail=recipeDetailFor(m),sub=cfg?(cfg.grams?`${cfg.protein.name} · ${cfg.grams} g por platillo${detail?' · receta base':cfg.source==='test'?' · receta de prueba':''}`:`${cfg.protein.name} · rendimiento pendiente${detail?' · receta base':''}`):(m.recipe_count?`${m.recipe_count} insumo(s) · costo ${money(m.recipe_cost)}`:'Sin receta configurada');return `<button class="menuPick ${state.selectedMenu===m.id?'active':''}" data-menu="${esc(m.id)}"><b>${esc(m.name)}</b><small>${esc(sub)}</small></button>`}).join(''):'<div class="empty">No hay platillos disponibles.</div>';document.querySelectorAll('[data-menu]').forEach(b=>b.addEventListener('click',()=>{state.selectedMenu=b.dataset.menu;renderMenuList();renderRecipeEditor()}))}
 function recipeRowsFor(menuId){return (state.data?.recipes||[]).filter(r=>r.menu_item_id===menuId)}
-function renderRecipeEditor(){const menu=(state.data?.menu_items||[]).find(m=>m.id===state.selectedMenu),editor=document.getElementById('recipeEditor');if(!menu){editor.innerHTML='<div class="empty">Selecciona un platillo.</div>';return}const inventory=state.data?.items||[],rows=recipeRowsFor(menu.id),cfg=criticalFor(menu),detail=recipeDetailFor(menu),food=Number(menu.price)>0?(Number(menu.recipe_cost)/Number(menu.price))*100:0,foodClass=food>40?'danger':food>30?'warn':'ok',stockKg=cfg?proteinStockKg(cfg.protein):0,yieldCount=cfg&&cfg.grams?Math.floor((stockKg*1000)/cfg.grams):null;editor.innerHTML=`<div class="recipeHero"><div><span>RECETA DEL PLATILLO</span><h3>${esc(menu.name)}</h3></div><div class="foodBadge ${foodClass}">${food.toFixed(1)}% food cost</div></div><div class="recipeSummary"><div><span>Precio</span><strong>${money(menu.price)}</strong></div><div><span>Proteína</span><strong>${cfg?esc(cfg.protein.name):'Sin definir'}</strong></div><div><span>Con stock actual</span><strong>${cfg?(yieldCount==null?'Pendiente':'≈ '+yieldCount+' platos'):'—'}</strong></div></div><div class="criticalBox"><div class="criticalTitle"><span>CONTROL DE DISPONIBILIDAD</span><b>Proteína crítica</b></div><div class="criticalForm"><label><span>Proteína</span><select id="criticalProtein">${TEST_PROTEINS.map(p=>`<option value="${p.id}" ${cfg?.protein.id===p.id?'selected':''}>${p.name}</option>`).join('')}</select></label><label><span>Gramos por platillo</span><input id="criticalGrams" type="number" min="1" step="1" value="${cfg?.grams??''}" placeholder="Pendiente"></label><button class="btn primary" id="saveCritical">Guardar control</button></div><small>${detail?'Receta recibida e integrada. ':cfg?.source==='test'?'Receta de prueba precargada. ':''}Esta proteína define cuántos platillos quedan disponibles.</small></div>${detail?`<section class="sourceRecipe"><div class="sourceRecipeHead"><div><span>RECETA DE REFERENCIA</span><h4>${esc(detail.source_label)}</h4></div><div class="sourceYield">${detail.servings?detail.servings+' porciones':'Rendimiento pendiente'}</div></div><div class="ingredientList">${detail.ingredients.map(i=>`<div><span>${esc(i[0])}</span><b>${esc(i[1])}</b></div>`).join('')}</div><p>${esc(detail.notes)}</p></section>`:''}${inventory.length?`<div class="detailRecipeHead"><b>Ingredientes secundarios para costeo</b><span>Opcional durante esta prueba</span></div><div id="recipeRows">${rows.map((r,i)=>recipeRowHtml(r.inventory_item_id,r.quantity_per_unit,i)).join('')}</div><div class="recipeActions"><button class="btn secondary" id="addIngredient">＋ Agregar insumo</button><button class="btn primary" id="saveRecipe">Guardar receta detallada</button></div>`:`<div class="secondaryRecipeEmpty"><b>La receta principal ya puede usarse para rendimiento.</b><span>Los ingredientes secundarios se agregarán después para el costeo completo.</span><button class="btn secondary" id="recipeNewItem">＋ Crear insumo secundario</button></div>`}<div class="recipeHelp">Para disponibilidad operativa usamos principalmente la proteína crítica. El resto de la receta puede completarse después.</div>`;document.getElementById('saveCritical').addEventListener('click',()=>{const pid=document.getElementById('criticalProtein').value,g=Number(document.getElementById('criticalGrams').value||0);if(!g){toast('Indica los gramos por platillo para activar el rendimiento.');return}saveCritical(menu.id,pid,g);render();toast('Control de proteína guardado')});if(inventory.length){document.getElementById('addIngredient').addEventListener('click',()=>addRecipeRow());document.getElementById('saveRecipe').addEventListener('click',saveRecipe);bindRecipeRemoves()}else document.getElementById('recipeNewItem').addEventListener('click',newItem)}
+function renderRecipeEditor(){const menu=(state.data?.menu_items||[]).find(m=>m.id===state.selectedMenu),editor=document.getElementById('recipeEditor');if(!menu){editor.innerHTML='<div class="empty">Selecciona un platillo.</div>';return}const inventory=state.data?.items||[],rows=recipeRowsFor(menu.id),cfg=criticalFor(menu),detail=recipeDetailFor(menu),food=Number(menu.price)>0?(Number(menu.recipe_cost)/Number(menu.price))*100:0,foodClass=food>40?'danger':food>30?'warn':'ok',stockKg=cfg?proteinStockKg(cfg.protein):0,yieldCount=cfg&&cfg.grams?Math.floor((stockKg*1000)/cfg.grams):null;editor.innerHTML=`<div class="recipeHero"><div><span>RECETA DEL PLATILLO</span><h3>${esc(menu.name)}</h3></div><div class="foodBadge ${foodClass}">${food.toFixed(1)}% food cost</div></div><div class="recipeSummary"><div><span>Precio</span><strong>${money(menu.price)}</strong></div><div><span>Proteína</span><strong>${cfg?esc(cfg.protein.name):'Sin definir'}</strong></div><div><span>Con stock actual</span><strong>${cfg?(yieldCount==null?'Pendiente':'≈ '+yieldCount+' platos'):'—'}</strong></div></div><div class="criticalBox"><div class="criticalTitle"><span>CONTROL DE DISPONIBILIDAD</span><b>Proteína crítica</b></div><div class="criticalForm"><label><span>Proteína</span><select id="criticalProtein">${TEST_PROTEINS.map(p=>`<option value="${p.id}" ${cfg?.protein.id===p.id?'selected':''}>${p.name}</option>`).join('')}</select></label><label><span>Gramos por platillo</span><input id="criticalGrams" type="number" min="1" step="1" value="${cfg?.grams??''}" placeholder="Pendiente"></label><button class="btn primary" id="saveCritical">Guardar control</button></div><small>${detail?'Receta base cargada para validación. ':cfg?.source==='test'?'Receta de prueba precargada. ':''}Esta proteína define cuántos platillos quedan disponibles.</small></div>${detail?`<section class="sourceRecipe"><div class="sourceRecipeHead"><div><span>RECETA DE REFERENCIA</span><h4>${esc(detail.source_label)}</h4>${detail.source_url?`<a class="recipeSourceLink" href="${esc(detail.source_url)}" target="_blank" rel="noopener">Ver fuente ↗</a>`:''}</div><div class="sourceYield">${detail.servings?detail.servings+' porciones':'Rendimiento pendiente'}</div></div><div class="ingredientList">${detail.ingredients.map(i=>`<div><span>${esc(i[0])}</span><b>${esc(i[1])}</b></div>`).join('')}</div><p>${esc(detail.notes)}</p></section>`:''}${inventory.length?`<div class="detailRecipeHead"><b>Ingredientes secundarios para costeo</b><span>Opcional durante esta prueba</span></div><div id="recipeRows">${rows.map((r,i)=>recipeRowHtml(r.inventory_item_id,r.quantity_per_unit,i)).join('')}</div><div class="recipeActions"><button class="btn secondary" id="addIngredient">＋ Agregar insumo</button><button class="btn primary" id="saveRecipe">Guardar receta detallada</button></div>`:`<div class="secondaryRecipeEmpty"><b>La receta principal ya puede usarse para rendimiento.</b><span>Los ingredientes secundarios se agregarán después para el costeo completo.</span><button class="btn secondary" id="recipeNewItem">＋ Crear insumo secundario</button></div>`}<div class="recipeHelp">Para disponibilidad operativa usamos principalmente la proteína crítica. El resto de la receta puede completarse después.</div>`;document.getElementById('saveCritical').addEventListener('click',()=>{const pid=document.getElementById('criticalProtein').value,g=Number(document.getElementById('criticalGrams').value||0);if(!g){toast('Indica los gramos por platillo para activar el rendimiento.');return}saveCritical(menu.id,pid,g);render();toast('Control de proteína guardado')});if(inventory.length){document.getElementById('addIngredient').addEventListener('click',()=>addRecipeRow());document.getElementById('saveRecipe').addEventListener('click',saveRecipe);bindRecipeRemoves()}else document.getElementById('recipeNewItem').addEventListener('click',newItem)}
 function recipeRowHtml(itemId='',qty='',index=Date.now()){const opts=(state.data?.items||[]).map(i=>`<option value="${esc(i.id)}" ${i.id===itemId?'selected':''}>${esc(i.name)} · ${unitLabel(i.unit)}</option>`).join('');return `<div class="recipeRow" data-recipe-row><label class="field"><span>Insumo</span><select data-ing>${opts}</select></label><label class="field"><span>Cantidad</span><input data-qty inputmode="decimal" value="${esc(qty)}" placeholder="0"></label><button class="remove" data-remove-recipe type="button">✕</button></div>`}function addRecipeRow(){document.getElementById('recipeRows').insertAdjacentHTML('beforeend',recipeRowHtml());bindRecipeRemoves()}function bindRecipeRemoves(){document.querySelectorAll('[data-remove-recipe]').forEach(b=>b.onclick=()=>b.closest('[data-recipe-row]').remove())}
 async function saveRecipe(){const rows=[...document.querySelectorAll('[data-recipe-row]')].map(r=>({inventory_item_id:r.querySelector('[data-ing]').value,quantity_per_unit:Number(r.querySelector('[data-qty]').value||0)})).filter(x=>x.inventory_item_id&&x.quantity_per_unit>0);try{await api('POST',{action:'save_recipe',menu_item_id:state.selectedMenu,ingredients:rows});await load();toast('Receta guardada')}catch(e){toast(mapError(e.message))}}
 function renderCosts(){const rows=state.data?.costs||[];document.getElementById('costCards').innerHTML=rows.length?rows.map(x=>{const raw=Number(x.food_cost_percent||0),pct=Math.max(0,Math.min(100,raw)),level=raw>40?'danger':raw>30?'warn':'ok';return `<article class="costCard ${level}"><div class="costHead"><b>${esc(x.name)}</b><span>${raw.toFixed(1)}%</span></div><div class="numbers"><div><small>Precio</small><strong>${money(x.price)}</strong></div><div><small>Costo receta</small><strong>${money(x.recipe_cost)}</strong></div><div><small>Margen bruto</small><strong>${money(x.gross_margin)}</strong></div><div><small>Food cost</small><strong>${raw.toFixed(1)}%</strong></div></div><div class="costPct"><span style="width:${pct}%"></span></div></article>`}).join(''):'<div class="empty" style="grid-column:1/-1">Todavía no hay costos calculables. Configura al menos una receta con costos de insumos.</div>'}
