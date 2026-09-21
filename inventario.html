@@ -63,8 +63,7 @@ html,body{background:#f7f1e5;color:#17324d}
 
 
 /* CHIDOLIRO Inventario · researched recipe bases */
-.recipeSourceLink{display:inline-flex;margin-top:4px;font-size:.42rem;font-weight:900;color:#0f52ba;text-decoration:none}
-.recipeSourceLink:hover{text-decoration:underline}
+
 
 
 /* CHIDOLIRO Inventario · mixed protein recipes */
@@ -108,7 +107,9 @@ const TEST_PROTEINS=[
 {id:'ostion',name:'Ostión',kg:20,default_g:80,keywords:['ostion','ostión']},
 {id:'pata',name:'Pata de mula',kg:20,default_g:80,keywords:['pata de mula']},
 {id:'calamar',name:'Calamar',kg:20,default_g:70,keywords:['calamar']},
-{id:'langosta',name:'Langosta',kg:20,default_g:400,keywords:['langosta']}
+{id:'langosta',name:'Langosta',kg:20,default_g:400,keywords:['langosta']},
+{id:'res',name:'Carne de res',kg:20,default_g:150,keywords:['res','arrachera','hamburguesa']},
+{id:'cerdo',name:'Carne de cerdo',kg:20,default_g:65,keywords:['cerdo','pastor']}
 ];
 const TEST_RECIPES=[
 {name:'Aguachile de camarón',protein_id:'camaron',grams:125},
@@ -150,7 +151,17 @@ const TEST_RECIPES=[
 {name:'Piñalira',aliases:['Pinalira'],proteins:[{protein_id:'camaron',grams:100},{protein_id:'pulpo',grams:70},{protein_id:'calamar',grams:70},{protein_id:'cangrejo',grams:70}]},
 {name:'Torre de mariscos individual',aliases:['Torre de mariscos'],proteins:[{protein_id:'camaron',grams:250},{protein_id:'pulpo',grams:100},{protein_id:'callo',grams:125}]},
 {name:'Callo de hacha',protein_id:'callo',grams:125},
-{name:'Charola pecadora',proteins:[{protein_id:'pescado',grams:433},{protein_id:'carne',grams:125}]}
+{name:'Charola pecadora',proteins:[{protein_id:'pescado',grams:433},{protein_id:'carne',grams:125}]},
+{name:'Langosta',protein_id:'langosta',grams:133},
+{name:'Pata de mula',protein_id:'pata',grams:null},
+{name:'Ostiones',protein_id:'ostion',grams:null},
+{name:'Charola chica',proteins:[{protein_id:'pescado',grams:433},{protein_id:'carne',grams:125},{protein_id:'camaron',grams:125}]},
+{name:'Filete empanizado',protein_id:'pescado',grams:135},
+{name:'Rib eye',aliases:['Ribeye'],protein_id:'ribeye',grams:200},
+{name:'Pastor',aliases:['Taco pastor','Tacos pastor'],protein_id:'cerdo',grams:63},
+{name:'Nachos con arrachera',protein_id:'res',grams:125},
+{name:'Hamburguesas',aliases:['Hamburguesa'],protein_id:'res',grams:94},
+{name:'Boneless',protein_id:'pollo',grams:150}
 ];
 const RECIPE_DETAILS=[
 {
@@ -611,6 +622,86 @@ const RECIPE_DETAILS=[
  servings:null,
  ingredients:[['Ceviche tradicional','1 componente'],['Carne apache','1 componente'],['Tiritas','1 componente'],['Ceviche cubano','1 componente']],
  notes:'El menú CHIDOLIRO define estos cuatro componentes. Para la prueba se suman las porciones base ya configuradas: 433 g de pescado entre ceviche tradicional, tiritas y cubano, más 125 g de carne apache. Ajustar cuando se conozca cuánto de cada preparación entra realmente en la charola.'
+},
+{
+ name:'Langosta',
+ source_label:'Base investigada · Langosta con mantequilla',
+ source_url:'https://www.kiwilimon.com/amp/receta/pescados-y-mariscos/langosta-al-vapor-con-mantequilla',
+ servings:6,batch_protein_g:800,
+ ingredients:[['Langosta','800 g'],['Vinagre blanco','1/2 taza'],['Mantequilla sin sal','1 barra'],['Cebollín','1 cucharada']],
+ notes:'Base operativa inicial. 800 g entre 6 porciones: aproximadamente 133 g de langosta por porción. En CHIDOLIRO el precio depende del tamaño, por lo que deberá ajustarse al peso real de venta.'
+},
+{
+ name:'Pata de mula',
+ source_label:'Base operativa · producto por pieza',
+ source_url:'',
+ servings:1,
+ ingredients:[['Pata de mula','1 pza'],['Limón','Al gusto'],['Salsa preparada','Al gusto']],
+ notes:'El menú CHIDOLIRO vende este producto por pieza. Se controla inicialmente por unidad/pieza y el peso queda pendiente de captura para convertirlo a rendimiento por kg.'
+},
+{
+ name:'Ostiones',
+ source_label:'Base investigada · Ostiones preparados',
+ source_url:'https://www.kiwilimon.com/receta/pescados-y-mariscos/ostiones-preparados',
+ servings:4,
+ ingredients:[['Ostiones frescos','8 pzas'],['Cebolla morada','1/2 taza'],['Ajo','1 diente'],['Jitomate','1 1/2 tazas'],['Pepino','1 taza'],['Jugo de limón','1/3 taza'],['Jugo de almeja','1 taza'],['Cilantro','1 taza'],['Sal y pimienta','Al gusto']],
+ notes:'Base operativa inicial. La referencia usa 8 ostiones para 4 porciones; en CHIDOLIRO conviene controlar por pieza hasta conocer el gramaje promedio real.'
+},
+{
+ name:'Charola chica',
+ source_label:'Base del menú CHIDOLIRO · composición confirmada',
+ source_url:'',
+ servings:null,
+ ingredients:[['Ceviche tradicional','1 componente'],['Carne apache','1 componente'],['Tiritas','1 componente'],['Ceviche cubano','1 componente'],['Aguachile','1 orden']],
+ notes:'Composición tomada del menú CHIDOLIRO. Para la prueba suma las porciones base existentes más una orden de aguachile de camarón; las cantidades finales deben validarse con cocina.'
+},
+{
+ name:'Filete empanizado',
+ source_label:'Base investigada · Pescado empanizado',
+ source_url:'https://www.recetasnestle.com.mx/recetas/pescado-empanizado',
+ servings:4,
+ ingredients:[['Filete de pescado','4 pzas'],['Harina de trigo','1 taza'],['Huevo','2 pzas'],['Pan molido','1 taza'],['Sal y pimienta','Al gusto'],['Aceite vegetal','Para freír']],
+ notes:'Base operativa inicial. Se usa porción de 135 g por filete para mantener coherencia con los demás filetes del menú hasta validar el peso real de CHIDOLIRO.'
+},
+{
+ name:'Rib eye',aliases:['Ribeye'],
+ source_label:'Base investigada · Rib eye al grill',
+ source_url:'https://www.unileverfoodsolutions.com.mx/recipe/rib-eye-al-grill-R9007382.html',
+ servings:10,batch_protein_g:2000,
+ ingredients:[['Rib eye','10 pzas de 200 g'],['Sazonador','Al gusto'],['Pimienta negra','Al gusto']],
+ notes:'Base operativa inicial: 200 g por pieza. El menú CHIDOLIRO indica precio según tamaño, así que el gramaje deberá ajustarse por presentación real.'
+},
+{
+ name:'Pastor',aliases:['Taco pastor','Tacos pastor'],
+ source_label:'Base investigada · Taco al pastor',
+ source_url:'https://www.recetasnestle.com.mx/recetas/tacos-pastor',
+ servings:8,batch_protein_g:500,
+ ingredients:[['Bistec de cerdo','500 g'],['Chile guajillo','4 pzas'],['Chile morita','1/2 pza'],['Chile chipotle','1 pza'],['Vinagre de manzana','1/4 taza'],['Piña','1 taza'],['Cebolla','Al gusto'],['Cilantro','Al gusto'],['Tortilla de maíz','8 pzas']],
+ notes:'Base operativa inicial. 500 g para 8 tacos: aproximadamente 63 g de carne de cerdo por taco.'
+},
+{
+ name:'Nachos con arrachera',
+ source_label:'Base investigada · Nachos con arrachera',
+ source_url:'https://www.youtube.com/watch?v=Fe9k3mTldgg',
+ servings:8,batch_protein_g:1000,
+ ingredients:[['Arrachera','1 kg'],['Totopos','450 g'],['Frijol negro','1 lata'],['Queso cheddar','1 taza'],['Queso Monterey Jack','1/2 taza'],['Jitomate','2 pzas'],['Cebolla morada','1 pza'],['Jalapeño','2 cucharadas'],['Elote','1 taza'],['Crema y cilantro','Al gusto']],
+ notes:'Base operativa inicial. Para control se consideran 8 porciones del lote de 1 kg: 125 g de arrachera por orden.'
+},
+{
+ name:'Hamburguesas',aliases:['Hamburguesa'],
+ source_label:'Base investigada · Carne para hamburguesa',
+ source_url:'https://www.recetasnestle.com.mx/recetas/carne-para-hamburguesa',
+ servings:8,batch_protein_g:750,
+ ingredients:[['Carne molida de res','750 g'],['Huevo','1 pza'],['Pan molido','2 cucharadas'],['Mayonesa','1 cucharada'],['Perejil','Al gusto'],['Queso Chihuahua','250 g']],
+ notes:'Base operativa inicial. 750 g para 8 hamburguesas: aproximadamente 94 g de carne por pieza.'
+},
+{
+ name:'Boneless',
+ source_label:'Base investigada · Boneless de pollo',
+ source_url:'https://www.recetasnestle.com.mx/recetas/boneless-pollo-salsa-picosita',
+ servings:4,batch_protein_g:600,
+ ingredients:[['Pechuga de pollo','600 g'],['Harina','1/2 taza'],['Fécula de maíz','1/2 taza'],['Salsa picante','1/2 taza'],['Cátsup','1/2 taza'],['Agua mineral','3/4 taza'],['Limón','2 pzas'],['Sal y pimienta','Al gusto']],
+ notes:'Base operativa inicial. 600 g para 4 porciones: 150 g de pollo por orden.'
 }
 ];
 function recipeNames(r){return [r.name,...(r.aliases||[])].map(normName)}
@@ -640,10 +731,10 @@ function movementHtml(rows){return rows.length?rows.map(m=>`<div class="move"><d
 function renderMovements(){document.getElementById('movementList').innerHTML=movementHtml(state.data?.movements||[])}
 function switchView(v){state.view=v;['stock','proteins','recipes','yields','costs','movements'].forEach(x=>document.getElementById(x+'View')?.classList.toggle('hidden',x!==v));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v))}
 function renderProteins(){const menu=state.data?.menu_items||[],grid=document.getElementById('proteinGrid');if(!grid)return;grid.innerHTML=TEST_PROTEINS.map(p=>{const item=inventoryForProtein(p),kg=proteinStockKg(p),related=menu.filter(m=>criticalEntriesFor(m).some(x=>x.protein.id===p.id)),base=Math.floor((kg*1000)/p.default_g);return `<article class="proteinCard"><div class="proteinTop"><div><span>PROTEÍNA CRÍTICA</span><h3>${p.name}</h3></div><strong>${num(kg)} <small>kg</small></strong></div><div class="proteinMetrics"><div><span>Stock físico</span><b>${num(kg)} kg</b></div><div><span>Comprometido</span><b>0 kg</b></div><div><span>Disponible</span><b>${num(kg)} kg</b></div></div><div class="proteinMetrics proteinMetrics2"><div><span>Porción base</span><b>${p.default_g} g</b></div><div><span>Rendimiento base</span><b>≈ ${base} porciones</b></div><div><span>Recetas</span><b>${related.length}</b></div></div><div class="proteinBar"><span style="width:${kg>0?100:0}%"></span></div><div class="proteinFoot">${item?'Inventario real · '+unitLabel(item.unit):'Pendiente de crear en inventario'}</div></article>`}).join('')}
-function renderYields(){const grid=document.getElementById('yieldGrid');if(!grid)return;const menu=(state.data?.menu_items||[]).filter(m=>criticalEntriesFor(m).length);grid.innerHTML=TEST_PROTEINS.map(p=>{const kg=proteinStockKg(p),items=menu.map(m=>({m,cfg:criticalEntriesFor(m).find(x=>x.protein.id===p.id)})).filter(x=>x.cfg);return `<article class="yieldCard"><div class="yieldHead"><div><span>STOCK REAL COMPARTIDO</span><h3>${p.name}</h3></div><strong>${num(kg)} kg</strong></div><p class="yieldNote">Incluye recetas simples y mixtas. En platos mixtos cada proteína descuenta su propia porción.</p><div class="yieldItems">${items.length?items.map(({m,cfg})=>{const count=cfg.grams>0?Math.floor((kg*1000)/cfg.grams):null;return `<div><span>${esc(m.name)}<small>${cfg.grams?cfg.grams+' g por platillo':'Gramaje pendiente'} · ${criticalEntriesFor(m).length>1?'receta mixta':'receta base'}</small></span><b>${count==null?'Pendiente':'≈ '+count}</b></div>`}).join(''):'<div class="empty compactEmpty">Sin recetas explícitas para esta proteína.</div>'}</div></article>`}).join('')}
-function renderMenuList(){let rows=state.data?.menu_items||[];if(state.menuSearch)rows=rows.filter(x=>x.name.toLowerCase().includes(state.menuSearch));document.getElementById('menuList').innerHTML=rows.length?rows.map(m=>{const entries=criticalEntriesFor(m),cfg=entries[0],detail=recipeDetailFor(m),sub=entries.length?(entries.length>1?`${entries.map(x=>x.protein.name).join(' + ')} · receta mixta`:(cfg.grams?`${cfg.protein.name} · ${cfg.grams} g por platillo${detail?' · receta base':cfg.source==='test'?' · receta de prueba':''}`:`${cfg.protein.name} · rendimiento pendiente${detail?' · receta base':''}`)):(m.recipe_count?`${m.recipe_count} insumo(s) · costo ${money(m.recipe_cost)}`:'Sin receta configurada');return `<button class="menuPick ${state.selectedMenu===m.id?'active':''}" data-menu="${esc(m.id)}"><b>${esc(m.name)}</b><small>${esc(sub)}</small></button>`}).join(''):'<div class="empty">No hay platillos disponibles.</div>';document.querySelectorAll('[data-menu]').forEach(b=>b.addEventListener('click',()=>{state.selectedMenu=b.dataset.menu;renderMenuList();renderRecipeEditor()}))}
+function renderYields(){const grid=document.getElementById('yieldGrid');if(!grid)return;const menu=(state.data?.menu_items||[]).filter(m=>criticalEntriesFor(m).length);grid.innerHTML=TEST_PROTEINS.map(p=>{const kg=proteinStockKg(p),items=menu.map(m=>({m,cfg:criticalEntriesFor(m).find(x=>x.protein.id===p.id)})).filter(x=>x.cfg);return `<article class="yieldCard"><div class="yieldHead"><div><span>STOCK REAL COMPARTIDO</span><h3>${p.name}</h3></div><strong>${num(kg)} kg</strong></div><p class="yieldNote">Incluye recetas simples y mixtas. En platos mixtos cada proteína descuenta su propia porción.</p><div class="yieldItems">${items.length?items.map(({m,cfg})=>{const count=cfg.grams>0?Math.floor((kg*1000)/cfg.grams):null;return `<div><span>${esc(m.name)}<small>${cfg.grams?cfg.grams+' g por platillo':'Gramaje pendiente'} · ${criticalEntriesFor(m).length>1?'receta mixta':'receta operativa'}</small></span><b>${count==null?'Pendiente':'≈ '+count}</b></div>`}).join(''):'<div class="empty compactEmpty">Sin recetas explícitas para esta proteína.</div>'}</div></article>`}).join('')}
+function renderMenuList(){let rows=state.data?.menu_items||[];if(state.menuSearch)rows=rows.filter(x=>x.name.toLowerCase().includes(state.menuSearch));document.getElementById('menuList').innerHTML=rows.length?rows.map(m=>{const entries=criticalEntriesFor(m),cfg=entries[0],detail=recipeDetailFor(m),sub=entries.length?(entries.length>1?`${entries.map(x=>x.protein.name).join(' + ')} · receta mixta`:(cfg.grams?`${cfg.protein.name} · ${cfg.grams} g por platillo${detail?' · receta operativa':cfg.source==='test'?' · receta de prueba':''}`:`${cfg.protein.name} · rendimiento pendiente${detail?' · receta operativa':''}`)):(m.recipe_count?`${m.recipe_count} insumo(s) · costo ${money(m.recipe_cost)}`:'Sin receta configurada');return `<button class="menuPick ${state.selectedMenu===m.id?'active':''}" data-menu="${esc(m.id)}"><b>${esc(m.name)}</b><small>${esc(sub)}</small></button>`}).join(''):'<div class="empty">No hay platillos disponibles.</div>';document.querySelectorAll('[data-menu]').forEach(b=>b.addEventListener('click',()=>{state.selectedMenu=b.dataset.menu;renderMenuList();renderRecipeEditor()}))}
 function recipeRowsFor(menuId){return (state.data?.recipes||[]).filter(r=>r.menu_item_id===menuId)}
-function renderRecipeEditor(){const menu=(state.data?.menu_items||[]).find(m=>m.id===state.selectedMenu),editor=document.getElementById('recipeEditor');if(!menu){editor.innerHTML='<div class="empty">Selecciona un platillo.</div>';return}const inventory=state.data?.items||[],rows=recipeRowsFor(menu.id),entries=criticalEntriesFor(menu),cfg=entries[0],detail=recipeDetailFor(menu),food=Number(menu.price)>0?(Number(menu.recipe_cost)/Number(menu.price))*100:0,foodClass=food>40?'danger':food>30?'warn':'ok',stockKg=cfg?proteinStockKg(cfg.protein):0,yieldCount=entries.length>1?limitingYield(menu):(cfg&&cfg.grams?Math.floor((stockKg*1000)/cfg.grams):null),proteinLabel=entries.length>1?entries.map(x=>x.protein.name).join(' + '):(cfg?cfg.protein.name:'Sin definir');editor.innerHTML=`<div class="recipeHero"><div><span>RECETA DEL PLATILLO</span><h3>${esc(menu.name)}</h3></div><div class="foodBadge ${foodClass}">${food.toFixed(1)}% food cost</div></div><div class="recipeSummary"><div><span>Precio</span><strong>${money(menu.price)}</strong></div><div><span>Proteína(s)</span><strong>${esc(proteinLabel)}</strong></div><div><span>Con stock actual</span><strong>${cfg?(yieldCount==null?'Pendiente':'≈ '+yieldCount+' platos'):'—'}</strong></div></div><div class="criticalBox"><div class="criticalTitle"><span>CONTROL DE DISPONIBILIDAD</span><b>${entries.length>1?'Proteínas críticas':'Proteína crítica'}</b></div>${entries.length>1?`<div class="multiCriticalList">${entries.map(x=>`<div><span>${esc(x.protein.name)}</span><b>${x.grams?x.grams+' g':'Pendiente'}</b></div>`).join('')}</div>`:''}<div class="criticalForm"><label><span>Proteína</span><select id="criticalProtein">${TEST_PROTEINS.map(p=>`<option value="${p.id}" ${cfg?.protein.id===p.id?'selected':''}>${p.name}</option>`).join('')}</select></label><label><span>Gramos por platillo</span><input id="criticalGrams" type="number" min="1" step="1" value="${cfg?.grams??''}" placeholder="Pendiente"></label><button class="btn primary" id="saveCritical">Guardar control</button></div><small>${detail?'Receta base cargada para validación. ':cfg?.source==='test'?'Receta de prueba precargada. ':''}${entries.length>1?'El rendimiento total lo limita la proteína que se agote primero. El selector inferior permite reemplazar la receta por un control manual simple.':'Esta proteína define cuántos platillos quedan disponibles.'}</small></div>${detail?`<section class="sourceRecipe"><div class="sourceRecipeHead"><div><span>RECETA DE REFERENCIA</span><h4>${esc(detail.source_label)}</h4>${detail.source_url?`<a class="recipeSourceLink" href="${esc(detail.source_url)}" target="_blank" rel="noopener">Ver fuente ↗</a>`:''}</div><div class="sourceYield">${detail.servings?detail.servings+' porciones':'Rendimiento pendiente'}</div></div><div class="ingredientList">${detail.ingredients.map(i=>`<div><span>${esc(i[0])}</span><b>${esc(i[1])}</b></div>`).join('')}</div><p>${esc(detail.notes)}</p></section>`:''}${inventory.length?`<div class="detailRecipeHead"><b>Ingredientes secundarios para costeo</b><span>Opcional durante esta prueba</span></div><div id="recipeRows">${rows.map((r,i)=>recipeRowHtml(r.inventory_item_id,r.quantity_per_unit,i)).join('')}</div><div class="recipeActions"><button class="btn secondary" id="addIngredient">＋ Agregar insumo</button><button class="btn primary" id="saveRecipe">Guardar receta detallada</button></div>`:`<div class="secondaryRecipeEmpty"><b>La receta principal ya puede usarse para rendimiento.</b><span>Los ingredientes secundarios se agregarán después para el costeo completo.</span><button class="btn secondary" id="recipeNewItem">＋ Crear insumo secundario</button></div>`}<div class="recipeHelp">Para disponibilidad operativa usamos principalmente la proteína crítica. El resto de la receta puede completarse después.</div>`;document.getElementById('saveCritical').addEventListener('click',()=>{const pid=document.getElementById('criticalProtein').value,g=Number(document.getElementById('criticalGrams').value||0);if(!g){toast('Indica los gramos por platillo para activar el rendimiento.');return}saveCritical(menu.id,pid,g);render();toast('Control de proteína guardado')});if(inventory.length){document.getElementById('addIngredient').addEventListener('click',()=>addRecipeRow());document.getElementById('saveRecipe').addEventListener('click',saveRecipe);bindRecipeRemoves()}else document.getElementById('recipeNewItem').addEventListener('click',newItem)}
+function renderRecipeEditor(){const menu=(state.data?.menu_items||[]).find(m=>m.id===state.selectedMenu),editor=document.getElementById('recipeEditor');if(!menu){editor.innerHTML='<div class="empty">Selecciona un platillo.</div>';return}const inventory=state.data?.items||[],rows=recipeRowsFor(menu.id),entries=criticalEntriesFor(menu),cfg=entries[0],detail=recipeDetailFor(menu),food=Number(menu.price)>0?(Number(menu.recipe_cost)/Number(menu.price))*100:0,foodClass=food>40?'danger':food>30?'warn':'ok',stockKg=cfg?proteinStockKg(cfg.protein):0,yieldCount=entries.length>1?limitingYield(menu):(cfg&&cfg.grams?Math.floor((stockKg*1000)/cfg.grams):null),proteinLabel=entries.length>1?entries.map(x=>x.protein.name).join(' + '):(cfg?cfg.protein.name:'Sin definir');editor.innerHTML=`<div class="recipeHero"><div><span>RECETA DEL PLATILLO</span><h3>${esc(menu.name)}</h3></div><div class="foodBadge ${foodClass}">${food.toFixed(1)}% food cost</div></div><div class="recipeSummary"><div><span>Precio</span><strong>${money(menu.price)}</strong></div><div><span>Proteína(s)</span><strong>${esc(proteinLabel)}</strong></div><div><span>Con stock actual</span><strong>${cfg?(yieldCount==null?'Pendiente':'≈ '+yieldCount+' platos'):'—'}</strong></div></div><div class="criticalBox"><div class="criticalTitle"><span>CONTROL DE DISPONIBILIDAD</span><b>${entries.length>1?'Proteínas críticas':'Proteína crítica'}</b></div>${entries.length>1?`<div class="multiCriticalList">${entries.map(x=>`<div><span>${esc(x.protein.name)}</span><b>${x.grams?x.grams+' g':'Pendiente'}</b></div>`).join('')}</div>`:''}<div class="criticalForm"><label><span>Proteína</span><select id="criticalProtein">${TEST_PROTEINS.map(p=>`<option value="${p.id}" ${cfg?.protein.id===p.id?'selected':''}>${p.name}</option>`).join('')}</select></label><label><span>Gramos por platillo</span><input id="criticalGrams" type="number" min="1" step="1" value="${cfg?.grams??''}" placeholder="Pendiente"></label><button class="btn primary" id="saveCritical">Guardar control</button></div><small>${detail?'Receta operativa cargada para validación. ':cfg?.source==='test'?'Receta de prueba precargada. ':''}${entries.length>1?'El rendimiento total lo limita la proteína que se agote primero. El selector inferior permite reemplazar la receta por un control manual simple.':'Esta proteína define cuántos platillos quedan disponibles.'}</small></div>${detail?`<section class="sourceRecipe"><div class="sourceRecipeHead"><div><span>RECETA BASE OPERATIVA</span><h4>Ingredientes y rendimiento inicial</h4></div><div class="sourceYield">${detail.servings?detail.servings+' porciones':'Por validar'}</div></div><div class="ingredientList">${detail.ingredients.map(i=>`<div><span>${esc(i[0])}</span><b>${esc(i[1])}</b></div>`).join('')}</div><p>Configuración inicial para control de inventario y rendimiento. Ajustar cantidades cuando Cocina valide la receta definitiva.</p></section>`:''}${inventory.length?`<div class="detailRecipeHead"><b>Ingredientes secundarios para costeo</b><span>Opcional durante esta prueba</span></div><div id="recipeRows">${rows.map((r,i)=>recipeRowHtml(r.inventory_item_id,r.quantity_per_unit,i)).join('')}</div><div class="recipeActions"><button class="btn secondary" id="addIngredient">＋ Agregar insumo</button><button class="btn primary" id="saveRecipe">Guardar receta detallada</button></div>`:`<div class="secondaryRecipeEmpty"><b>La receta principal ya puede usarse para rendimiento.</b><span>Los ingredientes secundarios se agregarán después para el costeo completo.</span><button class="btn secondary" id="recipeNewItem">＋ Crear insumo secundario</button></div>`}<div class="recipeHelp">Para disponibilidad operativa usamos principalmente la proteína crítica. El resto de la receta puede completarse después.</div>`;document.getElementById('saveCritical').addEventListener('click',()=>{const pid=document.getElementById('criticalProtein').value,g=Number(document.getElementById('criticalGrams').value||0);if(!g){toast('Indica los gramos por platillo para activar el rendimiento.');return}saveCritical(menu.id,pid,g);render();toast('Control de proteína guardado')});if(inventory.length){document.getElementById('addIngredient').addEventListener('click',()=>addRecipeRow());document.getElementById('saveRecipe').addEventListener('click',saveRecipe);bindRecipeRemoves()}else document.getElementById('recipeNewItem').addEventListener('click',newItem)}
 function recipeRowHtml(itemId='',qty='',index=Date.now()){const opts=(state.data?.items||[]).map(i=>`<option value="${esc(i.id)}" ${i.id===itemId?'selected':''}>${esc(i.name)} · ${unitLabel(i.unit)}</option>`).join('');return `<div class="recipeRow" data-recipe-row><label class="field"><span>Insumo</span><select data-ing>${opts}</select></label><label class="field"><span>Cantidad</span><input data-qty inputmode="decimal" value="${esc(qty)}" placeholder="0"></label><button class="remove" data-remove-recipe type="button">✕</button></div>`}function addRecipeRow(){document.getElementById('recipeRows').insertAdjacentHTML('beforeend',recipeRowHtml());bindRecipeRemoves()}function bindRecipeRemoves(){document.querySelectorAll('[data-remove-recipe]').forEach(b=>b.onclick=()=>b.closest('[data-recipe-row]').remove())}
 async function saveRecipe(){const rows=[...document.querySelectorAll('[data-recipe-row]')].map(r=>({inventory_item_id:r.querySelector('[data-ing]').value,quantity_per_unit:Number(r.querySelector('[data-qty]').value||0)})).filter(x=>x.inventory_item_id&&x.quantity_per_unit>0);try{await api('POST',{action:'save_recipe',menu_item_id:state.selectedMenu,ingredients:rows});await load();toast('Receta guardada')}catch(e){toast(mapError(e.message))}}
 function renderCosts(){const rows=state.data?.costs||[];document.getElementById('costCards').innerHTML=rows.length?rows.map(x=>{const raw=Number(x.food_cost_percent||0),pct=Math.max(0,Math.min(100,raw)),level=raw>40?'danger':raw>30?'warn':'ok';return `<article class="costCard ${level}"><div class="costHead"><b>${esc(x.name)}</b><span>${raw.toFixed(1)}%</span></div><div class="numbers"><div><small>Precio</small><strong>${money(x.price)}</strong></div><div><small>Costo receta</small><strong>${money(x.recipe_cost)}</strong></div><div><small>Margen bruto</small><strong>${money(x.gross_margin)}</strong></div><div><small>Food cost</small><strong>${raw.toFixed(1)}%</strong></div></div><div class="costPct"><span style="width:${pct}%"></span></div></article>`}).join(''):'<div class="empty" style="grid-column:1/-1">Todavía no hay costos calculables. Configura al menos una receta con costos de insumos.</div>'}
