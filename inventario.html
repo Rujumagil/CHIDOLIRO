@@ -119,7 +119,17 @@ const TEST_RECIPES=[
 {name:'Ensalada de atún',aliases:['Ensalada de atun'],protein_id:'atun',grams:98},
 {name:'Arrachera',protein_id:'carne',grams:125},
 {name:'Pechuga de pollo',aliases:['Pechuga'],protein_id:'pollo',grams:125},
-{name:'Fish & Fries',aliases:['Fish & Frieds','Fish and Fries','Fish & Chips'],protein_id:'pescado',grams:140}
+{name:'Fish & Fries',aliases:['Fish & Frieds','Fish and Fries','Fish & Chips'],protein_id:'pescado',grams:140},
+{name:'Carne apache',aliases:['Carne Apache'],protein_id:'carne',grams:125},
+{name:'Tiritas',protein_id:'pescado',grams:83},
+{name:'Sashimi de atún',aliases:['Sashimi de atun'],protein_id:'atun',grams:167},
+{name:'Atún tropical',aliases:['Atun tropical'],protein_id:'atun',grams:50},
+{name:'Ceviche de pulpo',aliases:['Pulpo'],protein_id:'pulpo',grams:83},
+{name:'Coctel',aliases:['Cóctel'],protein_id:'camaron',grams:150},
+{name:'Mojarra dorada',protein_id:'pescado',grams:400},
+{name:'Filete empapelado',protein_id:'pescado',grams:130},
+{name:'Filete a la plancha',protein_id:'pescado',grams:135},
+{name:'Ceviche cubano',aliases:['Cubano'],protein_id:'pescado',grams:250}
 ];
 const RECIPE_DETAILS=[
 {
@@ -374,6 +384,132 @@ const RECIPE_DETAILS=[
   ['Tomate cherry','200 g']
  ],
  notes:'Base investigada, no receta oficial CHIDOLIRO. 560 g para 4 porciones: 140 g de pescado por plato.'
+},
+{
+ name:'Carne apache',
+ aliases:['Carne Apache'],
+ source_label:'Base investigada · Tártara de carne apache estilo Michoacán',
+ source_url:'https://www.kiwilimon.com/receta/pollo-y-carne/res/carne-molida/tartara-de-carne-apache',
+ servings:4,batch_protein_g:500,
+ ingredients:[
+  ['Carne molida de res','500 g'],['Limón','12 pzas'],['Jitomate','5 pzas'],
+  ['Cebolla','1 pza'],['Cilantro','1/2 manojo'],['Chile serrano','2 pzas'],
+  ['Sal','Al gusto'],['Aguacate','4 pzas'],['Galleta salada','Para acompañar']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 4 porciones: 125 g de carne por porción.'
+},
+{
+ name:'Tiritas',
+ source_label:'Base investigada · Tiritas de pescado de Ixtapa-Zihuatanejo',
+ source_url:'https://laroussecocina.mx/receta/tiritas-de-pescado/',
+ servings:6,batch_protein_g:500,
+ ingredients:[
+  ['Filete de robalo','500 g'],['Jugo de limón','1/2 taza'],['Chile serrano','3 pzas'],
+  ['Cebolla morada','1/2 taza'],['Sal','1 cucharada'],['Pimienta negra','1 cucharada'],
+  ['Orégano seco','2 cucharaditas'],['Totopitos','Al gusto']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 6 porciones: aproximadamente 83 g de pescado por porción.'
+},
+{
+ name:'Sashimi de atún',
+ aliases:['Sashimi de atun'],
+ source_label:'Base investigada · Sashimi de atún',
+ source_url:'https://www.kiwilimon.com/receta/pescados-y-mariscos/sashimi-de-atun',
+ servings:6,batch_protein_g:1000,
+ ingredients:[
+  ['Atún fresco','1 kg'],['Ajonjolí negro','1 taza'],['Ajonjolí','1/2 taza'],
+  ['Salsa de soya','1 taza'],['Aceite de ajonjolí','4 cucharadas'],['Ajo','2 dientes'],
+  ['Jugo de limón','1 cucharada']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 1 kg para 6 porciones: aproximadamente 167 g de atún por porción.'
+},
+{
+ name:'Atún tropical',
+ aliases:['Atun tropical'],
+ source_label:'Base investigada · Ceviche tropical de atún',
+ source_url:'https://www.recetasnestle.com.mx/recetas/ceviche-tropical',
+ servings:4,batch_protein_g:200,
+ ingredients:[
+  ['Atún en cubos','200 g'],['Mango','1 taza'],['Cebolla morada','1/4 pza'],
+  ['Cilantro','5 ramitas'],['Jugo de limón','6 limones'],['Salsa picante','1/2 cucharadita'],
+  ['Jugo MAGGI','1 cucharada'],['Pimienta negra','1/4 cucharadita'],['Tostadas horneadas','127 g']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 200 g para 4 porciones: 50 g de atún por porción.'
+},
+{
+ name:'Ceviche de pulpo',
+ aliases:['Pulpo'],
+ source_label:'Base investigada · Ceviche de pulpo',
+ source_url:'https://www.recetasnestle.com.mx/recetas/ceviche-pulpo',
+ servings:6,batch_protein_g:500,
+ ingredients:[
+  ['Pulpo cocido','500 g'],['Col morada','2 tazas'],['Cebolla morada','1/2 pza'],
+  ['Jitomate','3 pzas'],['Chile serrano','2 pzas'],['Cilantro','1/2 taza'],
+  ['Jugo de limón','1/2 taza'],['Salsa de soya','4 cucharadas'],['Guacamole','1 taza'],
+  ['Tostadas de maíz','Para servir']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 6 porciones: aproximadamente 83 g de pulpo por porción.'
+},
+{
+ name:'Coctel',
+ aliases:['Cóctel'],
+ source_label:'Base investigada · Cóctel de camarón',
+ source_url:'https://www.recetasnestle.com.mx/recetas/camaron-coctel',
+ servings:4,batch_protein_g:600,
+ ingredients:[
+  ['Camarón pacotilla','600 g'],['Jugo de naranja','1 naranja'],['Cóctel de tomate y almeja','1/2 taza'],
+  ['Cátsup','1 taza'],['Jugo de limón','2 limones'],['Jugo MAGGI','1 cucharadita'],
+  ['Salsa inglesa','2 cucharadas'],['Cilantro','10 ramas'],['Cebolla morada','1/2 pza'],
+  ['Chile serrano','2 pzas'],['Aguacate','1 pza'],['Galletas saladas','156 g']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 600 g para 4 porciones: 150 g de camarón por porción.'
+},
+{
+ name:'Mojarra dorada',
+ source_label:'Base investigada · Mojarra frita',
+ source_url:'https://www.kiwilimon.com/receta/platos-fuertes/pescado/mojarra-frita',
+ servings:1,batch_protein_g:400,
+ ingredients:[
+  ['Mojarra limpia','1 pza de 400 g aprox.'],['Ajo','4 dientes'],['Sal de ajo','1 cucharadita'],
+  ['Cáscara de limón','Al gusto'],['Pimienta negra','Al gusto'],['Aceite vegetal','Para freír'],
+  ['Harina','Al gusto']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. Una mojarra de referencia pesa aproximadamente 400 g y corresponde a 1 porción.'
+},
+{
+ name:'Filete empapelado',
+ source_label:'Base investigada · Pescado empapelado al pimentón',
+ source_url:'https://www.recetasnestle.com.mx/recetas/pescado-empapelado',
+ servings:4,batch_protein_g:520,
+ ingredients:[
+  ['Filete de pescado','4 pzas de 130 g'],['Jitomate cherry','1 taza'],['Chile serrano','2 pzas'],
+  ['Cebolla','1/2 pza'],['Espárragos baby','8 pzas']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. Cada porción usa un filete de aproximadamente 130 g.'
+},
+{
+ name:'Filete a la plancha',
+ source_label:'Base investigada · Filete de pescado al sartén',
+ source_url:'https://www.recetasnestle.com.mx/recetas/filete-de-pescado-ajo-y-cebolla',
+ servings:4,batch_protein_g:540,
+ ingredients:[
+  ['Pescado blanco','540 g total / 135 g c/u'],['Sazonador de finas hierbas','Para 4 filetes']
+ ],
+ notes:'Base investigada para filete a la plancha, no receta oficial CHIDOLIRO. Cada porción usa aproximadamente 135 g de pescado.'
+},
+{
+ name:'Ceviche cubano',
+ aliases:['Cubano'],
+ source_label:'Base similar investigada · Ceviche cubano',
+ source_url:'https://mandadoalaolla.wixsite.com/recetaseingredientes/product-page/ceviche-cubano-ing-para-4-porciones',
+ servings:4,batch_protein_g:1000,
+ ingredients:[
+  ['Pescado blanco fresco','1 kg'],['Limón','20 pzas'],['Cebolla roja','1 pza'],
+  ['Ají limo','1 pza'],['Sal y pimienta blanca','Al gusto'],['Sazonador','1 sobre'],
+  ['Cilantro','20 g'],['Apio','1 pza'],['Choclo','2 pzas'],['Camote','4 pzas'],
+  ['Yuca','2 pzas'],['Plátano verde','1 pza'],['Lechuga','1 pza']
+ ],
+ notes:'Base similar investigada para el platillo Cubano del menú. No es receta oficial CHIDOLIRO. 1 kg para 4 porciones: 250 g de pescado por porción.'
 }
 ];
 function recipeNames(r){return [r.name,...(r.aliases||[])].map(normName)}
