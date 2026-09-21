@@ -109,7 +109,17 @@ const TEST_RECIPES=[
 {name:'Tostada de camarón',protein_id:'camaron',grams:100},
 {name:'Tostada de pulpo',protein_id:'pulpo',grams:50},
 {name:'Baja Style · Pescado',protein_id:'pescado',grams:125},
-{name:'Steak de salmón',protein_id:'salmon',grams:200}
+{name:'Steak de salmón',protein_id:'salmon',grams:200},
+{name:'Camarones al gusto',protein_id:'camaron',grams:125},
+{name:'Camarones zarandeados',protein_id:'camaron',grams:125},
+{name:'Pulpo zarandeado',protein_id:'pulpo',grams:125},
+{name:'Caldo de camarón',aliases:['Caldo camaron'],protein_id:'camaron',grams:250},
+{name:'Caldo de pescado',protein_id:'pescado',grams:200},
+{name:'Steak de atún',aliases:['Steak de atun'],protein_id:'atun',grams:250},
+{name:'Ensalada de atún',aliases:['Ensalada de atun'],protein_id:'atun',grams:98},
+{name:'Arrachera',protein_id:'carne',grams:125},
+{name:'Pechuga de pollo',aliases:['Pechuga'],protein_id:'pollo',grams:125},
+{name:'Fish & Fries',aliases:['Fish & Frieds','Fish and Fries','Fish & Chips'],protein_id:'pescado',grams:140}
 ];
 const RECIPE_DETAILS=[
 {
@@ -236,6 +246,134 @@ const RECIPE_DETAILS=[
   ['Sal y pimienta','Al gusto']
  ],
  notes:'Base investigada, no receta oficial CHIDOLIRO. Porción de referencia: 200 g de salmón.'
+},
+{
+ name:'Camarones al gusto',
+ source_label:'Base investigada · Camarones al ajillo',
+ source_url:'https://www.kiwilimon.com/amp/receta/pescados-y-mariscos/camarones-al-ajillo-faciles',
+ servings:4,batch_protein_g:500,
+ ingredients:[
+  ['Camarón pelado y limpio','500 g'],['Mantequilla','2 cucharadas'],['Ajo','5 dientes'],
+  ['Jugo de limón','2 cucharadas'],['Vino blanco','4 cucharadas'],['Pimienta','Al gusto'],
+  ['Perejil o cilantro','Al gusto']
+ ],
+ notes:'Base investigada para la opción al ajillo de Camarones al gusto. 500 g para 4 porciones: 125 g de camarón por platillo.'
+},
+{
+ name:'Camarones zarandeados',
+ source_label:'Base investigada · Camarones zarandeados al sartén',
+ source_url:'https://www.kiwilimon.com/receta/pescados-y-mariscos/camarones/camarones-zarandeados-al-sarten-con-chiles-largos',
+ servings:4,batch_protein_g:500,
+ ingredients:[
+  ['Camarón','500 g'],['Sal','Al gusto'],['Pimienta','Al gusto'],
+  ['Mayonesa con limón','2 cucharadas'],['Salsa inglesa','1 cucharada'],['Jugo de limón','1 cucharadita'],
+  ['Ajo en polvo','1 cucharadita'],['Chile largo en escabeche','6 pzas'],
+  ['Piña en almíbar','3 rebanadas'],['Cebolla morada','1/4 taza'],['Orégano','1 cucharadita']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 4 porciones: 125 g de camarón por platillo.'
+},
+{
+ name:'Pulpo zarandeado',
+ source_label:'Base similar investigada · Pulpo con adobo',
+ source_url:'https://www.kiwilimon.com/receta/pescados-y-mariscos/tacos-de-pulpo-con-adobo-dulce',
+ servings:4,batch_protein_g:500,
+ ingredients:[
+  ['Pulpo mediano limpio','500 g'],['Ajo','1 cabeza + 2 dientes'],['Cebolla','3/4 pza'],
+  ['Laurel','3 hojas'],['Jitomate tatemado','2 pzas'],['Chile pasilla','2 pzas'],
+  ['Chile guajillo','3 pzas'],['Chile de árbol','3 pzas'],['Chile chipotle seco','4 pzas'],
+  ['Cilantro','1 taza'],['Orégano','1 cucharadita'],['Mostaza','1 cucharada'],
+  ['Vinagre de manzana','1 cucharada'],['Mantequilla','3 cucharadas']
+ ],
+ notes:'Base similar para construir el zarandeado. No es receta exacta de CHIDOLIRO. 500 g para 4 porciones: 125 g de pulpo por platillo.'
+},
+{
+ name:'Caldo de camarón',
+ aliases:['Caldo camaron'],
+ source_label:'Base investigada · Caldo de camarón estilo mexicano',
+ source_url:'https://www.recetasnestle.com.mx/recetas/caldo-camaron',
+ servings:4,batch_protein_g:1000,
+ ingredients:[
+  ['Camarón con cáscara limpio','1 kg'],['Aceite vegetal','4 cucharadas'],['Ajo','1 cucharada'],
+  ['Cebolla','1/4 pza'],['Puré de tomate','2 tazas'],['Chile ancho','2 pzas'],
+  ['Chile chipotle','2 pzas'],['Agua','1.5 L'],['Epazote','10 ramitas'],['Papa','1 pza'],
+  ['Cilantro, cebolla y limón','Para acompañar']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 1 kg para 4 porciones: 250 g de camarón por plato.'
+},
+{
+ name:'Caldo de pescado',
+ source_label:'Base investigada · Caldo de pescado tradicional',
+ source_url:'https://www.recetasnestle.com.mx/recetas/caldo-de-pescado',
+ servings:4,batch_protein_g:800,
+ ingredients:[
+  ['Pescado con hueso en trozos','800 g'],['Jitomate','4 pzas'],['Chile guajillo','3 pzas'],
+  ['Agua','2.5 L'],['Papa','2 pzas'],['Zanahoria','4 pzas'],
+  ['Concentrado de tomate con pollo','3 cubos']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 800 g para 4 porciones: 200 g de pescado por plato.'
+},
+{
+ name:'Steak de atún',
+ aliases:['Steak de atun'],
+ source_label:'Base investigada · Atún sellado',
+ source_url:'https://www.kiwilimon.com/receta/ensaladas/ensaladas-de-atun/ensalada-de-atun-sellado',
+ servings:4,batch_protein_g:1000,
+ ingredients:[
+  ['Filete de atún','1 kg'],['Aceite de oliva','45 ml'],['Sal de mar','2 cucharadas'],
+  ['Pimienta','Al gusto'],['Jugo de limón','100 ml'],['Salsa de soya','30 ml'],
+  ['Salsa picante','5 ml'],['Aguacate','2 pzas'],['Cebolla morada','100 g']
+ ],
+ notes:'Base investigada para definir el steak de atún. 1 kg para 4 porciones: 250 g de atún por platillo.'
+},
+{
+ name:'Ensalada de atún',
+ aliases:['Ensalada de atun'],
+ source_label:'Base investigada · Ensalada de atún con mayonesa',
+ source_url:'https://www.recetasnestle.com.mx/recetas/ensalada-atun-mayonesa',
+ servings:4,batch_protein_g:390,
+ ingredients:[
+  ['Atún en agua escurrido','3 latas de 130 g'],['Media crema','190 g'],['Mayonesa','1/2 taza'],
+  ['Sal','1/2 cucharadita'],['Limón','1 pza'],['Jitomate','4 pzas'],
+  ['Cebolla morada','1/4 pza'],['Pepino','1 pza'],['Cilantro','7 ramitas'],['Chile serrano','1 pza']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 390 g para 4 porciones: aproximadamente 98 g de atún por porción.'
+},
+{
+ name:'Arrachera',
+ source_label:'Base investigada · Arrachera ranchera',
+ source_url:'https://www.recetasnestle.com.mx/recetas/arrachera-ranchera',
+ servings:4,batch_protein_g:500,
+ ingredients:[
+  ['Arrachera','500 g'],['Chorizo','2 pzas'],['Cebolla','1 pza'],
+  ['Media crema','1 lata'],['Aceite de maíz','1 cucharada'],['Jugo Maggi','3 cucharadas']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 500 g para 4 porciones: 125 g de arrachera por porción.'
+},
+{
+ name:'Pechuga de pollo',
+ aliases:['Pechuga'],
+ source_label:'Base investigada · Pechuga de pollo con crema de chile morrón',
+ source_url:'https://www.kiwilimon.com/receta/pollo-y-carne/pollos/pechugas-de-pollo/pechuga-de-pollo-con-crema-de-chile-morron',
+ servings:8,batch_protein_g:1000,
+ ingredients:[
+  ['Pechuga de pollo','1 kg'],['Chile morrón','2 latas'],['Queso crema','1 paquete'],
+  ['Leche','3 tazas'],['Mantequilla','2 barras'],['Sal y pimienta','Al gusto'],
+  ['Zanahoria','5 pzas'],['Calabacita','2 pzas'],['Elote','1 lata'],['Chayote','2 pzas']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 1 kg para 8 porciones: 125 g de pollo por porción.'
+},
+{
+ name:'Fish & Fries',
+ aliases:['Fish & Frieds','Fish and Fries','Fish & Chips'],
+ source_label:'Base investigada · Oven-baked fish & chips',
+ source_url:'https://tollbit.bbcgoodfood.com/recipes/oven-baked-fish-chips',
+ servings:4,batch_protein_g:560,
+ ingredients:[
+  ['Pescado blanco','4 filetes de 140 g'],['Papa','800 g'],['Aceite de oliva','2 cucharadas'],
+  ['Pan molido fresco','50 g'],['Limón','1 pza'],['Perejil','2 cucharadas'],
+  ['Tomate cherry','200 g']
+ ],
+ notes:'Base investigada, no receta oficial CHIDOLIRO. 560 g para 4 porciones: 140 g de pescado por plato.'
 }
 ];
 function recipeNames(r){return [r.name,...(r.aliases||[])].map(normName)}
