@@ -118,7 +118,22 @@ const TEST_PROTEINS=[
 {id:'queso',name:'Queso',kg:20,default_g:120,keywords:['queso','mozzarella','manchego']},
 {id:'totopos',name:'Totopos',kg:20,default_g:150,keywords:['nachos','totopos']},
 {id:'cerveza',name:'Cerveza',kg:20,default_g:355,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:2000,keywords:['cerveza','michelada']},
-{id:'clamato',name:'Clamato / base tomate',kg:20,default_g:150,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:2000,keywords:['clamato','michelada']}
+{id:'clamato',name:'Clamato / base tomate',kg:20,default_g:150,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:2000,keywords:['clamato','michelada']},
+{id:'mezcal',name:'Mezcal',default_g:45,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['mezcal']},
+{id:'ron',name:'Ron',default_g:50,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['ron','cuba']},
+{id:'vodka',name:'Vodka',default_g:60,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['vodka','azulito']},
+{id:'curazao',name:'Curazao azul',default_g:100,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['curazao','azulito']},
+{id:'licor43',name:'Licor 43',default_g:50,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['licor 43','carajillo']},
+{id:'espresso',name:'Café espresso preparado',default_g:50,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['espresso','carajillo']},
+{id:'jager',name:'Jägermeister',default_g:30,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['jager','perla negra']},
+{id:'energetica',name:'Bebida energética',default_g:125,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['energética','energetica','perla negra']},
+{id:'mineral',name:'Agua mineral',default_g:250,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:2000,keywords:['mineral','soda']},
+{id:'cola',name:'Refresco de cola',default_g:120,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:2000,keywords:['cola','cuba']},
+{id:'limalimon',name:'Refresco lima-limón',default_g:250,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:2000,keywords:['lima-limón','lima limon','sprite']},
+{id:'jarabevelvet',name:'Jarabe Velvet',default_g:30,unit:'ml',inventory_unit:'ml',initial_qty:20000,reorder_level:1000,keywords:['velvet','jarabe']},
+{id:'limon',name:'Limón',default_g:60,keywords:['limón','limon']},
+{id:'naranja',name:'Naranja',default_g:250,keywords:['naranja','naranjada']},
+{id:'frutaagua',name:'Fruta para agua de sabor',default_g:100,keywords:['agua de sabor','fruta']}
 ];
 const TEST_RECIPES=[
 {name:'Aguachile de camarón',protein_id:'camaron',grams:125},
@@ -180,7 +195,17 @@ const TEST_RECIPES=[
 {name:'Agrega queso',aliases:['Agregar queso'],protein_id:'queso',grams:30},
 {name:'Micheladas',aliases:['Michelada'],proteins:[{protein_id:'cerveza',grams:355},{protein_id:'clamato',grams:150}]},
 {name:'Micheladas 1/2',aliases:['Michelada 1/2','Micheladas 1/2'],proteins:[{protein_id:'cerveza',grams:177},{protein_id:'clamato',grams:75}]},
-{name:'La groseria',aliases:['La Grosería','La Groseria'],proteins:[{protein_id:'cerveza',grams:355},{protein_id:'camaron',grams:180},{protein_id:'pulpo',grams:80},{protein_id:'res',grams:50},{protein_id:'clamato',grams:150}]}
+{name:'La groseria',aliases:['La Grosería','La Groseria'],proteins:[{protein_id:'cerveza',grams:355},{protein_id:'camaron',grams:180},{protein_id:'pulpo',grams:80},{protein_id:'res',grams:50},{protein_id:'clamato',grams:150}]},
+{name:'Venenosa',proteins:[{protein_id:'cerveza',grams:355},{protein_id:'clamato',grams:120},{protein_id:'limon',grams:60}]},
+{name:'Mezcalada',proteins:[{protein_id:'mezcal',grams:45},{protein_id:'mineral',grams:120},{protein_id:'limon',grams:60}]},
+{name:'Cuba libre',aliases:['Cuba Libre'],proteins:[{protein_id:'ron',grams:50},{protein_id:'cola',grams:120},{protein_id:'limon',grams:30}]},
+{name:'Azulito 1l',aliases:['Azulito 1L','Azulito'],proteins:[{protein_id:'vodka',grams:60},{protein_id:'curazao',grams:100},{protein_id:'limalimon',grams:700},{protein_id:'limon',grams:60}]},
+{name:'Carajillo',proteins:[{protein_id:'licor43',grams:50},{protein_id:'espresso',grams:50}]},
+{name:'Perla negra',aliases:['Perla Negra'],proteins:[{protein_id:'jager',grams:30},{protein_id:'energetica',grams:125}]},
+{name:'Velvet Soda',aliases:['Velvet soda'],proteins:[{protein_id:'mineral',grams:250},{protein_id:'jarabevelvet',grams:30}]},
+{name:'Naranjada',proteins:[{protein_id:'naranja',grams:250},{protein_id:'mineral',grams:250}]},
+{name:'Limonada',proteins:[{protein_id:'limon',grams:120},{protein_id:'mineral',grams:300}]},
+{name:'Agua de sabor',proteins:[{protein_id:'frutaagua',grams:100}]}
 ];
 const RECIPE_DETAILS=[
 {
@@ -799,8 +824,88 @@ const RECIPE_DETAILS=[
  source_label:'Base del menú CHIDOLIRO · michelada con mariscos',
  source_url:'',
  servings:1,
- ingredients:[['Cerveza','355 ml'],['Clamato / base tomate','150 ml'],['Camarón','180 g'],['Pulpo','80 g'],['Carne seca','50 g'],['Jugo de limón','30 ml'],['Salsa inglesa','8 ml'],['Sazonador líquido','7 ml'],['Sal y chile para escarchar','5 g']],
- notes:'Base operativa mixta: líquidos en ml y alimentos en g. El menú confirma carne seca, pulpo y 12 camarones; se usa 180 g de camarón como equivalencia inicial para 12 piezas.'
+ ingredients:[['Cerveza','355 ml'],['Clamato / base tomate','150 ml'],['Camarón','180 g'],['Pulpo','80 g'],['Carne seca','50 g'],['Limón','60 g'],['Salsa inglesa','8 ml'],['Sazonador líquido','7 ml'],['Sal y chile para escarchar','5 g']],
+ notes:'Base operativa mixta: líquidos en ml; proteínas, frutas y sólidos en g.'
+},
+{
+ name:'Venenosa',
+ source_label:'Base operativa interna · bebida preparada con cerveza',
+ source_url:'',
+ servings:1,
+ ingredients:[['Cerveza','355 ml'],['Clamato / base tomate','120 ml'],['Limón','60 g'],['Chamoy','15 ml'],['Salsa picante','5 ml'],['Chile en polvo','5 g'],['Sal','2 g']],
+ notes:'Base operativa inicial por validar con barra. Líquidos en ml y limón/condimentos sólidos en g.'
+},
+{
+ name:'Mezcalada',
+ source_label:'Base similar investigada · mezcal con cítricos y mineral',
+ source_url:'https://cookpad.com/mx/recetas/5311312',
+ servings:1,
+ ingredients:[['Mezcal','45 ml'],['Limón','60 g'],['Jarabe natural','15 ml'],['Agua mineral','120 ml'],['Chile y sal para escarchar','5 g']],
+ notes:'Base operativa inicial. Líquidos en ml y fruta/escarchado en g.'
+},
+{
+ name:'Cuba libre',aliases:['Cuba Libre'],
+ source_label:'Base IBA · Cuba Libre',
+ source_url:'https://iba-world.com/iba-cocktail/cuba-libre/',
+ servings:1,
+ ingredients:[['Ron blanco','50 ml'],['Refresco de cola','120 ml'],['Limón / lima','30 g']],
+ notes:'Base operativa de una porción. Alcohol y refresco en ml; cítrico comprado como fruta en g.'
+},
+{
+ name:'Azulito 1l',aliases:['Azulito 1L','Azulito'],
+ source_label:'Base investigada · Azulito de 1 litro',
+ source_url:'https://www.directoalpaladar.com.mx/cocteleria/como-hacer-1-litro-azulitos-pitufos-miguelito-mora-azul-para-reunion-amigos-fin-semana/amp',
+ servings:1,
+ ingredients:[['Refresco lima-limón','700 ml'],['Curazao azul','100 ml'],['Vodka','60 ml'],['Limón','60 g'],['Chamoy','60 ml'],['Miguelito azul','30 g'],['Miguelito para escarchar','40 g']],
+ notes:'Base operativa para presentación de 1 litro. Líquidos en ml y limón/polvos en g.'
+},
+{
+ name:'Carajillo',
+ source_label:'Base oficial · Carajillo 43',
+ source_url:'https://licor43.com/es/cocktails/carajillo-43/',
+ servings:1,
+ ingredients:[['Licor 43','50 ml'],['Café espresso preparado','50 ml']],
+ notes:'Base operativa de una porción.'
+},
+{
+ name:'Perla negra',aliases:['Perla Negra'],
+ source_label:'Base investigada · Perla Negra',
+ source_url:'https://www.gastrolabweb.com/bebidas/2025/8/11/coctel-perla-negra-receta-para-prepararlo-en-casa-60339.html',
+ servings:1,
+ ingredients:[['Jägermeister','30 ml'],['Bebida energética','125 ml']],
+ notes:'Base operativa de una porción.'
+},
+{
+ name:'Velvet Soda',aliases:['Velvet soda'],
+ source_label:'Base operativa interna · soda saborizada',
+ source_url:'',
+ servings:1,
+ ingredients:[['Agua mineral','250 ml'],['Jarabe Velvet','30 ml'],['Fruta de decoración','20 g']],
+ notes:'Base operativa para sabores durazno, toronja, lichi o maracuyá. Separar jarabes por sabor cuando se capture el inventario real.'
+},
+{
+ name:'Naranjada',
+ source_label:'Base operativa · naranjada mineral',
+ source_url:'https://www.cardamomo.news/bebidas/Receta-facil-de-naranjada-mineral-con-hierbabuena-bebida-refrescante-20220906-0011.html',
+ servings:1,
+ ingredients:[['Naranja','250 g'],['Agua mineral','250 ml'],['Azúcar','20 g']],
+ notes:'La naranja se controla como fruta en gramos; el agua mineral en ml.'
+},
+{
+ name:'Limonada',
+ source_label:'Base operativa · limonada mineral',
+ source_url:'https://www.cardamomo.news/bebidas/Limonada-mineral-receta-casera-sencilla-sin-licuadora-para-1-litro-20221121-0002.html',
+ servings:1,
+ ingredients:[['Limón','120 g'],['Agua mineral','300 ml'],['Azúcar','25 g'],['Sal','1 g']],
+ notes:'El limón se controla como fruta en gramos; el agua mineral en ml.'
+},
+{
+ name:'Agua de sabor',
+ source_label:'Base operativa interna · agua fresca',
+ source_url:'',
+ servings:1,
+ ingredients:[['Fruta de temporada','100 g'],['Agua','400 ml'],['Azúcar','25 g']],
+ notes:'Base genérica. La fruta siempre se controla en gramos; el agua en ml. Crear una receta específica por sabor cuando se definan los sabores fijos.'
 }
 ];
 function recipeNames(r){return [r.name,...(r.aliases||[])].map(normName)}
@@ -845,7 +950,7 @@ function renderProteins(){const menu=state.data?.menu_items||[],grid=document.ge
 function renderYields(){const grid=document.getElementById('yieldGrid');if(!grid)return;const menu=(state.data?.menu_items||[]).filter(m=>criticalEntriesFor(m).length);grid.innerHTML=TEST_PROTEINS.map(p=>{const stock=criticalStockDisplay(p),baseQty=criticalStockBase(p),u=criticalUnit(p),items=menu.map(m=>({m,cfg:criticalEntriesFor(m).find(x=>x.protein.id===p.id)})).filter(x=>x.cfg);return `<article class="yieldCard"><div class="yieldHead"><div><span>STOCK REAL COMPARTIDO</span><h3>${p.name}</h3></div><strong>${num(stock.value)} ${stock.unit}</strong></div><p class="yieldNote">Incluye recetas simples y mixtas. Cada insumo descuenta su cantidad en ${u}.</p><div class="yieldItems">${items.length?items.map(({m,cfg})=>{const count=cfg.grams>0?Math.floor(baseQty/cfg.grams):null;return `<div><span>${esc(m.name)}<small>${cfg.grams?cfg.grams+' '+u+' por porción':'Cantidad pendiente'} · ${criticalEntriesFor(m).length>1?'receta mixta':'receta operativa'}</small></span><b>${count==null?'Pendiente':'≈ '+count}</b></div>`}).join(''):'<div class="empty compactEmpty">Sin recetas explícitas para este insumo.</div>'}</div></article>`}).join('')}
 function renderMenuList(){let rows=state.data?.menu_items||[];if(state.menuSearch)rows=rows.filter(x=>x.name.toLowerCase().includes(state.menuSearch));document.getElementById('menuList').innerHTML=rows.length?rows.map(m=>{const entries=criticalEntriesFor(m),cfg=entries[0],detail=recipeDetailFor(m),sub=entries.length?(entries.length>1?`${entries.map(x=>x.protein.name).join(' + ')} · receta mixta`:(cfg.grams?`${cfg.protein.name} · ${cfg.grams} ${criticalUnit(cfg.protein)} por porción${detail?' · receta operativa':cfg.source==='test'?' · receta de prueba':''}`:`${cfg.protein.name} · rendimiento pendiente${detail?' · receta operativa':''}`)):(m.recipe_count?`${m.recipe_count} insumo(s) · costo ${money(m.recipe_cost)}`:'Sin receta configurada');return `<button class="menuPick ${state.selectedMenu===m.id?'active':''}" data-menu="${esc(m.id)}"><b>${esc(m.name)}</b><small>${esc(sub)}</small></button>`}).join(''):'<div class="empty">No hay platillos disponibles.</div>';document.querySelectorAll('[data-menu]').forEach(b=>b.addEventListener('click',()=>{state.selectedMenu=b.dataset.menu;renderMenuList();renderRecipeEditor()}))}
 function recipeRowsFor(menuId){return (state.data?.recipes||[]).filter(r=>r.menu_item_id===menuId)}
-function renderRecipeEditor(){const menu=(state.data?.menu_items||[]).find(m=>m.id===state.selectedMenu),editor=document.getElementById('recipeEditor');if(!menu){editor.innerHTML='<div class="empty">Selecciona un platillo.</div>';return}const inventory=state.data?.items||[],rows=recipeRowsFor(menu.id),entries=criticalEntriesFor(menu),cfg=entries[0],detail=recipeDetailFor(menu),food=Number(menu.price)>0?(Number(menu.recipe_cost)/Number(menu.price))*100:0,foodClass=food>40?'danger':food>30?'warn':'ok',stockBase=cfg?criticalStockBase(cfg.protein):0,yieldCount=entries.length>1?limitingYield(menu):(cfg&&cfg.grams?Math.floor(stockBase/cfg.grams):null),proteinLabel=entries.length>1?entries.map(x=>x.protein.name).join(' + '):(cfg?cfg.protein.name:'Sin definir');editor.innerHTML=`<div class="recipeHero"><div><span>RECETA DEL PLATILLO</span><h3>${esc(menu.name)}</h3></div><div class="foodBadge ${foodClass}">${food.toFixed(1)}% food cost</div></div><div class="recipeSummary"><div><span>Precio</span><strong>${money(menu.price)}</strong></div><div><span>Insumo(s)</span><strong>${esc(proteinLabel)}</strong></div><div><span>Con stock actual</span><strong>${cfg?(yieldCount==null?'Pendiente':'≈ '+yieldCount+' platos'):'—'}</strong></div></div><div class="criticalBox"><div class="criticalTitle"><span>CONTROL DE DISPONIBILIDAD</span><b>${entries.length>1?'Insumos críticos':'Insumo crítico'}</b></div>${entries.length>1?`<div class="multiCriticalList">${entries.map(x=>`<div><span>${esc(x.protein.name)}</span><b>${x.grams?x.grams+' '+criticalUnit(x.protein):'Pendiente'}</b></div>`).join('')}</div>`:''}<div class="criticalForm"><label><span>Insumo</span><select id="criticalProtein">${TEST_PROTEINS.map(p=>`<option value="${p.id}" ${cfg?.protein.id===p.id?'selected':''}>${p.name}</option>`).join('')}</select></label><label><span>${cfg&&criticalUnit(cfg.protein)==='ml'?'Mililitros por porción':'Gramos por porción'}</span><input id="criticalGrams" type="number" min="1" step="1" value="${cfg?.grams??''}" placeholder="Pendiente"></label><button class="btn primary" id="saveCritical">Guardar control</button></div><small>${detail?'Receta operativa cargada para validación. ':cfg?.source==='test'?'Receta de prueba precargada. ':''}${entries.length>1?'El rendimiento total lo limita la proteína que se agote primero. El selector inferior permite reemplazar la receta por un control manual simple.':'Esta proteína define cuántos platillos quedan disponibles.'}</small></div>${detail?`<section class="sourceRecipe"><div class="sourceRecipeHead"><div><span>RECETA BASE OPERATIVA</span><h4>Ingredientes y rendimiento inicial</h4></div><div class="sourceYield">${detail.servings?detail.servings+' porciones':'Por validar'}</div></div><div class="ingredientList">${detail.ingredients.map(i=>`<div><span>${esc(i[0])}</span><b>${esc(i[1])}</b></div>`).join('')}</div><p>Configuración inicial para inventario y rendimiento. Sólidos, frutas y verduras se controlan en gramos; líquidos y bebidas se controlan en mililitros. Ajustar cantidades cuando Cocina valide la receta definitiva.</p></section>`:''}${inventory.length?`<div class="detailRecipeHead"><b>Ingredientes secundarios para costeo</b><span>Opcional durante esta prueba</span></div><div id="recipeRows">${rows.map((r,i)=>recipeRowHtml(r.inventory_item_id,r.quantity_per_unit,i)).join('')}</div><div class="recipeActions"><button class="btn secondary" id="addIngredient">＋ Agregar insumo</button><button class="btn primary" id="saveRecipe">Guardar receta detallada</button></div>`:`<div class="secondaryRecipeEmpty"><b>La receta principal ya puede usarse para rendimiento.</b><span>Los ingredientes secundarios se agregarán después para el costeo completo.</span><button class="btn secondary" id="recipeNewItem">＋ Crear insumo secundario</button></div>`}<div class="recipeHelp">Para disponibilidad operativa usamos principalmente la proteína crítica. El resto de la receta puede completarse después.</div>`;document.getElementById('saveCritical').addEventListener('click',()=>{const pid=document.getElementById('criticalProtein').value,g=Number(document.getElementById('criticalGrams').value||0);if(!g){toast('Indica los gramos por platillo para activar el rendimiento.');return}saveCritical(menu.id,pid,g);render();toast('Control de proteína guardado')});if(inventory.length){document.getElementById('addIngredient').addEventListener('click',()=>addRecipeRow());document.getElementById('saveRecipe').addEventListener('click',saveRecipe);bindRecipeRemoves()}else document.getElementById('recipeNewItem').addEventListener('click',newItem)}
+function renderRecipeEditor(){const menu=(state.data?.menu_items||[]).find(m=>m.id===state.selectedMenu),editor=document.getElementById('recipeEditor');if(!menu){editor.innerHTML='<div class="empty">Selecciona un platillo.</div>';return}const inventory=state.data?.items||[],rows=recipeRowsFor(menu.id),entries=criticalEntriesFor(menu),cfg=entries[0],detail=recipeDetailFor(menu),food=Number(menu.price)>0?(Number(menu.recipe_cost)/Number(menu.price))*100:0,foodClass=food>40?'danger':food>30?'warn':'ok',stockBase=cfg?criticalStockBase(cfg.protein):0,yieldCount=entries.length>1?limitingYield(menu):(cfg&&cfg.grams?Math.floor(stockBase/cfg.grams):null),proteinLabel=entries.length>1?entries.map(x=>x.protein.name).join(' + '):(cfg?cfg.protein.name:'Sin definir');editor.innerHTML=`<div class="recipeHero"><div><span>RECETA DEL PLATILLO</span><h3>${esc(menu.name)}</h3></div><div class="foodBadge ${foodClass}">${food.toFixed(1)}% food cost</div></div><div class="recipeSummary"><div><span>Precio</span><strong>${money(menu.price)}</strong></div><div><span>Insumo(s)</span><strong>${esc(proteinLabel)}</strong></div><div><span>Con stock actual</span><strong>${cfg?(yieldCount==null?'Pendiente':'≈ '+yieldCount+' platos'):'—'}</strong></div></div><div class="criticalBox"><div class="criticalTitle"><span>CONTROL DE DISPONIBILIDAD</span><b>${entries.length>1?'Insumos críticos':'Insumo crítico'}</b></div>${entries.length>1?`<div class="multiCriticalList">${entries.map(x=>`<div><span>${esc(x.protein.name)}</span><b>${x.grams?x.grams+' '+criticalUnit(x.protein):'Pendiente'}</b></div>`).join('')}</div>`:''}<div class="criticalForm"><label><span>Insumo</span><select id="criticalProtein">${TEST_PROTEINS.map(p=>`<option value="${p.id}" ${cfg?.protein.id===p.id?'selected':''}>${p.name}</option>`).join('')}</select></label><label><span>${cfg&&criticalUnit(cfg.protein)==='ml'?'Mililitros por porción':'Gramos por porción'}</span><input id="criticalGrams" type="number" min="1" step="1" value="${cfg?.grams??''}" placeholder="Pendiente"></label><button class="btn primary" id="saveCritical">Guardar control</button></div><small>${detail?'Receta operativa cargada para validación. ':cfg?.source==='test'?'Receta de prueba precargada. ':''}${entries.length>1?'El rendimiento total lo limita la proteína que se agote primero. El selector inferior permite reemplazar la receta por un control manual simple.':'Esta proteína define cuántos platillos quedan disponibles.'}</small></div>${detail?`<section class="sourceRecipe"><div class="sourceRecipeHead"><div><span>RECETA BASE OPERATIVA</span><h4>Ingredientes y rendimiento inicial</h4></div><div class="sourceYield">${detail.servings?detail.servings+' porciones':'Por validar'}</div></div><div class="ingredientList">${detail.ingredients.map(i=>`<div><span>${esc(i[0])}</span><b>${esc(i[1])}</b></div>`).join('')}</div><p>Configuración inicial para inventario y rendimiento. Líquidos se controlan en ml; proteínas, frutas, verduras y demás sólidos en g. Ajustar cantidades cuando Cocina o Barra validen la receta definitiva.</p></section>`:''}${inventory.length?`<div class="detailRecipeHead"><b>Ingredientes secundarios para costeo</b><span>Opcional durante esta prueba</span></div><div id="recipeRows">${rows.map((r,i)=>recipeRowHtml(r.inventory_item_id,r.quantity_per_unit,i)).join('')}</div><div class="recipeActions"><button class="btn secondary" id="addIngredient">＋ Agregar insumo</button><button class="btn primary" id="saveRecipe">Guardar receta detallada</button></div>`:`<div class="secondaryRecipeEmpty"><b>La receta principal ya puede usarse para rendimiento.</b><span>Los ingredientes secundarios se agregarán después para el costeo completo.</span><button class="btn secondary" id="recipeNewItem">＋ Crear insumo secundario</button></div>`}<div class="recipeHelp">Para disponibilidad operativa usamos principalmente la proteína crítica. El resto de la receta puede completarse después.</div>`;document.getElementById('saveCritical').addEventListener('click',()=>{const pid=document.getElementById('criticalProtein').value,g=Number(document.getElementById('criticalGrams').value||0);if(!g){toast('Indica los gramos por platillo para activar el rendimiento.');return}saveCritical(menu.id,pid,g);render();toast('Control de proteína guardado')});if(inventory.length){document.getElementById('addIngredient').addEventListener('click',()=>addRecipeRow());document.getElementById('saveRecipe').addEventListener('click',saveRecipe);bindRecipeRemoves()}else document.getElementById('recipeNewItem').addEventListener('click',newItem)}
 function recipeRowHtml(itemId='',qty='',index=Date.now()){const opts=(state.data?.items||[]).map(i=>`<option value="${esc(i.id)}" ${i.id===itemId?'selected':''}>${esc(i.name)} · ${unitLabel(i.unit)}</option>`).join('');return `<div class="recipeRow" data-recipe-row><label class="field"><span>Insumo</span><select data-ing>${opts}</select></label><label class="field"><span>Cantidad</span><input data-qty inputmode="decimal" value="${esc(qty)}" placeholder="0"></label><button class="remove" data-remove-recipe type="button">✕</button></div>`}function addRecipeRow(){document.getElementById('recipeRows').insertAdjacentHTML('beforeend',recipeRowHtml());bindRecipeRemoves()}function bindRecipeRemoves(){document.querySelectorAll('[data-remove-recipe]').forEach(b=>b.onclick=()=>b.closest('[data-recipe-row]').remove())}
 async function saveRecipe(){const rows=[...document.querySelectorAll('[data-recipe-row]')].map(r=>({inventory_item_id:r.querySelector('[data-ing]').value,quantity_per_unit:Number(r.querySelector('[data-qty]').value||0)})).filter(x=>x.inventory_item_id&&x.quantity_per_unit>0);try{await api('POST',{action:'save_recipe',menu_item_id:state.selectedMenu,ingredients:rows});await load();toast('Receta guardada')}catch(e){toast(mapError(e.message))}}
 function renderCosts(){const rows=state.data?.costs||[];document.getElementById('costCards').innerHTML=rows.length?rows.map(x=>{const raw=Number(x.food_cost_percent||0),pct=Math.max(0,Math.min(100,raw)),level=raw>40?'danger':raw>30?'warn':'ok';return `<article class="costCard ${level}"><div class="costHead"><b>${esc(x.name)}</b><span>${raw.toFixed(1)}%</span></div><div class="numbers"><div><small>Precio</small><strong>${money(x.price)}</strong></div><div><small>Costo receta</small><strong>${money(x.recipe_cost)}</strong></div><div><small>Margen bruto</small><strong>${money(x.gross_margin)}</strong></div><div><small>Food cost</small><strong>${raw.toFixed(1)}%</strong></div></div><div class="costPct"><span style="width:${pct}%"></span></div></article>`}).join(''):'<div class="empty" style="grid-column:1/-1">Todavía no hay costos calculables. Configura al menos una receta con costos de insumos.</div>'}
