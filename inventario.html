@@ -151,7 +151,12 @@ const TEST_PROTEINS=[
 {id:'refresherzero',name:'Base Refresher sin azúcar',default_g:300,unit:'ml',inventory_unit:'ml',initial_qty:12000,reorder_level:1500,keywords:['refresher sin azúcar','durazno','limón']},
 {id:'refresheralc',name:'Base alcohólica Refresher',default_g:45,unit:'ml',inventory_unit:'ml',initial_qty:4500,reorder_level:750,keywords:['refresher alcohol']},
 {id:'perlas',name:'Perlas explosivas',default_g:30,inventory_unit:'kg',initial_qty:2,reorder_level:.5,keywords:['perlas explosivas','perlas']},
-{id:'aguaenv',name:'Botella de agua',default_g:1,unit:'pza',inventory_unit:'pza',initial_qty:24,reorder_level:6,keywords:['botella de agua','agua embotellada']}
+{id:'aguaenv',name:'Botella de agua',default_g:1,unit:'pza',inventory_unit:'pza',initial_qty:24,reorder_level:6,keywords:['botella de agua','agua embotellada']},
+{id:'cafemolido',name:'Café molido',default_g:15,inventory_unit:'kg',initial_qty:2,reorder_level:.5,keywords:['café','cafe de olla']},
+{id:'piloncillo',name:'Piloncillo',default_g:18,inventory_unit:'kg',initial_qty:2,reorder_level:.5,keywords:['piloncillo','cafe de olla']},
+{id:'canela',name:'Canela',default_g:1,inventory_unit:'kg',initial_qty:.5,reorder_level:.1,keywords:['canela','cafe de olla']},
+{id:'pastelporcion',name:'Pastel del día · porción',default_g:1,unit:'pza',inventory_unit:'pza',initial_qty:12,reorder_level:3,keywords:['pastel del día','pastel del dia']},
+{id:'payporcion',name:'Pay de queso · porción',default_g:1,unit:'pza',inventory_unit:'pza',initial_qty:12,reorder_level:3,keywords:['pay de queso']}
 ];
 const TEST_RECIPES=[
 {name:'Aguachile de camarón',protein_id:'camaron',grams:125},
@@ -244,7 +249,11 @@ const TEST_RECIPES=[
 {name:'Refresher sin azúcar',aliases:['Refresher sin azucar'],protein_id:'refresherzero',grams:300},
 {name:'Refresher c/alcohol',aliases:['Refresher con alcohol','Refresher c alcohol'],proteins:[{protein_id:'refresherbase',grams:300},{protein_id:'refresheralc',grams:45}]},
 {name:'Agrega perlas explosivas',aliases:['Agregar perlas explosivas','Perlas explosivas'],protein_id:'perlas',grams:30},
-{name:'Botella de agua',protein_id:'aguaenv',grams:1}
+{name:'Botella de agua',protein_id:'aguaenv',grams:1},
+{name:'Yarda de cerveza',protein_id:'cerveza',grams:null},
+{name:'Cafe de olla',aliases:['Café de olla'],proteins:[{protein_id:'cafemolido',grams:15},{protein_id:'piloncillo',grams:18},{protein_id:'canela',grams:1}]},
+{name:'Pastel del día',aliases:['Pastel del dia'],protein_id:'pastelporcion',grams:1},
+{name:'Pay de queso',protein_id:'payporcion',grams:1}
 ];
 const RECIPE_DETAILS=[
 {
@@ -1001,6 +1010,38 @@ const RECIPE_DETAILS=[
  servings:1,
  ingredients:[['Botella de agua','1 pza']],
  notes:'Producto cerrado: se descuenta una botella por venta.'
+},
+{
+ name:'Yarda de cerveza',
+ source_label:'Control por preparación',
+ source_url:'',
+ servings:1,
+ ingredients:[['Cerveza','Capacidad por confirmar']],
+ notes:'El menú confirma la yarda de cerveza, pero no especifica su capacidad. Se deja sin descuento automático hasta que Barra confirme cuántos ml contiene realmente.'
+},
+{
+ name:'Cafe de olla',aliases:['Café de olla'],
+ source_label:'Base operativa provisional',
+ source_url:'',
+ servings:1,
+ ingredients:[['Agua','250 ml'],['Café molido','15 g'],['Piloncillo','18 g'],['Canela','1 g']],
+ notes:'Base operativa provisional para costeo e inventario. Agua en ml; café, piloncillo y canela en g. Ajustar cuando Cocina/Barra valide la preparación real.'
+},
+{
+ name:'Pastel del día',aliases:['Pastel del dia'],
+ source_label:'Control por porción',
+ source_url:'',
+ servings:1,
+ ingredients:[['Pastel del día · porción','1 pza']],
+ notes:'Se controla inicialmente por porción vendida. Si el restaurante prepara el pastel internamente, después puede convertirse a receta por ingredientes en gramos.'
+},
+{
+ name:'Pay de queso',
+ source_label:'Control por porción',
+ source_url:'',
+ servings:1,
+ ingredients:[['Pay de queso · porción','1 pza']],
+ notes:'Se controla inicialmente por porción vendida. Si se prepara internamente, después puede convertirse a receta por ingredientes en gramos.'
 }
 ];
 function recipeNames(r){return [r.name,...(r.aliases||[])].map(normName)}
