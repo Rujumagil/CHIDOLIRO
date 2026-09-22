@@ -924,8 +924,18 @@ const RECIPE_DETAILS=[
  source_url:'',
  servings:1,
  ingredients:[['Fruta de temporada','100 g'],['Agua','400 ml'],['Azúcar','25 g']],
- notes:'Base genérica. La fruta siempre se controla en gramos; el agua en ml. Crear una receta específica por sabor cuando se definan los sabores fijos.'
-}
+ notes:'Base genérica. La fruta se controla en gramos; el agua en ml. Crear una receta específica por sabor cuando se definan los sabores fijos.'
+},
+{name:'Cerveza',source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Cerveza envasada','1 pza']],notes:'Producto cerrado: una unidad por venta.'},
+{name:'Caguama',source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Caguama','1 pza']],notes:'Producto cerrado: una botella por venta.'},
+{name:'Caguama mega',aliases:['Caguama Mega'],source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Caguama mega','1 pza']],notes:'Producto cerrado: una presentación por venta.'},
+{name:'Cubeta c/10 cervezas',aliases:['Cubeta c/10 cerveza','Cubeta con 10 cervezas'],source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Cerveza envasada','10 pza']],notes:'Cada cubeta descuenta 10 cervezas del inventario.'},
+{name:'Cerveza 1/4',source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Cerveza 1/4','1 pza']],notes:'Producto cerrado: una unidad por venta.'},
+{name:'Strongbow',aliases:['strongbow'],source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Strongbow','1 pza']],notes:'Producto cerrado: una unidad por venta.'},
+{name:'Ramune',source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Ramune','1 pza']],notes:'Producto cerrado: una botella por venta.'},
+{name:'Cerveza Mango',aliases:['Cerveza mango'],source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Cerveza Mango','1 pza']],notes:'Control inicial por pieza; Barra deberá confirmar si es producto envasado o preparación interna.'},
+{name:'Refrescos',aliases:['Refresco'],source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Refresco envasado','1 pza']],notes:'Una botella o lata por venta; después podrá separarse por marca y presentación.'},
+{name:'Jugos',aliases:['Jugo'],source_label:'Control por presentación',source_url:'',servings:1,ingredients:[['Jugo envasado','1 pza']],notes:'Se controla por pieza si es envasado. Un jugo preparado con fruta fresca deberá manejar fruta en gramos.'}
 ];
 function recipeNames(r){return [r.name,...(r.aliases||[])].map(normName)}
 function recipeMatch(list,menu){const n=normName(menu?.name);return list.find(r=>recipeNames(r).includes(n))||null}
