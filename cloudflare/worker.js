@@ -847,6 +847,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    if (url.pathname === "/las-vegas" || url.pathname === "/las-vegas/") {
+      const assetUrl = new URL(request.url);
+      assetUrl.pathname = "/las-vegas.html";
+      return env.ASSETS.fetch(new Request(assetUrl.toString(), request));
+    }
+
     if (url.pathname === "/api/menu") return handleMenu(request, env);
     if (url.pathname === "/api/order") return handleOrder(request, env);
     if (url.pathname === "/api/order-status") return handleTokenLookup(request, env, "chidoliro_get_order_status", {
