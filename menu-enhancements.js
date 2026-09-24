@@ -35,7 +35,7 @@
       .menuHint{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:7px 0 12px;padding:11px 12px;border-radius:15px;background:#e9f0ec;border:1px solid rgba(19,122,126,.12);color:var(--ocean);font-size:.71rem;font-weight:700}
       .menuHint span:last-child{color:var(--teal);white-space:nowrap}
       #productDetailSheet .sheet{padding:0;overflow:hidden;background:var(--cream)}
-      .productDetailHero{height:min(46vh,420px);position:relative;background:#ddd}.productDetailHero[hidden]{display:none!important}
+      .productDetailHero{height:min(46vh,420px);position:relative;background:#ddd}.productDetailHero.noPhoto{height:76px;background:var(--cream);border-bottom:1px solid var(--line)}.productDetailHero.noPhoto img{display:none}.productDetailHero.noPhoto:after{display:none}.productDetailHero.noPhoto .productDetailTag{color:var(--teal);bottom:18px}
       .productDetailHero img{width:100%;height:100%;object-fit:cover}
       .productDetailHero:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,25,29,.7),transparent 58%)}
       .productDetailClose{position:absolute;z-index:3;top:14px;right:14px;width:42px;height:42px;border:0;border-radius:14px;background:rgba(255,255,255,.92);color:var(--ocean);font-size:1.05rem}
@@ -128,7 +128,7 @@
     document.getElementById('productDetailCategory').textContent = category;
     document.getElementById('productDetailDescription').textContent = description;
     document.getElementById('productDetailPrice').textContent = price;
-    const hero = document.getElementById('productDetailImage');const heroWrap=hero.closest('.productDetailHero');if(img){heroWrap.hidden=false;hero.src=img;hero.alt=name}else{heroWrap.hidden=true;hero.removeAttribute('src');hero.alt=''};
+    const hero = document.getElementById('productDetailImage');const heroWrap=hero.closest('.productDetailHero');heroWrap.classList.toggle('noPhoto',!img);if(img){hero.src=img;hero.alt=name}else{hero.removeAttribute('src');hero.alt=''};
     const originalButton = card.querySelector('.menuItemBottom button');
     const add = document.getElementById('productDetailAdd');
     const canAdd = originalButton && originalButton.textContent.trim() !== '?';
