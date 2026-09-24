@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  // Usa fotografías reales/optimizadas del restaurante en lugar de los previews
-  // base64 ultracomprimidos que provocaban pixelación en las tarjetas y detalles.
+  // Las fotografías del menú se sirven únicamente desde image_url.
+  // Si un producto todavía no tiene fotografía oficial, se muestra sin imagen.
   window.CHIDOLIRO_GENERATED_IMAGES = {};
 
   const style = document.createElement('style');
