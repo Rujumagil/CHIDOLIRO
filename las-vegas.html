@@ -60,6 +60,16 @@
     .brand span{display:grid;gap:1px}
     .brand b{font-size:.98rem;letter-spacing:.16em}
     .brand small{font-size:.58rem;letter-spacing:.16em;color:var(--aqua);font-weight:900}
+    .headerActions{display:flex;align-items:center;gap:8px}
+    .langSwitch{
+      display:flex;align-items:center;padding:4px;border:1px solid var(--line);border-radius:999px;
+      background:rgba(3,21,25,.55);backdrop-filter:blur(15px)
+    }
+    .langBtn{
+      border:0;background:transparent;color:rgba(255,255,255,.58);min-width:38px;height:32px;border-radius:999px;
+      font:900 .62rem/1 Inter,ui-sans-serif,system-ui;letter-spacing:.08em;cursor:pointer;transition:.2s ease
+    }
+    .langBtn.active{background:var(--white);color:var(--deep);box-shadow:0 5px 14px rgba(0,0,0,.18)}
     .homeLink{
       min-height:42px;display:inline-flex;align-items:center;justify-content:center;padding:0 15px;
       border:1px solid var(--line);border-radius:999px;background:rgba(3,21,25,.48);
@@ -182,6 +192,28 @@
     .story h2{margin:9px 0 0;font-size:clamp(2.4rem,5vw,4.7rem);line-height:.95;letter-spacing:-.055em;text-wrap:balance}
     .storyCopy{font-size:1rem;line-height:1.75;color:rgba(255,255,255,.64);margin:5px 0 0}
     .storyCopy strong{color:#fff}
+    .manifesto{
+      margin:42px 0 0;border:1px solid rgba(240,154,82,.2);border-radius:30px;padding:clamp(28px,5vw,56px);
+      position:relative;overflow:hidden;background:
+      radial-gradient(circle at 88% 20%,rgba(240,154,82,.14),transparent 26%),
+      radial-gradient(circle at 12% 82%,rgba(19,122,126,.2),transparent 28%),
+      linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018))
+    }
+    .manifesto:after{
+      content:"MÉXICO";position:absolute;right:-.03em;bottom:-.24em;font-size:clamp(5.5rem,17vw,13rem);
+      line-height:1;font-weight:1000;letter-spacing:-.08em;color:rgba(255,255,255,.025);pointer-events:none
+    }
+    .manifestoInner{position:relative;z-index:1;display:grid;grid-template-columns:1fr .9fr;gap:36px;align-items:end}
+    .manifesto h3{margin:8px 0 0;font-size:clamp(2.5rem,5.2vw,5rem);line-height:.92;letter-spacing:-.06em;max-width:720px}
+    .manifesto h3 em{font-style:normal;color:var(--amber)}
+    .manifestoCopy{margin:0;color:rgba(255,255,255,.68);font-size:1rem;line-height:1.75}
+    .manifestoCopy strong{color:#fff}
+    .promiseGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:24px}
+    .promise{
+      padding:15px;border:1px solid rgba(255,255,255,.09);border-radius:17px;background:rgba(3,21,25,.28)
+    }
+    .promise small{display:block;color:var(--aqua);font-size:.52rem;font-weight:950;letter-spacing:.13em;text-transform:uppercase}
+    .promise b{display:block;margin-top:6px;font-size:.82rem;line-height:1.3}
     .visualGrid{display:grid;grid-template-columns:1.3fr .7fr;gap:12px;margin-top:42px}
     .photo{
       border-radius:25px;overflow:hidden;position:relative;min-height:370px;border:1px solid rgba(255,255,255,.09);
@@ -227,6 +259,7 @@
       header{padding-top:15px}
       .brand img{width:45px;height:45px}
       .homeLink{min-height:39px;padding:0 12px;font-size:.62rem}
+      .langBtn{min-width:35px;height:30px}
       .hero{padding-top:100px;min-height:auto;padding-bottom:34px}
       .heroBg{background-position:63% center}
       .heroBg:after{background:linear-gradient(0deg,var(--deep) 0%,rgba(3,21,25,.72) 54%,rgba(3,21,25,.35) 100%)}
@@ -240,6 +273,8 @@
     @media(max-width:560px){
       header,.heroInner,.storyInner,.footerInner{width:min(100% - 22px,1180px)}
       .brand span small{display:none}
+      .headerActions{gap:5px}
+      .homeLink{display:none}
       .heroInner{padding-top:220px}
       h1{font-size:clamp(3.15rem,19vw,5rem)}
       .eyebrow{font-size:.56rem;padding:7px 10px}
@@ -247,6 +282,8 @@
       .actions{display:grid;grid-template-columns:1fr}
       .btn{width:100%}
       .story{padding:62px 0 68px}
+      .manifestoInner{grid-template-columns:1fr;gap:18px}
+      .promiseGrid{grid-template-columns:1fr}
       .visualGrid{grid-template-columns:1fr}
       .photo{min-height:320px}
       .coming{padding:40px 16px;border-radius:24px}
@@ -269,7 +306,13 @@
         <img src="assets/logo.png" alt="CHIDOLIRO">
         <span><b>CHIDOLIRO</b><small>SURF &amp; TURF MX</small></span>
       </a>
-      <a class="homeLink" href="/">Conoce CHIDOLIRO ↗</a>
+      <div class="headerActions">
+        <div class="langSwitch" role="group" aria-label="Idioma / Language">
+          <button class="langBtn active" type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button class="langBtn" type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="homeLink" href="/" data-i18n="homeLink">Conoce CHIDOLIRO ↗</a>
+      </div>
     </header>
 
     <main>
@@ -278,27 +321,27 @@
         <div class="vegasGrid"></div>
         <div class="heroInner">
           <div>
-            <div class="eyebrow"><i></i> Nueva sucursal · Próximamente</div>
+            <div class="eyebrow"><i></i> <span data-i18n="eyebrow">Nueva sucursal · Próximamente</span></div>
             <h1>
               <span class="outline">CHIDOLIRO</span>
-              <span class="vegas">LLEGA A LAS VEGAS</span>
+              <span class="vegas" data-i18n="heroTitle">LLEGA A LAS VEGAS</span>
             </h1>
-            <p class="lead"><strong>Mar, fuego y sabor mexicano cruzan fronteras.</strong> Una nueva experiencia CHIDOLIRO está por comenzar. Nueva sucursal en Las Vegas. <strong>Espérala muy pronto.</strong></p>
+            <p class="lead" data-i18n-html="heroLead"><strong>Los sabores de México cruzan fronteras.</strong> Mar, fuego, recetas únicas y una experiencia inigualable llegan a un nuevo destino. CHIDOLIRO prepara su nueva sucursal en Las Vegas. <strong>Espérala muy pronto.</strong></p>
             <div class="actions">
-              <a class="btn btnPrimary" href="#muy-pronto">Descubre lo que viene <span>↓</span></a>
-              <a class="btn btnSecondary" href="/">Conoce nuestra esencia <span>↗</span></a>
+              <a class="btn btnPrimary" href="#muy-pronto"><span data-i18n="primaryCta">Descubre lo que viene</span> <span>↓</span></a>
+              <a class="btn btnSecondary" href="/"><span data-i18n="secondaryCta">Conoce nuestra esencia</span> <span>↗</span></a>
             </div>
           </div>
 
           <aside class="sideCard" aria-label="Expansión CHIDOLIRO">
-            <div class="sideLabel">La expansión comienza</div>
-            <h2>De México<br>a Las Vegas.</h2>
-            <p>La misma esencia que mezcla mariscos, parrilla y momentos memorables prepara su siguiente capítulo.</p>
+            <div class="sideLabel" data-i18n="sideLabel">La expansión comienza</div>
+            <h2 data-i18n-html="sideTitle">De México<br>a Las Vegas.</h2>
+            <p data-i18n="sideCopy">Sabores mexicanos, recetas únicas y nuestra forma de vivir la mesa preparan su siguiente capítulo.</p>
             <div class="route">
-              <strong>MÉXICO</strong><div class="routeLine"></div><strong>LAS VEGAS</strong>
+              <strong data-i18n="mexico">MÉXICO</strong><div class="routeLine"></div><strong>LAS VEGAS</strong>
             </div>
             <div class="stamp">
-              <div><b>Nueva sucursal</b><span>Próximamente</span></div>
+              <div><b data-i18n="newLocation">Nueva sucursal</b><span data-i18n="soon">Próximamente</span></div>
               <em>COMING SOON</em>
             </div>
           </aside>
@@ -307,8 +350,8 @@
 
       <div class="ticker" aria-hidden="true">
         <div class="tickerTrack">
-          <span>CHIDOLIRO <b>✦</b> LAS VEGAS <b>✦</b> NUEVA SUCURSAL <b>✦</b> MUY PRONTO <b>✦</b></span>
-          <span>CHIDOLIRO <b>✦</b> LAS VEGAS <b>✦</b> NUEVA SUCURSAL <b>✦</b> MUY PRONTO <b>✦</b></span>
+          <span data-i18n-html="ticker">CHIDOLIRO <b>✦</b> LAS VEGAS <b>✦</b> NUEVA SUCURSAL <b>✦</b> MUY PRONTO <b>✦</b></span>
+          <span data-i18n-html="ticker">CHIDOLIRO <b>✦</b> LAS VEGAS <b>✦</b> NUEVA SUCURSAL <b>✦</b> MUY PRONTO <b>✦</b></span>
         </div>
       </div>
 
@@ -316,33 +359,50 @@
         <div class="storyInner">
           <div class="storyTop">
             <div>
-              <div class="kicker">Una nueva ciudad. La misma esencia.</div>
-              <h2>El sabor de CHIDOLIRO está listo para ir más lejos.</h2>
+              <div class="kicker" data-i18n="storyKicker">Una nueva ciudad. La misma esencia.</div>
+              <h2 data-i18n="storyTitle">Los sabores de México están listos para llegar más lejos.</h2>
             </div>
-            <p class="storyCopy">Nacimos alrededor de sabores intensos, producto fresco, fuego y una experiencia que se disfruta en la mesa. Ahora comienza una nueva etapa: <strong>CHIDOLIRO prepara su llegada a Las Vegas.</strong> Muy pronto revelaremos más sobre esta nueva sucursal.</p>
+            <p class="storyCopy" data-i18n-html="storyCopy">En CHIDOLIRO llevamos a la mesa una combinación de sabores intensos, producto fresco, fuego y <strong>recetas únicas inspiradas en México</strong>. Ahora comienza una nueva etapa: queremos compartir esta experiencia con el mundo, empezando por <strong>Las Vegas.</strong></p>
           </div>
+
+          <section class="manifesto">
+            <div class="manifestoInner">
+              <div>
+                <div class="kicker" data-i18n="manifestoKicker">De México para el mundo</div>
+                <h3 data-i18n-html="manifestoTitle">Sabores que nacen en México.<br><em>Experiencias que viajan por el mundo.</em></h3>
+              </div>
+              <div>
+                <p class="manifestoCopy" data-i18n-html="manifestoCopy">Nuestra cocina celebra ingredientes, contrastes y formas de compartir que forman parte de México. En CHIDOLIRO transformamos esa inspiración en <strong>recetas únicas</strong> y en una <strong>experiencia inigualable</strong> que queremos llevar cada vez más lejos.</p>
+                <div class="promiseGrid">
+                  <div class="promise"><small data-i18n="promise1Label">Origen</small><b data-i18n="promise1">Sabores de México</b></div>
+                  <div class="promise"><small data-i18n="promise2Label">Nuestra firma</small><b data-i18n="promise2">Recetas únicas</b></div>
+                  <div class="promise"><small data-i18n="promise3Label">Nuestro compromiso</small><b data-i18n="promise3">Experiencia inigualable</b></div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <div class="visualGrid">
             <article class="photo">
               <img src="assets/aguachile.webp" alt="Platillo de CHIDOLIRO" loading="lazy">
-              <div class="photoText"><small>Del mar</small><b>Frescura que se reconoce.</b></div>
+              <div class="photoText"><small data-i18n="fromSea">Del mar</small><b data-i18n="seaCopy">Frescura que se reconoce.</b></div>
             </article>
             <article class="photo">
               <img src="assets/dishwide.webp" alt="Experiencia gastronómica CHIDOLIRO" loading="lazy">
-              <div class="photoText"><small>Del fuego</small><b>Carácter que se recuerda.</b></div>
+              <div class="photoText"><small data-i18n="fromFire">Del fuego</small><b data-i18n="fireCopy">Carácter que se recuerda.</b></div>
             </article>
           </div>
 
           <section class="coming">
             <div class="comingInner">
-              <div class="kicker">Próximamente · Las Vegas</div>
-              <h3>Algo grande está por llegar.</h3>
-              <p>Estamos preparando el siguiente capítulo de CHIDOLIRO. Guarda este nombre, comparte la noticia y mantente atento: pronto conocerás más detalles de nuestra nueva sucursal.</p>
+              <div class="kicker" data-i18n="comingKicker">Próximamente · Las Vegas</div>
+              <h3 data-i18n="comingTitle">México tiene mucho sabor que compartir con el mundo.</h3>
+              <p data-i18n="comingCopy">Estamos preparando el siguiente capítulo de CHIDOLIRO: recetas únicas, sabores que cuentan una historia y una experiencia inigualable. Guarda este nombre. Muy pronto conocerás más de nuestra llegada a Las Vegas.</p>
               <div class="miniPills">
                 <span>Surf &amp; Turf MX</span>
-                <span>Nueva sucursal</span>
+                <span data-i18n="pillLocation">Nueva sucursal</span>
                 <span>Las Vegas</span>
-                <span>Muy pronto</span>
+                <span data-i18n="pillSoon">Muy pronto</span>
               </div>
             </div>
           </section>
@@ -356,9 +416,121 @@
           <img src="assets/logo.png" alt="">
           <div><b>CHIDOLIRO</b><small>SURF &amp; TURF MX</small></div>
         </div>
-        <p>© CHIDOLIRO · México → Las Vegas · Próximamente</p>
+        <p data-i18n="footer">© CHIDOLIRO · México → Las Vegas · Próximamente</p>
       </div>
     </footer>
   </div>
+  <script>
+    (() => {
+      const copy = {
+        es: {
+          pageTitle: "CHIDOLIRO · Próximamente en Las Vegas",
+          description: "CHIDOLIRO llega a Las Vegas. Sabores de México para compartir con el mundo, recetas únicas y una experiencia inigualable.",
+          homeLink: "Conoce CHIDOLIRO ↗",
+          eyebrow: "Nueva sucursal · Próximamente",
+          heroTitle: "LLEGA A LAS VEGAS",
+          heroLead: "<strong>Los sabores de México cruzan fronteras.</strong> Mar, fuego, recetas únicas y una experiencia inigualable llegan a un nuevo destino. CHIDOLIRO prepara su nueva sucursal en Las Vegas. <strong>Espérala muy pronto.</strong>",
+          primaryCta: "Descubre lo que viene",
+          secondaryCta: "Conoce nuestra esencia",
+          sideLabel: "La expansión comienza",
+          sideTitle: "De México<br>a Las Vegas.",
+          sideCopy: "Sabores mexicanos, recetas únicas y nuestra forma de vivir la mesa preparan su siguiente capítulo.",
+          mexico: "MÉXICO",
+          newLocation: "Nueva sucursal",
+          soon: "Próximamente",
+          ticker: "CHIDOLIRO <b>✦</b> LAS VEGAS <b>✦</b> NUEVA SUCURSAL <b>✦</b> MUY PRONTO <b>✦</b>",
+          storyKicker: "Una nueva ciudad. La misma esencia.",
+          storyTitle: "Los sabores de México están listos para llegar más lejos.",
+          storyCopy: "En CHIDOLIRO llevamos a la mesa una combinación de sabores intensos, producto fresco, fuego y <strong>recetas únicas inspiradas en México</strong>. Ahora comienza una nueva etapa: queremos compartir esta experiencia con el mundo, empezando por <strong>Las Vegas.</strong>",
+          manifestoKicker: "De México para el mundo",
+          manifestoTitle: "Sabores que nacen en México.<br><em>Experiencias que viajan por el mundo.</em>",
+          manifestoCopy: "Nuestra cocina celebra ingredientes, contrastes y formas de compartir que forman parte de México. En CHIDOLIRO transformamos esa inspiración en <strong>recetas únicas</strong> y en una <strong>experiencia inigualable</strong> que queremos llevar cada vez más lejos.",
+          promise1Label: "Origen", promise1: "Sabores de México",
+          promise2Label: "Nuestra firma", promise2: "Recetas únicas",
+          promise3Label: "Nuestro compromiso", promise3: "Experiencia inigualable",
+          fromSea: "Del mar", seaCopy: "Frescura que se reconoce.",
+          fromFire: "Del fuego", fireCopy: "Carácter que se recuerda.",
+          comingKicker: "Próximamente · Las Vegas",
+          comingTitle: "México tiene mucho sabor que compartir con el mundo.",
+          comingCopy: "Estamos preparando el siguiente capítulo de CHIDOLIRO: recetas únicas, sabores que cuentan una historia y una experiencia inigualable. Guarda este nombre. Muy pronto conocerás más de nuestra llegada a Las Vegas.",
+          pillLocation: "Nueva sucursal", pillSoon: "Muy pronto",
+          footer: "© CHIDOLIRO · México → Las Vegas · Próximamente"
+        },
+        en: {
+          pageTitle: "CHIDOLIRO · Coming Soon to Las Vegas",
+          description: "CHIDOLIRO is coming to Las Vegas. Flavors of Mexico to share with the world, unique recipes and an unforgettable experience.",
+          homeLink: "Discover CHIDOLIRO ↗",
+          eyebrow: "New location · Coming soon",
+          heroTitle: "IS COMING TO LAS VEGAS",
+          heroLead: "<strong>The flavors of Mexico are crossing borders.</strong> Sea, fire, unique recipes and an unforgettable experience are heading to a new destination. CHIDOLIRO is preparing its new Las Vegas location. <strong>Coming very soon.</strong>",
+          primaryCta: "Discover what's coming",
+          secondaryCta: "Discover our essence",
+          sideLabel: "The expansion begins",
+          sideTitle: "From Mexico<br>to Las Vegas.",
+          sideCopy: "Mexican flavors, unique recipes and our way of experiencing the table are preparing for their next chapter.",
+          mexico: "MEXICO",
+          newLocation: "New location",
+          soon: "Coming soon",
+          ticker: "CHIDOLIRO <b>✦</b> LAS VEGAS <b>✦</b> NEW LOCATION <b>✦</b> COMING SOON <b>✦</b>",
+          storyKicker: "A new city. The same essence.",
+          storyTitle: "The flavors of Mexico are ready to go further.",
+          storyCopy: "At CHIDOLIRO, we bring together bold flavors, fresh ingredients, fire and <strong>unique recipes inspired by Mexico</strong>. Now a new chapter begins: we want to share this experience with the world, starting in <strong>Las Vegas.</strong>",
+          manifestoKicker: "From Mexico to the world",
+          manifestoTitle: "Flavors born in Mexico.<br><em>Experiences made to travel the world.</em>",
+          manifestoCopy: "Our cuisine celebrates ingredients, contrasts and ways of sharing that are part of Mexico. At CHIDOLIRO, we turn that inspiration into <strong>unique recipes</strong> and an <strong>unforgettable experience</strong> we want to take further and further.",
+          promise1Label: "Origin", promise1: "Flavors of Mexico",
+          promise2Label: "Our signature", promise2: "Unique recipes",
+          promise3Label: "Our promise", promise3: "An unforgettable experience",
+          fromSea: "From the sea", seaCopy: "Freshness you can recognize.",
+          fromFire: "From the fire", fireCopy: "Character you remember.",
+          comingKicker: "Coming soon · Las Vegas",
+          comingTitle: "Mexico has so much flavor to share with the world.",
+          comingCopy: "We are preparing CHIDOLIRO's next chapter: unique recipes, flavors that tell a story and an unforgettable experience. Remember the name. Very soon, you'll discover more about our arrival in Las Vegas.",
+          pillLocation: "New location", pillSoon: "Coming soon",
+          footer: "© CHIDOLIRO · Mexico → Las Vegas · Coming soon"
+        }
+      };
+
+      const metaDescription = document.querySelector('meta[name="description"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+
+      function setLanguage(lang) {
+        if (!copy[lang]) lang = "es";
+        const t = copy[lang];
+        document.documentElement.lang = lang;
+        document.title = t.pageTitle;
+        if (metaDescription) metaDescription.content = t.description;
+        if (ogTitle) ogTitle.content = t.pageTitle;
+        if (ogDescription) ogDescription.content = t.description;
+        document.querySelectorAll("[data-i18n]").forEach(el => {
+          const key = el.dataset.i18n;
+          if (t[key] != null) el.textContent = t[key];
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach(el => {
+          const key = el.dataset.i18nHtml;
+          if (t[key] != null) el.innerHTML = t[key];
+        });
+        document.querySelectorAll(".langBtn").forEach(btn => {
+          const active = btn.dataset.lang === lang;
+          btn.classList.toggle("active", active);
+          btn.setAttribute("aria-pressed", String(active));
+        });
+        try { localStorage.setItem("chidoliro_lang", lang); } catch (_) {}
+      }
+
+      document.querySelectorAll(".langBtn").forEach(btn => {
+        btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+      });
+
+      let initial = "es";
+      try {
+        const saved = localStorage.getItem("chidoliro_lang");
+        if (saved === "en" || saved === "es") initial = saved;
+        else if ((navigator.language || "").toLowerCase().startsWith("en")) initial = "en";
+      } catch (_) {}
+      setLanguage(initial);
+    })();
+  </script>
 </body>
 </html>
