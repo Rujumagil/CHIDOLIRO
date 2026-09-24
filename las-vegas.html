@@ -88,8 +88,9 @@
     .heroBg:after{
       content:"";position:absolute;inset:0;
       background:
-        linear-gradient(90deg,rgba(3,21,25,.94) 0%,rgba(3,21,25,.8) 38%,rgba(3,21,25,.42) 72%,rgba(3,21,25,.74) 100%),
-        linear-gradient(0deg,var(--deep) 0%,transparent 42%,rgba(3,21,25,.22) 100%);
+        radial-gradient(ellipse at 27% 58%,rgba(3,21,25,.16) 0%,rgba(3,21,25,.48) 42%,transparent 66%),
+        linear-gradient(90deg,rgba(3,21,25,.97) 0%,rgba(3,21,25,.9) 34%,rgba(3,21,25,.58) 64%,rgba(3,21,25,.78) 100%),
+        linear-gradient(0deg,var(--deep) 0%,rgba(3,21,25,.8) 12%,transparent 48%,rgba(3,21,25,.28) 100%);
     }
     .vegasGrid{
       position:absolute;inset:auto 0 0;height:48%;z-index:-2;opacity:.26;pointer-events:none;
@@ -103,7 +104,13 @@
     }
     .heroInner{
       width:min(1180px,calc(100% - 34px));margin:0 auto;
-      display:grid;grid-template-columns:minmax(0,760px) minmax(250px,1fr);gap:42px;align-items:end;
+      display:grid;grid-template-columns:minmax(0,750px) minmax(285px,1fr);gap:48px;align-items:end;
+    }
+    .heroCopy{position:relative;z-index:2}
+    .heroCopy:before{
+      content:"";position:absolute;inset:-44px -70px -36px -50px;z-index:-1;pointer-events:none;
+      background:radial-gradient(ellipse at 30% 50%,rgba(3,21,25,.66),rgba(3,21,25,.25) 56%,transparent 76%);
+      filter:blur(12px)
     }
     .eyebrow{
       display:inline-flex;align-items:center;gap:9px;width:max-content;max-width:100%;
@@ -140,31 +147,39 @@
       letter-spacing:.02em;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.25s ease
     }
     .btnPrimary{
-      background:linear-gradient(135deg,var(--amber),#ffbf7c);color:#22140b;
-      box-shadow:0 15px 38px rgba(240,154,82,.2)
+      background:linear-gradient(135deg,#ffb15f,var(--amber));color:#22140b;
+      box-shadow:0 16px 44px rgba(240,154,82,.24),inset 0 1px 0 rgba(255,255,255,.32)
     }
-    .btnSecondary{border:1px solid var(--line);background:rgba(255,255,255,.07);backdrop-filter:blur(18px)}
-    .btn:hover{transform:translateY(-2px)}
+    .btnSecondary{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.065);backdrop-filter:blur(18px)}
+    .btn:hover{transform:translateY(-3px)}
+    .btn:focus-visible,.langBtn:focus-visible{outline:2px solid var(--aqua);outline-offset:3px}
     .sideCard{
-      border:1px solid var(--line);border-radius:28px;padding:20px;background:rgba(5,34,40,.42);
-      backdrop-filter:blur(24px);box-shadow:var(--shadow);overflow:hidden;position:relative
+      border:1px solid rgba(123,201,196,.22);border-radius:30px;padding:27px 25px 24px;
+      background:linear-gradient(145deg,rgba(7,43,49,.76),rgba(3,21,25,.58));
+      backdrop-filter:blur(28px) saturate(118%);box-shadow:0 28px 80px rgba(0,0,0,.36);overflow:hidden;position:relative
     }
     .sideCard:before{
-      content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(123,201,196,.08),transparent 45%,rgba(240,154,82,.06));
+      content:"";position:absolute;inset:0;
+      background:
+        radial-gradient(circle at 88% 8%,rgba(240,154,82,.13),transparent 25%),
+        linear-gradient(135deg,rgba(123,201,196,.08),transparent 45%,rgba(240,154,82,.055));
       pointer-events:none
     }
+    .sideCard:after{
+      content:"";position:absolute;left:24px;right:24px;top:0;height:1px;
+      background:linear-gradient(90deg,transparent,var(--aqua),transparent);opacity:.58
+    }
     .sideLabel{font-size:.57rem;font-weight:950;letter-spacing:.16em;color:var(--aqua);text-transform:uppercase}
-    .sideCard h2{font-size:1.65rem;line-height:1.05;margin:8px 0 9px;letter-spacing:-.035em}
-    .sideCard p{margin:0;color:rgba(255,255,255,.65);font-size:.75rem;line-height:1.55}
+    .sideCard h2{font-size:1.9rem;line-height:1.02;margin:9px 0 12px;letter-spacing:-.045em}
+    .sideCard p{margin:0;color:rgba(255,255,255,.7);font-size:.78rem;line-height:1.62}
     .route{
-      margin-top:20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px
+      margin-top:24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px
     }
-    .route strong{font-size:.68rem;letter-spacing:.09em}
-    .routeLine{height:1px;background:linear-gradient(90deg,var(--aqua),rgba(123,201,196,.12),var(--amber));position:relative}
-    .routeLine:after{
-      content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);font-size:.68rem;color:var(--amber);
-      text-shadow:0 0 12px var(--amber)
-    }
+    .route strong{font-size:.67rem;letter-spacing:.11em}
+    .routeLine{height:1px;background:linear-gradient(90deg,var(--aqua),rgba(123,201,196,.2) 46%,rgba(240,154,82,.35),var(--amber));position:relative}
+    .routeLine:before,.routeLine:after{position:absolute;top:50%;transform:translateY(-50%);border-radius:50%}
+    .routeLine:before{content:"";left:-1px;width:7px;height:7px;background:var(--aqua);box-shadow:0 0 16px rgba(123,201,196,.8)}
+    .routeLine:after{content:"✦";right:-2px;font-size:.7rem;color:var(--amber);text-shadow:0 0 14px var(--amber)}
     .stamp{
       margin-top:17px;border-top:1px solid rgba(255,255,255,.1);padding-top:15px;
       display:flex;justify-content:space-between;gap:12px;align-items:end
@@ -185,60 +200,74 @@
     }
     .tickerTrack span{padding:0 28px}
     .tickerTrack b{color:var(--amber)}
-    .story{padding:84px 0 96px}
+    .story{padding:104px 0 108px}
     .storyInner{width:min(1180px,calc(100% - 34px));margin:auto}
-    .storyTop{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+    .storyTop{display:grid;grid-template-columns:.92fr 1.08fr;gap:72px;align-items:center}
     .kicker{color:var(--aqua);font-size:.63rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase}
     .story h2{margin:9px 0 0;font-size:clamp(2.4rem,5vw,4.7rem);line-height:.95;letter-spacing:-.055em;text-wrap:balance}
-    .storyCopy{font-size:1rem;line-height:1.75;color:rgba(255,255,255,.64);margin:5px 0 0}
+    .storyCopy{font-size:1rem;line-height:1.88;color:rgba(255,255,255,.66);margin:5px 0 0;max-width:620px}
     .storyCopy strong{color:#fff}
     .manifesto{
-      margin:42px 0 0;border:1px solid rgba(240,154,82,.2);border-radius:30px;padding:clamp(28px,5vw,56px);
+      margin:58px 0 0;border:1px solid rgba(240,154,82,.22);border-radius:34px;padding:clamp(34px,5vw,62px);
       position:relative;overflow:hidden;background:
-      radial-gradient(circle at 88% 20%,rgba(240,154,82,.14),transparent 26%),
-      radial-gradient(circle at 12% 82%,rgba(19,122,126,.2),transparent 28%),
-      linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018))
+      linear-gradient(115deg,rgba(6,42,47,.92),rgba(7,31,34,.82) 54%,rgba(47,34,20,.48)),
+      radial-gradient(circle at 88% 20%,rgba(240,154,82,.18),transparent 28%),
+      radial-gradient(circle at 12% 82%,rgba(19,122,126,.24),transparent 30%)
+    }
+    .manifesto:before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
+      background-image:
+        linear-gradient(30deg,rgba(255,255,255,.08) 12%,transparent 12.5%,transparent 87%,rgba(255,255,255,.08) 87.5%),
+        linear-gradient(150deg,rgba(255,255,255,.05) 12%,transparent 12.5%,transparent 87%,rgba(255,255,255,.05) 87.5%);
+      background-size:72px 124px
     }
     .manifesto:after{
       content:"MÉXICO";position:absolute;right:-.03em;bottom:-.24em;font-size:clamp(5.5rem,17vw,13rem);
       line-height:1;font-weight:1000;letter-spacing:-.08em;color:rgba(255,255,255,.025);pointer-events:none
     }
-    .manifestoInner{position:relative;z-index:1;display:grid;grid-template-columns:1fr .9fr;gap:36px;align-items:end}
-    .manifesto h3{margin:8px 0 0;font-size:clamp(2.5rem,5.2vw,5rem);line-height:.92;letter-spacing:-.06em;max-width:720px}
+    .manifestoInner{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:58px;align-items:center}
+    .manifesto h3{margin:10px 0 0;font-size:clamp(2.65rem,5vw,4.7rem);line-height:.94;letter-spacing:-.058em;max-width:700px}
     .manifesto h3 em{font-style:normal;color:var(--amber)}
     .manifestoCopy{margin:0;color:rgba(255,255,255,.68);font-size:1rem;line-height:1.75}
     .manifestoCopy strong{color:#fff}
-    .promiseGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:24px}
+    .promiseGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:27px}
     .promise{
-      padding:15px;border:1px solid rgba(255,255,255,.09);border-radius:17px;background:rgba(3,21,25,.28)
+      min-height:112px;padding:17px 16px;border:1px solid rgba(255,255,255,.1);border-radius:19px;
+      background:linear-gradient(145deg,rgba(3,21,25,.54),rgba(255,255,255,.025));
+      position:relative;overflow:hidden
     }
-    .promise small{display:block;color:var(--aqua);font-size:.52rem;font-weight:950;letter-spacing:.13em;text-transform:uppercase}
-    .promise b{display:block;margin-top:6px;font-size:.82rem;line-height:1.3}
-    .visualGrid{display:grid;grid-template-columns:1.3fr .7fr;gap:12px;margin-top:42px}
+    .promise:after{content:"";position:absolute;inset:auto 0 0;height:2px;background:linear-gradient(90deg,var(--aqua),var(--amber));opacity:.55}
+    .promise small{display:block;color:var(--aqua);font-size:.5rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
+    .promise b{display:block;margin-top:11px;font-size:.9rem;line-height:1.28}
+    .visualGrid{display:grid;grid-template-columns:1.12fr .88fr;gap:14px;margin-top:22px}
     .photo{
-      border-radius:25px;overflow:hidden;position:relative;min-height:370px;border:1px solid rgba(255,255,255,.09);
-      background:#082a31;box-shadow:0 18px 60px rgba(0,0,0,.2)
+      border-radius:28px;overflow:hidden;position:relative;min-height:410px;border:1px solid rgba(255,255,255,.1);
+      background:#082a31;box-shadow:0 20px 66px rgba(0,0,0,.22)
     }
     .photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .6s ease}
     .photo:hover img{transform:scale(1.035)}
-    .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,21,25,.78),transparent 55%)}
+    .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,21,25,.88),transparent 58%)}
     .photoText{position:absolute;left:20px;right:20px;bottom:18px;z-index:2}
     .photoText small{display:block;color:var(--aqua);font-size:.56rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
     .photoText b{display:block;font-size:1.15rem;margin-top:4px}
     .coming{
-      margin-top:12px;border:1px solid rgba(255,255,255,.1);border-radius:30px;
-      padding:48px 24px;text-align:center;position:relative;overflow:hidden;
+      margin-top:14px;border:1px solid rgba(123,201,196,.16);border-radius:34px;
+      padding:clamp(50px,7vw,78px) 24px;text-align:center;position:relative;overflow:hidden;
       background:
-        radial-gradient(circle at 50% 130%,rgba(19,122,126,.3),transparent 42%),
-        linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02))
+        radial-gradient(circle at 50% 120%,rgba(19,122,126,.35),transparent 44%),
+        radial-gradient(circle at 82% 18%,rgba(240,154,82,.12),transparent 25%),
+        linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018))
     }
     .coming:before{
       content:"LAS VEGAS";position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);
       font-size:clamp(5rem,18vw,14rem);font-weight:1000;letter-spacing:-.07em;color:rgba(255,255,255,.025);white-space:nowrap
     }
-    .comingInner{position:relative;z-index:2;max-width:720px;margin:auto}
+    .comingInner{position:relative;z-index:2;max-width:780px;margin:auto}
     .coming h3{font-size:clamp(2rem,5vw,4rem);line-height:.97;margin:8px 0 11px;letter-spacing:-.05em}
-    .coming p{margin:0 auto;max-width:610px;color:rgba(255,255,255,.64);line-height:1.65;font-size:.9rem}
+    .coming p{margin:0 auto;max-width:660px;color:rgba(255,255,255,.66);line-height:1.75;font-size:.93rem}
+    .comingActions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+    .comingActions .btn{min-width:190px}
+    .closingNote{margin-top:18px;color:rgba(255,255,255,.46);font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
     .miniPills{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:22px}
     .miniPills span{
       border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:8px 11px;background:rgba(255,255,255,.045);
@@ -262,13 +291,13 @@
       .langBtn{min-width:35px;height:30px}
       .hero{padding-top:100px;min-height:auto;padding-bottom:34px}
       .heroBg{background-position:63% center}
-      .heroBg:after{background:linear-gradient(0deg,var(--deep) 0%,rgba(3,21,25,.72) 54%,rgba(3,21,25,.35) 100%)}
+      .heroBg:after{background:linear-gradient(0deg,var(--deep) 0%,rgba(3,21,25,.82) 56%,rgba(3,21,25,.42) 100%)}
       .heroInner{grid-template-columns:1fr;gap:22px;padding-top:240px}
       h1{font-size:clamp(3.2rem,17vw,5.8rem)}
       .sideCard{max-width:560px}
       .storyTop{grid-template-columns:1fr;gap:18px}
       .visualGrid{grid-template-columns:1fr 1fr}
-      .photo{min-height:300px}
+      .photo{min-height:340px}
     }
     @media(max-width:560px){
       header,.heroInner,.storyInner,.footerInner{width:min(100% - 22px,1180px)}
@@ -320,7 +349,7 @@
         <div class="heroBg"></div>
         <div class="vegasGrid"></div>
         <div class="heroInner">
-          <div>
+          <div class="heroCopy">
             <div class="eyebrow"><i></i> <span data-i18n="eyebrow">Nueva sucursal · Próximamente</span></div>
             <h1>
               <span class="outline">CHIDOLIRO</span>
@@ -404,6 +433,11 @@
                 <span>Las Vegas</span>
                 <span data-i18n="pillSoon">Muy pronto</span>
               </div>
+              <div class="comingActions">
+                <a class="btn btnPrimary" href="/"><span data-i18n="finalPrimary">Conoce CHIDOLIRO</span> <span>↗</span></a>
+                <a class="btn btnSecondary" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><span data-i18n="finalSecondary">Volver al inicio</span> <span>↑</span></a>
+              </div>
+              <div class="closingNote" data-i18n="closingNote">México · Las Vegas · El siguiente capítulo está por comenzar</div>
             </div>
           </section>
         </div>
@@ -454,6 +488,9 @@
           comingTitle: "México tiene mucho sabor que compartir con el mundo.",
           comingCopy: "Estamos preparando el siguiente capítulo de CHIDOLIRO: recetas únicas, sabores que cuentan una historia y una experiencia inigualable. Guarda este nombre. Muy pronto conocerás más de nuestra llegada a Las Vegas.",
           pillLocation: "Nueva sucursal", pillSoon: "Muy pronto",
+          finalPrimary: "Conoce CHIDOLIRO",
+          finalSecondary: "Volver al inicio",
+          closingNote: "México · Las Vegas · El siguiente capítulo está por comenzar",
           footer: "© CHIDOLIRO · México → Las Vegas · Próximamente"
         },
         en: {
@@ -487,6 +524,9 @@
           comingTitle: "Mexico has so much flavor to share with the world.",
           comingCopy: "We are preparing CHIDOLIRO's next chapter: unique recipes, flavors that tell a story and an unforgettable experience. Remember the name. Very soon, you'll discover more about our arrival in Las Vegas.",
           pillLocation: "New location", pillSoon: "Coming soon",
+          finalPrimary: "Discover CHIDOLIRO",
+          finalSecondary: "Back to top",
+          closingNote: "Mexico · Las Vegas · The next chapter is about to begin",
           footer: "© CHIDOLIRO · Mexico → Las Vegas · Coming soon"
         }
       };
