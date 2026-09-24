@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#031519">
+  <meta name="description" content="CHIDOLIRO llega a Las Vegas. Nueva sucursal próximamente. Mar, fuego y sabor mexicano cruzan fronteras.">
+  <meta property="og:title" content="CHIDOLIRO · Próximamente en Las Vegas">
+  <meta property="og:description" content="Una nueva historia está por comenzar. CHIDOLIRO llega a Las Vegas. Espérala muy pronto.">
+  <meta property="og:image" content="https://chidoliromx.com/assets/hero.webp">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://chidoliromx.com/las-vegas.html">
+  <title>CHIDOLIRO · Próximamente en Las Vegas</title>
+  <style>
+    :root{
+      --deep:#031519;
+      --ocean:#082a31;
+      --teal:#137a7e;
+      --aqua:#7bc9c4;
+      --cream:#f6f0e7;
+      --amber:#f09a52;
+      --white:#fffdfa;
+      --glass:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.14);
+      --shadow:0 24px 80px rgba(0,0,0,.4);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--deep)}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--white);
+      background:
+        radial-gradient(circle at 84% 18%,rgba(19,122,126,.22),transparent 24%),
+        radial-gradient(circle at 18% 78%,rgba(240,154,82,.11),transparent 25%),
+        var(--deep);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .page{min-height:100vh;position:relative;isolation:isolate}
+    .noise{
+      position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.18;mix-blend-mode:soft-light;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    }
+    .glow{
+      position:absolute;border-radius:999px;filter:blur(90px);pointer-events:none;z-index:-1;opacity:.42
+    }
+    .g1{width:360px;height:360px;background:var(--teal);top:6%;right:-140px}
+    .g2{width:280px;height:280px;background:var(--amber);bottom:8%;left:-120px;opacity:.18}
+    header{
+      position:absolute;top:0;left:0;right:0;z-index:10;
+      display:flex;align-items:center;justify-content:space-between;
+      width:min(1180px,calc(100% - 34px));margin:0 auto;padding:22px 0;
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand img{
+      width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 10px 20px rgba(0,0,0,.22))
+    }
+    .brand span{display:grid;gap:1px}
+    .brand b{font-size:.98rem;letter-spacing:.16em}
+    .brand small{font-size:.58rem;letter-spacing:.16em;color:var(--aqua);font-weight:900}
+    .homeLink{
+      min-height:42px;display:inline-flex;align-items:center;justify-content:center;padding:0 15px;
+      border:1px solid var(--line);border-radius:999px;background:rgba(3,21,25,.48);
+      backdrop-filter:blur(15px);text-decoration:none;font-size:.7rem;font-weight:900;letter-spacing:.03em
+    }
+    .hero{
+      min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;
+      padding:120px 0 42px;
+    }
+    .heroBg{
+      position:absolute;inset:0;z-index:-4;
+      background-image:url('assets/hero.webp');
+      background-size:cover;background-position:center 43%;
+      transform:scale(1.03);
+    }
+    .heroBg:after{
+      content:"";position:absolute;inset:0;
+      background:
+        linear-gradient(90deg,rgba(3,21,25,.94) 0%,rgba(3,21,25,.8) 38%,rgba(3,21,25,.42) 72%,rgba(3,21,25,.74) 100%),
+        linear-gradient(0deg,var(--deep) 0%,transparent 42%,rgba(3,21,25,.22) 100%);
+    }
+    .vegasGrid{
+      position:absolute;inset:auto 0 0;height:48%;z-index:-2;opacity:.26;pointer-events:none;
+      background:
+        linear-gradient(rgba(123,201,196,.12) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(123,201,196,.12) 1px,transparent 1px);
+      background-size:54px 54px;
+      transform:perspective(500px) rotateX(64deg) scale(1.4);
+      transform-origin:bottom;
+      mask-image:linear-gradient(to top,#000,transparent);
+    }
+    .heroInner{
+      width:min(1180px,calc(100% - 34px));margin:0 auto;
+      display:grid;grid-template-columns:minmax(0,760px) minmax(250px,1fr);gap:42px;align-items:end;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;width:max-content;max-width:100%;
+      padding:8px 12px;border-radius:999px;border:1px solid rgba(123,201,196,.27);
+      background:rgba(3,21,25,.48);backdrop-filter:blur(16px);
+      color:#c9f2ee;font-size:.66rem;font-weight:950;letter-spacing:.13em;text-transform:uppercase
+    }
+    .eyebrow i{
+      width:7px;height:7px;border-radius:50%;background:var(--amber);
+      box-shadow:0 0 0 6px rgba(240,154,82,.1),0 0 22px var(--amber);
+      animation:pulse 1.9s ease-in-out infinite
+    }
+    h1{
+      margin:18px 0 14px;font-size:clamp(3.55rem,8vw,7.65rem);line-height:.82;
+      letter-spacing:-.065em;text-wrap:balance;max-width:930px
+    }
+    h1 .outline{
+      display:block;color:transparent;-webkit-text-stroke:1.4px rgba(255,255,255,.78);
+      text-shadow:0 0 34px rgba(123,201,196,.12)
+    }
+    h1 .vegas{
+      display:block;background:linear-gradient(92deg,#fff,#aee5df 44%,#ffc78d 88%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      filter:drop-shadow(0 0 34px rgba(19,122,126,.16))
+    }
+    .lead{
+      max-width:660px;margin:0;font-size:clamp(1rem,2vw,1.2rem);line-height:1.65;color:rgba(255,255,255,.78);
+      text-wrap:pretty
+    }
+    .lead strong{color:#fff}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+    .btn{
+      min-height:52px;padding:0 20px;border-radius:14px;text-decoration:none;font-weight:950;font-size:.76rem;
+      letter-spacing:.02em;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.25s ease
+    }
+    .btnPrimary{
+      background:linear-gradient(135deg,var(--amber),#ffbf7c);color:#22140b;
+      box-shadow:0 15px 38px rgba(240,154,82,.2)
+    }
+    .btnSecondary{border:1px solid var(--line);background:rgba(255,255,255,.07);backdrop-filter:blur(18px)}
+    .btn:hover{transform:translateY(-2px)}
+    .sideCard{
+      border:1px solid var(--line);border-radius:28px;padding:20px;background:rgba(5,34,40,.42);
+      backdrop-filter:blur(24px);box-shadow:var(--shadow);overflow:hidden;position:relative
+    }
+    .sideCard:before{
+      content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(123,201,196,.08),transparent 45%,rgba(240,154,82,.06));
+      pointer-events:none
+    }
+    .sideLabel{font-size:.57rem;font-weight:950;letter-spacing:.16em;color:var(--aqua);text-transform:uppercase}
+    .sideCard h2{font-size:1.65rem;line-height:1.05;margin:8px 0 9px;letter-spacing:-.035em}
+    .sideCard p{margin:0;color:rgba(255,255,255,.65);font-size:.75rem;line-height:1.55}
+    .route{
+      margin-top:20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px
+    }
+    .route strong{font-size:.68rem;letter-spacing:.09em}
+    .routeLine{height:1px;background:linear-gradient(90deg,var(--aqua),rgba(123,201,196,.12),var(--amber));position:relative}
+    .routeLine:after{
+      content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);font-size:.68rem;color:var(--amber);
+      text-shadow:0 0 12px var(--amber)
+    }
+    .stamp{
+      margin-top:17px;border-top:1px solid rgba(255,255,255,.1);padding-top:15px;
+      display:flex;justify-content:space-between;gap:12px;align-items:end
+    }
+    .stamp b{font-size:.8rem}
+    .stamp span{display:block;margin-top:4px;color:rgba(255,255,255,.44);font-size:.58rem}
+    .stamp em{
+      font-style:normal;color:var(--amber);font-size:.64rem;font-weight:950;letter-spacing:.12em;
+      transform:rotate(-4deg);border:1px solid rgba(240,154,82,.42);border-radius:8px;padding:7px 9px
+    }
+    .ticker{
+      border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);
+      overflow:hidden;background:#061f24
+    }
+    .tickerTrack{
+      display:flex;width:max-content;animation:marquee 20s linear infinite;padding:13px 0;
+      color:rgba(255,255,255,.72);font-size:.62rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase
+    }
+    .tickerTrack span{padding:0 28px}
+    .tickerTrack b{color:var(--amber)}
+    .story{padding:84px 0 96px}
+    .storyInner{width:min(1180px,calc(100% - 34px));margin:auto}
+    .storyTop{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+    .kicker{color:var(--aqua);font-size:.63rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase}
+    .story h2{margin:9px 0 0;font-size:clamp(2.4rem,5vw,4.7rem);line-height:.95;letter-spacing:-.055em;text-wrap:balance}
+    .storyCopy{font-size:1rem;line-height:1.75;color:rgba(255,255,255,.64);margin:5px 0 0}
+    .storyCopy strong{color:#fff}
+    .visualGrid{display:grid;grid-template-columns:1.3fr .7fr;gap:12px;margin-top:42px}
+    .photo{
+      border-radius:25px;overflow:hidden;position:relative;min-height:370px;border:1px solid rgba(255,255,255,.09);
+      background:#082a31;box-shadow:0 18px 60px rgba(0,0,0,.2)
+    }
+    .photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .6s ease}
+    .photo:hover img{transform:scale(1.035)}
+    .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,21,25,.78),transparent 55%)}
+    .photoText{position:absolute;left:20px;right:20px;bottom:18px;z-index:2}
+    .photoText small{display:block;color:var(--aqua);font-size:.56rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
+    .photoText b{display:block;font-size:1.15rem;margin-top:4px}
+    .coming{
+      margin-top:12px;border:1px solid rgba(255,255,255,.1);border-radius:30px;
+      padding:48px 24px;text-align:center;position:relative;overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 130%,rgba(19,122,126,.3),transparent 42%),
+        linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02))
+    }
+    .coming:before{
+      content:"LAS VEGAS";position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);
+      font-size:clamp(5rem,18vw,14rem);font-weight:1000;letter-spacing:-.07em;color:rgba(255,255,255,.025);white-space:nowrap
+    }
+    .comingInner{position:relative;z-index:2;max-width:720px;margin:auto}
+    .coming h3{font-size:clamp(2rem,5vw,4rem);line-height:.97;margin:8px 0 11px;letter-spacing:-.05em}
+    .coming p{margin:0 auto;max-width:610px;color:rgba(255,255,255,.64);line-height:1.65;font-size:.9rem}
+    .miniPills{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:22px}
+    .miniPills span{
+      border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:8px 11px;background:rgba(255,255,255,.045);
+      font-size:.57rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase
+    }
+    footer{border-top:1px solid rgba(255,255,255,.08);padding:25px 0 30px;color:rgba(255,255,255,.48)}
+    .footerInner{
+      width:min(1180px,calc(100% - 34px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px
+    }
+    .footerBrand{display:flex;align-items:center;gap:10px}
+    .footerBrand img{width:38px;height:38px;object-fit:contain}
+    .footerBrand b{color:#fff;font-size:.76rem;letter-spacing:.13em}
+    .footerBrand small{display:block;color:var(--aqua);font-size:.5rem;letter-spacing:.12em;margin-top:2px}
+    footer p{margin:0;font-size:.58rem;text-align:right}
+    @keyframes pulse{50%{transform:scale(.78);opacity:.62}}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    @media(max-width:850px){
+      header{padding-top:15px}
+      .brand img{width:45px;height:45px}
+      .homeLink{min-height:39px;padding:0 12px;font-size:.62rem}
+      .hero{padding-top:100px;min-height:auto;padding-bottom:34px}
+      .heroBg{background-position:63% center}
+      .heroBg:after{background:linear-gradient(0deg,var(--deep) 0%,rgba(3,21,25,.72) 54%,rgba(3,21,25,.35) 100%)}
+      .heroInner{grid-template-columns:1fr;gap:22px;padding-top:240px}
+      h1{font-size:clamp(3.2rem,17vw,5.8rem)}
+      .sideCard{max-width:560px}
+      .storyTop{grid-template-columns:1fr;gap:18px}
+      .visualGrid{grid-template-columns:1fr 1fr}
+      .photo{min-height:300px}
+    }
+    @media(max-width:560px){
+      header,.heroInner,.storyInner,.footerInner{width:min(100% - 22px,1180px)}
+      .brand span small{display:none}
+      .heroInner{padding-top:220px}
+      h1{font-size:clamp(3.15rem,19vw,5rem)}
+      .eyebrow{font-size:.56rem;padding:7px 10px}
+      .lead{font-size:.95rem}
+      .actions{display:grid;grid-template-columns:1fr}
+      .btn{width:100%}
+      .story{padding:62px 0 68px}
+      .visualGrid{grid-template-columns:1fr}
+      .photo{min-height:320px}
+      .coming{padding:40px 16px;border-radius:24px}
+      .footerInner{align-items:flex-start;flex-direction:column}
+      footer p{text-align:left}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="noise"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+
+    <header>
+      <a class="brand" href="/" aria-label="Ir a CHIDOLIRO">
+        <img src="assets/logo.png" alt="CHIDOLIRO">
+        <span><b>CHIDOLIRO</b><small>SURF &amp; TURF MX</small></span>
+      </a>
+      <a class="homeLink" href="/">Conoce CHIDOLIRO ↗</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="heroBg"></div>
+        <div class="vegasGrid"></div>
+        <div class="heroInner">
+          <div>
+            <div class="eyebrow"><i></i> Nueva sucursal · Próximamente</div>
+            <h1>
+              <span class="outline">CHIDOLIRO</span>
+              <span class="vegas">LLEGA A LAS VEGAS</span>
+            </h1>
+            <p class="lead"><strong>Mar, fuego y sabor mexicano cruzan fronteras.</strong> Una nueva experiencia CHIDOLIRO está por comenzar. Nueva sucursal en Las Vegas. <strong>Espérala muy pronto.</strong></p>
+            <div class="actions">
+              <a class="btn btnPrimary" href="#muy-pronto">Descubre lo que viene <span>↓</span></a>
+              <a class="btn btnSecondary" href="/">Conoce nuestra esencia <span>↗</span></a>
+            </div>
+          </div>
+
+          <aside class="sideCard" aria-label="Expansión CHIDOLIRO">
+            <div class="sideLabel">La expansión comienza</div>
+            <h2>De México<br>a Las Vegas.</h2>
+            <p>La misma esencia que mezcla mariscos, parrilla y momentos memorables prepara su siguiente capítulo.</p>
+            <div class="route">
+              <strong>MÉXICO</strong><div class="routeLine"></div><strong>LAS VEGAS</strong>
+            </div>
+            <div class="stamp">
+              <div><b>Nueva sucursal</b><span>Próximamente</span></div>
+              <em>COMING SOON</em>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="tickerTrack">
+          <span>CHIDOLIRO <b>✦</b> LAS VEGAS <b>✦</b> NUEVA SUCURSAL <b>✦</b> MUY PRONTO <b>✦</b></span>
+          <span>CHIDOLIRO <b>✦</b> LAS VEGAS <b>✦</b> NUEVA SUCURSAL <b>✦</b> MUY PRONTO <b>✦</b></span>
+        </div>
+      </div>
+
+      <section class="story" id="muy-pronto">
+        <div class="storyInner">
+          <div class="storyTop">
+            <div>
+              <div class="kicker">Una nueva ciudad. La misma esencia.</div>
+              <h2>El sabor de CHIDOLIRO está listo para ir más lejos.</h2>
+            </div>
+            <p class="storyCopy">Nacimos alrededor de sabores intensos, producto fresco, fuego y una experiencia que se disfruta en la mesa. Ahora comienza una nueva etapa: <strong>CHIDOLIRO prepara su llegada a Las Vegas.</strong> Muy pronto revelaremos más sobre esta nueva sucursal.</p>
+          </div>
+
+          <div class="visualGrid">
+            <article class="photo">
+              <img src="assets/aguachile.webp" alt="Platillo de CHIDOLIRO" loading="lazy">
+              <div class="photoText"><small>Del mar</small><b>Frescura que se reconoce.</b></div>
+            </article>
+            <article class="photo">
+              <img src="assets/dishwide.webp" alt="Experiencia gastronómica CHIDOLIRO" loading="lazy">
+              <div class="photoText"><small>Del fuego</small><b>Carácter que se recuerda.</b></div>
+            </article>
+          </div>
+
+          <section class="coming">
+            <div class="comingInner">
+              <div class="kicker">Próximamente · Las Vegas</div>
+              <h3>Algo grande está por llegar.</h3>
+              <p>Estamos preparando el siguiente capítulo de CHIDOLIRO. Guarda este nombre, comparte la noticia y mantente atento: pronto conocerás más detalles de nuestra nueva sucursal.</p>
+              <div class="miniPills">
+                <span>Surf &amp; Turf MX</span>
+                <span>Nueva sucursal</span>
+                <span>Las Vegas</span>
+                <span>Muy pronto</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footerInner">
+        <div class="footerBrand">
+          <img src="assets/logo.png" alt="">
+          <div><b>CHIDOLIRO</b><small>SURF &amp; TURF MX</small></div>
+        </div>
+        <p>© CHIDOLIRO · México → Las Vegas · Próximamente</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
