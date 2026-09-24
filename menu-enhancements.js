@@ -22,7 +22,7 @@
       #menuSheet .sheetHead h3{margin-bottom:4px}
       #menuSheet .sheetHead:after{content:'Menú vivo · precios y disponibilidad actualizados';display:block;color:var(--muted);font-size:.68rem;font-family:"DM Sans",sans-serif;margin-top:5px;font-weight:600}
       #menuSheet .menuTabs{padding-bottom:4px}
-      #menuSheet .menuItem{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;border-radius:20px;box-shadow:0 8px 24px rgba(5,27,31,.07)}
+      #menuSheet .menuItem{cursor:pointer;transition:transform .18s ease,box-shadow .18s ease;border-radius:20px;box-shadow:0 8px 24px rgba(5,27,31,.07)}#menuSheet .menuItem.noPhoto{grid-template-columns:1fr!important}
       #menuSheet .menuItem:active{transform:scale(.985)}
       #menuSheet .menuItem img{height:190px;background:#e7dfd2;transition:opacity .2s ease}
       #menuSheet .menuItemBody{padding:13px 13px 14px}
@@ -35,7 +35,7 @@
       .menuHint{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:7px 0 12px;padding:11px 12px;border-radius:15px;background:#e9f0ec;border:1px solid rgba(19,122,126,.12);color:var(--ocean);font-size:.71rem;font-weight:700}
       .menuHint span:last-child{color:var(--teal);white-space:nowrap}
       #productDetailSheet .sheet{padding:0;overflow:hidden;background:var(--cream)}
-      .productDetailHero{height:min(46vh,420px);position:relative;background:#ddd}
+      .productDetailHero{height:min(46vh,420px);position:relative;background:#ddd}.productDetailHero[hidden]{display:none!important}
       .productDetailHero img{width:100%;height:100%;object-fit:cover}
       .productDetailHero:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,25,29,.7),transparent 58%)}
       .productDetailClose{position:absolute;z-index:3;top:14px;right:14px;width:42px;height:42px;border:0;border-radius:14px;background:rgba(255,255,255,.92);color:var(--ocean);font-size:1.05rem}
@@ -52,7 +52,7 @@
         #menuSheet .sheet{width:100%;height:100dvh;max-height:none;border-radius:0;padding:calc(16px + env(safe-area-inset-top)) 12px calc(14px + env(safe-area-inset-bottom));}
         #menuSheet .sheetHead{top:calc(-16px - env(safe-area-inset-top));padding:calc(16px + env(safe-area-inset-top)) 2px 14px;margin-top:calc(-16px - env(safe-area-inset-top));}
         #menuSheet .menuItems{grid-template-columns:1fr;gap:12px}
-        #menuSheet .menuItem{display:grid;grid-template-columns:132px 1fr;min-height:132px;overflow:hidden}
+        #menuSheet .menuItem{display:grid;grid-template-columns:132px 1fr;min-height:132px;overflow:hidden}#menuSheet .menuItem.noPhoto{grid-template-columns:1fr!important}
         #menuSheet .menuItem img{height:100%;min-height:132px}
         #menuSheet .menuItemBody{display:flex;flex-direction:column;min-width:0}
         #menuSheet .menuItemBody h4{font-size:1.24rem}
@@ -128,7 +128,7 @@
     document.getElementById('productDetailCategory').textContent = category;
     document.getElementById('productDetailDescription').textContent = description;
     document.getElementById('productDetailPrice').textContent = price;
-    const hero = document.getElementById('productDetailImage'); hero.src = img; hero.alt = name;
+    const hero = document.getElementById('productDetailImage');const heroWrap=hero.closest('.productDetailHero');if(img){heroWrap.hidden=false;hero.src=img;hero.alt=name}else{heroWrap.hidden=true;hero.removeAttribute('src');hero.alt=''};
     const originalButton = card.querySelector('.menuItemBottom button');
     const add = document.getElementById('productDetailAdd');
     const canAdd = originalButton && originalButton.textContent.trim() !== '?';
