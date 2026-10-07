@@ -115,6 +115,7 @@
       -webkit-background-clip:text;background-clip:text;color:transparent;
       filter:drop-shadow(0 0 34px rgba(19,122,126,.17))
     }
+    h1 .place .arrival,h1 .place .city{display:block}
     .lead{
       margin:0;max-width:675px;font-size:clamp(1rem,1.7vw,1.2rem);line-height:1.68;
       color:rgba(255,255,255,.78);text-wrap:pretty
@@ -194,11 +195,14 @@
     }
     .photo{
       min-height:410px;position:relative;overflow:hidden;border-radius:28px;border:1px solid rgba(255,255,255,.1);
-      background-image:url('assets/ziracuaretiro/hero.webp');background-size:cover;
-      box-shadow:0 20px 66px rgba(0,0,0,.22)
+      background:#082a31;box-shadow:0 20px 66px rgba(0,0,0,.22)
     }
-    .photo.one{background-position:42% 42%}
-    .photo.two{background-position:74% 55%}
+    .photo img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02);
+      filter:saturate(.94) contrast(1.03)
+    }
+    .photo.one img{object-position:42% 42%}
+    .photo.two img{object-position:74% 55%}
     .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,21,25,.9),transparent 58%)}
     .photoText{position:absolute;z-index:2;left:22px;right:22px;bottom:20px}
     .photoText small{display:block;color:var(--aqua);font-size:.54rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
@@ -285,19 +289,45 @@
     }
     @media(max-width:590px){
       header,.heroInner,.storyInner,.footerInner{width:min(100% - 22px,1220px)}
+      header{gap:10px}
+      .brand{gap:9px;min-width:0}
+      .brand img{width:42px;height:42px}
+      .brandText b{font-size:.82rem;letter-spacing:.12em}
       .brandText small{display:none}
-      .homeLink{min-height:39px;padding:0 12px;font-size:.62rem}
-      .heroInner{padding-top:218px}
-      h1{font-size:clamp(3rem,17vw,4.7rem)}
-      .eyebrow{font-size:.55rem;padding:7px 10px}
-      .lead{font-size:.95rem}
-      .actions{display:grid;grid-template-columns:1fr}
-      .btn{width:100%}
-      .story{padding:64px 0 72px}
-      .gallery{grid-template-columns:1fr}
-      .photo{min-height:340px}
+      .homeLink{min-height:38px;padding:0 11px;font-size:.58rem;white-space:nowrap}
+      .hero{padding-top:82px;padding-bottom:26px}
+      .heroInner{padding-top:155px;gap:18px}
+      .heroCopy:before{inset:-30px -18px -28px -18px}
+      h1{margin-top:15px;font-size:clamp(3rem,16.5vw,4.55rem);line-height:.84}
+      h1 .place .arrival{font-size:.92em}
+      h1 .place .city{font-size:clamp(2.48rem,12.1vw,3.5rem);letter-spacing:-.062em;line-height:.9;margin-top:3px}
+      .eyebrow{font-size:.53rem;padding:7px 10px;letter-spacing:.11em}
+      .lead{font-size:.93rem;line-height:1.62}
+      .actions{display:grid;grid-template-columns:1fr;margin-top:22px}
+      .btn{width:100%;min-height:50px}
+      .sideCard{padding:24px 20px 21px;border-radius:25px}
+      .sideCard h2{font-size:1.65rem}
+      .route{grid-template-columns:1fr;gap:8px;margin-top:20px}
+      .route strong{font-size:.62rem;letter-spacing:.08em}
+      .route strong:last-child{text-align:right}
+      .routeLine{width:100%}
+      .stamp{align-items:center;flex-wrap:wrap}
+      .stamp em{margin-left:auto}
+      .story{padding:58px 0 68px}
+      .story h2{font-size:clamp(2.35rem,12vw,3.3rem)}
+      .storyCopy{font-size:.94rem;line-height:1.75}
+      .gallery{grid-template-columns:1fr;margin-top:34px}
+      .photo{min-height:265px;border-radius:24px}
+      .photoText{left:18px;right:18px;bottom:17px}
+      .photoText b{font-size:1.03rem}
+      .manifesto{padding:34px 20px;border-radius:26px}
+      .manifesto h3{font-size:clamp(2.35rem,11.5vw,3.25rem)}
+      .manifestoCopy{font-size:.94rem;line-height:1.72}
       .promiseGrid{grid-template-columns:1fr}
-      .coming{padding:44px 16px;border-radius:24px}
+      .promise{min-height:96px}
+      .coming{padding:40px 16px;border-radius:24px}
+      .coming h3{font-size:clamp(2rem,10.8vw,3rem)}
+      .coming p{font-size:.92rem}
       .footerInner{align-items:flex-start;flex-direction:column}
       footer p{text-align:left}
     }
@@ -312,7 +342,7 @@
 
     <header>
       <a class="brand" href="/" aria-label="Ir a CHIDOLIRO">
-        <img src="assets/logo.png" alt="CHIDOLIRO">
+        <img src="/assets/logo.png" alt="CHIDOLIRO">
         <span class="brandText"><b>CHIDOLIRO</b><small>SURF &amp; TURF MX</small></span>
       </a>
       <a class="homeLink" href="/">Conoce CHIDOLIRO ↗</a>
@@ -320,7 +350,7 @@
 
     <main>
       <section class="hero">
-        <div class="heroBg"><img src="assets/ziracuaretiro/hero.webp" alt="Nuevo espacio de CHIDOLIRO en Ziracuaretiro, Michoacán"></div>
+        <div class="heroBg"><img src="/assets/ziracuaretiro/hero.webp" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/Rujumagil/CHIDOLIRO/main/assets/ziracuaretiro/hero.webp';" alt="Nuevo espacio de CHIDOLIRO en Ziracuaretiro, Michoacán"></div>
         <div class="heroGlow"></div>
 
         <div class="heroInner">
@@ -328,7 +358,7 @@
             <div class="eyebrow"><i></i> Nueva sucursal · Próximamente</div>
             <h1>
               <span class="outline">CHIDOLIRO</span>
-              <span class="place">LLEGA A ZIRACUARETIRO</span>
+              <span class="place"><span class="arrival">LLEGA A</span><span class="city">ZIRACUARETIRO</span></span>
             </h1>
             <p class="lead"><strong>La esencia de CHIDOLIRO sigue creciendo.</strong> Muy pronto, una nueva experiencia de sabor, naturaleza y buenos momentos llegará a <strong>Ziracuaretiro, Michoacán.</strong></p>
             <div class="actions">
@@ -371,9 +401,11 @@
 
           <div class="gallery">
             <article class="photo one">
+              <img src="/assets/ziracuaretiro/hero.webp" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/Rujumagil/CHIDOLIRO/main/assets/ziracuaretiro/hero.webp';" alt="Nuevo espacio de CHIDOLIRO en Ziracuaretiro">
               <div class="photoText"><small>El nuevo lugar</small><b>Un espacio con una historia por comenzar.</b></div>
             </article>
             <article class="photo two">
+              <img src="/assets/ziracuaretiro/hero.webp" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/Rujumagil/CHIDOLIRO/main/assets/ziracuaretiro/hero.webp';" alt="Entorno de la nueva sucursal en Ziracuaretiro">
               <div class="photoText"><small>Ziracuaretiro</small><b>Naturaleza, amplitud y una nueva experiencia.</b></div>
             </article>
           </div>
@@ -420,7 +452,7 @@
     <footer>
       <div class="footerInner">
         <div class="footerBrand">
-          <img src="assets/logo.png" alt="">
+          <img src="/assets/logo.png" alt="">
           <div><b>CHIDOLIRO</b><small>SURF &amp; TURF MX</small></div>
         </div>
         <p>© CHIDOLIRO · Nuevo Urecho → Ziracuaretiro · Próximamente</p>
