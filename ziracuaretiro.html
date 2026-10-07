@@ -7,7 +7,7 @@
   <meta name="description" content="CHIDOLIRO llega próximamente a Ziracuaretiro, Michoacán. Una nueva experiencia de sabor, naturaleza y momentos inolvidables.">
   <meta property="og:title" content="CHIDOLIRO · Próximamente en Ziracuaretiro">
   <meta property="og:description" content="La expansión continúa. CHIDOLIRO llega próximamente a Ziracuaretiro, Michoacán.">
-  <meta property="og:image" content="https://chidoliromx.com/assets/ziracuaretiro/hero.webp?v=9422558">
+  <meta property="og:image" content="https://chidoliromx.com/assets/ziracuaretiro/galeria-3.webp?v=61551b3">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://chidoliromx.com/ziracuaretiro">
   <title>CHIDOLIRO · Próximamente en Ziracuaretiro</title>
@@ -191,18 +191,19 @@
     .storyCopy{max-width:625px;margin:0;font-size:1rem;line-height:1.87;color:rgba(255,255,255,.66)}
     .storyCopy strong{color:#fff}
     .gallery{
-      margin-top:50px;display:grid;grid-template-columns:1.12fr .88fr;gap:14px
+      margin-top:50px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px
     }
     .photo{
-      min-height:410px;position:relative;overflow:hidden;border-radius:28px;border:1px solid rgba(255,255,255,.1);
+      min-height:300px;position:relative;overflow:hidden;border-radius:28px;border:1px solid rgba(255,255,255,.1);
       background:#082a31;box-shadow:0 20px 66px rgba(0,0,0,.22)
     }
     .photo img{
       position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02);
       filter:saturate(.94) contrast(1.03)
     }
-    .photo.one img{object-position:42% 42%}
-    .photo.two img{object-position:74% 55%}
+    .photo.one img{object-position:center}
+    .photo.two img{object-position:center}
+    .photo.three img{object-position:center}
     .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,21,25,.9),transparent 58%)}
     .photoText{position:absolute;z-index:2;left:22px;right:22px;bottom:20px}
     .photoText small{display:block;color:var(--aqua);font-size:.54rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
@@ -285,7 +286,8 @@
       .storyTop{grid-template-columns:1fr;gap:20px}
       .manifestoInner{grid-template-columns:1fr;gap:24px}
       .gallery{grid-template-columns:1fr 1fr}
-      .photo{min-height:340px}
+      .photo{min-height:300px}
+      .photo.three{grid-column:1 / -1}
     }
     @media(max-width:590px){
       header,.heroInner,.storyInner,.footerInner{width:min(100% - 22px,1220px)}
@@ -317,7 +319,8 @@
       .story h2{font-size:clamp(2.35rem,12vw,3.3rem)}
       .storyCopy{font-size:.94rem;line-height:1.75}
       .gallery{grid-template-columns:1fr;margin-top:34px}
-      .photo{min-height:265px;border-radius:24px}
+      .photo{min-height:245px;border-radius:24px}
+      .photo.three{grid-column:auto}
       .photoText{left:18px;right:18px;bottom:17px}
       .photoText b{font-size:1.03rem}
       .manifesto{padding:34px 20px;border-radius:26px}
@@ -350,7 +353,7 @@
 
     <main>
       <section class="hero">
-        <div class="heroBg"><img src="/assets/ziracuaretiro/hero.webp?v=9422558" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/Rujumagil/CHIDOLIRO/94225587214fa61f9f57c8768f50bf1c4fc615d4/assets/ziracuaretiro/hero.webp';" alt="Nuevo espacio de CHIDOLIRO en Ziracuaretiro, Michoacán"></div>
+        <div class="heroBg"><img src="/assets/ziracuaretiro/galeria-3.webp?v=61551b3" alt="Nuevo espacio de CHIDOLIRO en Ziracuaretiro, Michoacán"></div>
         <div class="heroGlow"></div>
 
         <div class="heroInner">
@@ -401,12 +404,16 @@
 
           <div class="gallery">
             <article class="photo one">
-              <img src="/assets/ziracuaretiro/hero.webp?v=9422558" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/Rujumagil/CHIDOLIRO/94225587214fa61f9f57c8768f50bf1c4fc615d4/assets/ziracuaretiro/hero.webp';" alt="Nuevo espacio de CHIDOLIRO en Ziracuaretiro">
-              <div class="photoText"><small>El nuevo lugar</small><b>Un espacio con una historia por comenzar.</b></div>
+              <img src="/assets/ziracuaretiro/galeria-1.webp?v=61551b3" alt="Entorno de la nueva sucursal de CHIDOLIRO en Ziracuaretiro">
+              <div class="photoText"><small>Ziracuaretiro, Michoacán</small><b>Un nuevo punto para seguir creciendo.</b></div>
             </article>
             <article class="photo two">
-              <img src="/assets/ziracuaretiro/hero.webp?v=9422558" onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/Rujumagil/CHIDOLIRO/94225587214fa61f9f57c8768f50bf1c4fc615d4/assets/ziracuaretiro/hero.webp';" alt="Entorno de la nueva sucursal en Ziracuaretiro">
-              <div class="photoText"><small>Ziracuaretiro</small><b>Naturaleza, amplitud y una nueva experiencia.</b></div>
+              <img src="/assets/ziracuaretiro/galeria-2.webp?v=61551b3" alt="Áreas verdes del nuevo espacio en Ziracuaretiro">
+              <div class="photoText"><small>Naturaleza y amplitud</small><b>Un entorno pensado para disfrutar y convivir.</b></div>
+            </article>
+            <article class="photo three">
+              <img src="/assets/ziracuaretiro/galeria-3.webp?v=61551b3" alt="Fachada del nuevo espacio de CHIDOLIRO en Ziracuaretiro">
+              <div class="photoText"><small>La nueva experiencia</small><b>Un lugar con calidez y esencia CHIDOLIRO.</b></div>
             </article>
           </div>
 
