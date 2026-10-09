@@ -163,7 +163,7 @@ function switchNav(nav){
   if(nav==='entry'||nav==='exit'||nav==='count'){state.mode=nav;toast(nav==='entry'?'Selecciona el producto que entra':nav==='exit'?'Selecciona el producto que sale':'Selecciona el producto a contar');$('search').focus();}
 }
 async function saveMovement(e){
-  e.preventDefault();if(!state.selected)return;const qty=Number($('moveQty').value||0),notes=$('moveNotes').value.trim();if(state.mode!=='count'&&qty<=0){toast('Indica una cantidad mayor a cero.');return}if(state.mode==='count'&&qty<0){toast('El conteo no puede ser negativo.');return}
+  e.preventDefault();if(!state.selected)return;const qty=Number($('moveQty').value||0),notes=$('moveNotes').value.trim();if(state.mode!=='count'&&qty<=0){toast('Indica una cantidad mayor a cero.');return}if(state.mode==='count'&&qty<0){toast('El conteo no puede ser negativo.');return}if((state.mode==='exit'||state.mode==='waste')&&qty>Number(state.selected.stock_qty||0)){toast(`Solo hay ${num(state.selected.stock_qty)} ${unit(state.selected.unit)} disponibles.`);return}
   try{
     let body;
     if(state.mode==='entry')body={action:'movement',item_id:state.selected.id,movement_type:'purchase',quantity:Math.abs(qty),unit_cost:null,notes:notes||'Entrada de almacén'};
