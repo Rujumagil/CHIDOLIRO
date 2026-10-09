@@ -6,6 +6,7 @@ Disallow: /cocina.html
 Disallow: /caja.html
 Disallow: /pos.html
 Disallow: /inventario.html
+Disallow: /almacen.html
 Disallow: /reportes.html
 Disallow: /usuarios.html
 Disallow: /menu-admin.html
