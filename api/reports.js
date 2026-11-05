@@ -23,7 +23,8 @@ module.exports=async function handler(req,res){
     if(req.method==='GET'){
       const start_input=req.query?.from?String(req.query.from):null;
       const end_input=req.query?.to?String(req.query.to):null;
-      const result=await rpc('chidoliro_staff_operational_metrics',{session_token,start_input,end_input});
+      const fn=String(req.query?.type||'')==='sales'?'chidoliro_staff_sales_report':'chidoliro_staff_operational_metrics';
+      const result=await rpc(fn,{session_token,start_input,end_input});
       if(!result?.ok)return res.status(statusFor(result)).json(result||{ok:false,error:'reports_load_failed'});
       return res.status(200).json(result);
     }
