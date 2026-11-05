@@ -498,7 +498,8 @@ async function handleReports(request, env) {
     if (request.method === "GET") {
       const start_input = url.searchParams.get("from") || null;
       const end_input = url.searchParams.get("to") || null;
-      const result = await rpcData(env, "chidoliro_staff_operational_metrics", { session_token, start_input, end_input });
+      const financial = url.searchParams.get("type") === "sales";
+      const result = await rpcData(env, financial ? "chidoliro_staff_sales_report" : "chidoliro_staff_operational_metrics", { session_token, start_input, end_input });
       if (!result?.ok) return json(result || { ok: false, error: "reports_load_failed" }, statusFor(result));
       return json(result);
     }
