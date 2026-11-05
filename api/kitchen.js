@@ -36,7 +36,8 @@ module.exports=async function handler(req,res){
     if(action==='login'){
       const pin=String(body.pin||'').replace(/\D/g,'').slice(0,6);
       const username=String(body.username||'').trim().toLowerCase();
-      const result=username?await rpc('chidoliro_staff_login',{username_input:username,pin_input:pin,client_fingerprint:fingerprint(req)}):await rpc('chidoliro_kitchen_login',{pin_input:pin,client_fingerprint:fingerprint(req)});
+      if(!username)return res.status(400).json({ok:false,error:'username_required'});
+      const result=await rpc('chidoliro_staff_login',{username_input:username,pin_input:pin,client_fingerprint:fingerprint(req)});
       if(!result?.ok)return res.status(statusFor(result)).json(result||{ok:false,error:'login_failed'});
       return res.status(200).json(result);
     }
