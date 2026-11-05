@@ -200,9 +200,8 @@ async function handleKitchen(request, env) {
       const pin = String(body.pin || "").replace(/\D/g, "").slice(0, 6);
       const username = String(body.username || "").trim().toLowerCase();
       const client_fingerprint = await fingerprint(request);
-      const result = username
-        ? await rpcData(env, "chidoliro_staff_login", { username_input: username, pin_input: pin, client_fingerprint })
-        : await rpcData(env, "chidoliro_kitchen_login", { pin_input: pin, client_fingerprint });
+      if (!username) return json({ ok: false, error: "username_required" }, 400);
+      const result = await rpcData(env, "chidoliro_staff_login", { username_input: username, pin_input: pin, client_fingerprint });
       if (!result?.ok) return json(result || { ok: false, error: "login_failed" }, statusFor(result));
       return json(result);
     }
