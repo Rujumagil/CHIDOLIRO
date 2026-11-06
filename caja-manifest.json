@@ -1,0 +1,24 @@
+{
+  "id": "/app-caja",
+  "name": "CHIDOLIRO Caja",
+  "short_name": "CHD Caja",
+  "description": "CHIDOLIRO · Cobros y cortes",
+  "start_url": "/caja.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#04171b",
+  "theme_color": "#082a31",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
