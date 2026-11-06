@@ -1,6 +1,6 @@
 {
-  "name": "CHIDOLIRO Control",
-  "short_name": "CHIDOLIRO Control",
+  "name": "CHIDOLIRO Admin",
+  "short_name": "CHD Admin",
   "description": "Operación interna de CHIDOLIRO: pedidos, mesas, reservaciones, caja e inventario.",
   "start_url": "/control.html",
   "scope": "/",
@@ -9,7 +9,16 @@
   "background_color": "#04171b",
   "theme_color": "#04171b",
   "icons": [
-    {"src":"/assets/icon-192.png","sizes":"192x192","type":"image/png"},
-    {"src":"/assets/icon-512.png","sizes":"512x512","type":"image/png"}
-  ]
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "id": "/app-admin"
 }
